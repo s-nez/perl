@@ -1,25 +1,25 @@
 # CSV
-Wczytaj plik CSV i wypisz dane w formie tabeli.
+Wczytaj plik CSV i wypisz dane w formie ponumerowanej tabeli.
 Dane do programu zostaną podane w formie argumentów linii poleceń:
 ````
 program.pl [plik.csv] [separator] [hasło]
 ````
-plik.csv - nazwa pliku do wczytania
-separator - znak oddzielający wpisy w pliku, domyślnie ','
-hasło - dane, które trzeba zamienić na gwiazdki, domyślnie 'hunter2'
+**plik.csv** - nazwa pliku do wczytania  
+**separator** - znak oddzielający wpisy w pliku, domyślnie _','_  
+**hasło** - dane, które trzeba zamienić na gwiazdki, domyślnie _'hunter2'_
 
 Tylko pierwszy argument jest niezbędny, program powinien zwrócić błąd
 jeśli nie zostanie on podany, w przypadku braku pozostałych argumentów
 należy przyjąc domyślne wartości.
 
 Jeśli któryś z wpisów w pliku jest hasłem, należy zamiast niego wypisać
-ciąg gwiazdek('*') o takiej samej długości.
+ciąg gwiazdek(_'*'_) o takiej samej długości.
 
 Jeśli hasło wystąpiło w pliku przynajmniej raz, należy wypisać na koniec
 ilość jego wystąpień.
 
-**UWAGA:** interesują nas tylko pełne wpisy, jeśli hasło to 'hunter2', to
-'hunter22' należy zostawić bez zmian.
+**UWAGA:** interesują nas tylko pełne wpisy, jeśli hasło to _'hunter2'_, to
+_'hunter22'_ należy zostawić bez zmian.
 
 ## Przykładowe wejście i wyjście
 ````

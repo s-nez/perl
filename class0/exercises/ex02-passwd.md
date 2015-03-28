@@ -29,4 +29,5 @@ Liczba użytkowników: 2
 
 Przydatne informacje:
 UID "normalnych" użytkowników mieszczą się zwykle w przedziale [1000, 60000]
+
 [Znaczenie poszczególnych pól pliku](https://en.wikipedia.org/wiki/Passwd_%28file%29#Password_file)
