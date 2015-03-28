@@ -23,7 +23,7 @@ _'hunter22'_ należy zostawić bez zmian.
 
 ## Przykładowe wejście i wyjście
 ````
-program.pl file.csv ';' 'hunter3'
+ex03-csv.pl file.csv ';' 'hunter3'
 ````
 Zawartość pliku file.csv:
 ````

@@ -2,17 +2,17 @@
 ## Szablon warsztatów
 1. Wprowadzenie do Perla (środowisko, podstawowe instrukcje i typy danych)
     - instalacja i konfiguracja środowiska
-    - filozofia Perla (MP1)
+    - filozofia Perla
     - perldoc
     - hello world
     - podstawowe IO
-    - zmienne, skalary i tablice (MP3)
+    - zmienne, skalary i tablice
     - operatory
-    - instrukcje kontrolne - (MP3)
+    - instrukcje kontrolne
 2. Rozbudowane typy danych (hashe i referencje) i operacje na plikach
     - hashe
     - referencje
-    - zagnieżdżone struktury danych (MP3)
+    - zagnieżdżone struktury danych
     - Data::Dumper
     - jak Perl zarządza pamięcią, słabe referencje
     - czytanie i zapisywanie plików
