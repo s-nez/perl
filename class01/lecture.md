@@ -133,3 +133,51 @@ Operacje arytmetyczne:
 ++$num1; --$num2;   # pre-inkrementacja i pre-dekrementacja
 $num++; $num--;     # post-inkrementacja i post-dekrementacja
 ````
+
+#### Napisy
+Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
+dowolne ilości tesktu lub binarnych danych (o ile pozwala na to pamięć).
+Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
+````
+my $string = 'bardzo ciekawy \teskt';
+my $text = "To jest $string.\n";
+````
+Pojedynczy cudzysłów służy do interpretacji dosłownej, każdy znak wewnątrz
+zostanie bez zmian wstawiony do zmiennej. Podwójny cudzysłów pozwala na
+interpolację znaków specjalnych (np. \t, \n) i innych zmiennych.
+W efekcie $string zawiera dokładnie _'bardzo ciekawy \tekst', a $text
+_'To jest bardzo ciekawy \teskt'_ i znak nowej linii. Znaki cudzysłowów w
+odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
+**\**. Alternatywnie można też użyć funkcji **q** i **qq**, które działają
+jak, odpowiednio, Pojedynczy i podwójny cudzysłów, ale pozwalają wybrać
+inny znak do ograniczenia napisu:
+````
+my $quote = qq{"Przaśnie!", takom rzekł. "Hue hue!"};
+my $other = q|It's very weird, don't you think?|;
+````
+W tym wypadku znak następujący po nazwie funkcji zostaje ograniczeniem
+napisu.
+
+Dla większej ilości tekstu warto rozważyć użycie **heredoc**.
+````
+my $text =<<'END_HERE';
+Jakiś bardzo długi tekst, który
+jest wpisywany do zmiennej $text
+bez interpolacji i ze wszystkimi
+cudzysłowami: 'cytat'.
+END_HERE
+````
+Dokument heredoc rozpoczyna << i nazwa ogranicznika. Ogranicznik powinien
+być wzięty w pojedynczy lub podwójny cudzysłów, jego rodzaj określa
+zachowanie interpolacji wewnątrze dokumentu.
+
+**UWAGA:** Niezależnie od indentacji początku dokumentu, zakończenie musi
+zaczynać się od początku linii.
+````
+unless (defined $text) {
+    $text = <<'END_HERE';
+    Dokuement, lorem ipsum
+    i coś tam dalej.
+END_HERE
+}
+````
