@@ -1,5 +1,19 @@
 # Warsztat 01
 
+## Spis treści
+* [Instalacja](#instalacja)
+    * [Edytor](#edytor)
+* [Hello World! i uruchamianie programów](#hello-world-i-uruchamianie-programów)
+* [Perldoc](#perldoc)
+    * [Jak używać dokumentacji](#jak-używać-dokumentacji)
+    * [Przydatne strony dokumentacji](#przydatne-strony-dokumentacji)
+* [Zmienne](#zmienne)
+    * [Skalary](#skalary)
+        * [Deklaracja z inicjalizacją:](#deklaracja-z-inicjalizacją)
+        * [Liczby](#liczby)
+        * [Napisy](#napisy)
+            * [Operacje na napisach](#operacje-na-napisach)
+
 ## Instalacja
 Perl jest zainstalowy domyślnie w większość dystrybucji GNU. Instalacja
 pakietu _perl_ powinna wystarczyć do normalnej pracy.
