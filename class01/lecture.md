@@ -106,7 +106,7 @@ wartość. Próba użycia niezdefiniowanej wartości skutkuje ostrzeżeniem.
 
 #### Liczby
 Perl obsługuje liczby całkowite i zmiennoprzecinkowe. Możliwe jest kilka
-różnych form reprezentacji:
+różnych notacji:
 ````
 my $int       = 42;       # liczba całkowita
 my $float     = 0.04;     # ułamek
@@ -118,7 +118,7 @@ my $octal     = 052;      # system ósemkowy
 **UWAGA:** Liczba całkowita rozpoczynająca się od zera jest zawsze
 traktowana jako ósemkowa.
 
-Rozdzielanie długich liczb:
+Rozdzielanie długich liczb (te trzy instrukcje mają taki sam efekt):
 ````
 my $billion = 1000000000;
 my $billion = 1_000_000_000;
@@ -139,16 +139,18 @@ Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać
 dowolne ilości tesktu lub binarnych danych (o ile pozwala na to pamięć).
 Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
 ````
-my $string = 'bardzo ciekawy \teskt';
+my $string = 'bardzo ciekawy \tekst';
 my $text = "To jest $string.\n";
 ````
 Pojedynczy cudzysłów służy do interpretacji dosłownej, każdy znak wewnątrz
 zostanie bez zmian wstawiony do zmiennej. Podwójny cudzysłów pozwala na
 interpolację znaków specjalnych (np. \t, \n) i innych zmiennych.
 W efekcie $string zawiera dokładnie _'bardzo ciekawy \tekst'_, a $text
-_'To jest bardzo ciekawy \teskt'_ i znak nowej linii. Znaki cudzysłowów w
+_'To jest bardzo ciekawy \tekst'_ i znak nowej linii. Znaki cudzysłowów w
 odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
-**\**. Alternatywnie można też użyć funkcji **q** i **qq**, które działają
+**\**.
+
+Alternatywnie można też użyć funkcji **q** i **qq**, które działają
 jak, odpowiednio, pojedynczy i podwójny cudzysłów, ale pozwalają wybrać
 inny znak do ograniczenia napisu:
 ````
@@ -180,4 +182,18 @@ unless (defined $text) {
     i coś tam dalej.
 END_HERE
 }
+````
+
+##### Operacje na napisach
+Konkatenacja (łączenie) napisów:
+````
+my $string = 'first' . ' and ' . "second\n"; # wynik: "first and second\n"
+my $and_zero = 'zeroth and ' . $string;      # wynik: "zeroth and first and second\n"
+````
+Zmiana wielkości liter:
+````
+uc 'low';      # wynik: 'LOW'
+ucfirst 'low'; # wynik: 'Low'
+lc 'UP';       # wynik: 'up'
+lcfirst 'UP';  # wynik: 'uP'
 ````
