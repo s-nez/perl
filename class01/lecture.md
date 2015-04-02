@@ -30,7 +30,7 @@ programów. [Geany](http://www.geany.org/) jest dobrym wyborem na początek.
 
 ## Hello World! i uruchamianie programów
 Tradycyjny program Hello World! w Perlu:
-````
+````perl
 #!/usr/bin/perl
 print "Hello World!\n";
 ````
@@ -88,7 +88,7 @@ dobrym zwyczajem jest brać argumenty _perldoc -v_ w pojedynczy cudzysłów.
 Cała dokumentacja znajduje się też [online](http://perldoc.perl.org/).
 
 ### Przydatne strony dokumentacji
-````
+````sh
 perldoc perlintro # krótkie wprowadzenie do języka
 perldoc perlstyle # styl kodu
 perldoc perlcheat # ściąga ze wszystkich podstawowych elementów składni
@@ -98,7 +98,7 @@ perldoc perltrap  # pułapki i niuanse języka, na które trzeba uważać
 ## Zmienne
 Zmiennne w Perlu zaczynają się od znaku oznaczającego ich typ, deklaracja
 zmiennych odbywa się za pomocą słowa kluczowego _my_:
-````
+````perl
 my $scalar;
 my @array;
 my %hash;
@@ -111,7 +111,7 @@ _true_ i _false_). Konwersja między typami jest dynamiczna i zależy od
 kontekstu, po przypisaniu wartość może zmieniać się dowolnie.
 
 #### Deklaracja z inicjalizacją
-````
+````perl
 my $string = 'hue';
 my $number = 7;
 my ($a, $b, $c) = (1, 'two', 3.0);
@@ -123,7 +123,7 @@ wartość. Próba użycia niezdefiniowanej wartości skutkuje ostrzeżeniem.
 #### Liczby
 Perl obsługuje liczby całkowite i zmiennoprzecinkowe. Możliwe jest kilka
 różnych notacji:
-````
+````perl
 my $int       = 42;       # liczba całkowita
 my $float     = 0.04;     # ułamek
 my $sci_float = 1.15e8;   # notacja naukowa
@@ -135,14 +135,14 @@ my $octal     = 052;      # system ósemkowy
 traktowana jako ósemkowa.
 
 Rozdzielanie długich liczb (te trzy instrukcje mają taki sam efekt):
-````
+````perl
 my $billion = 1000000000;
 my $billion = 1_000_000_000;
 my $billion = 10_0_00_00_0_0_0;
 ````
 
 Operacje arytmetyczne:
-````
+````perl
 7 + 2 - 12 * 5 / 3; # standardowe operatory do podstawowych działań
 2**10;              # potęgowanie, wynik - 1024
 11 % 4;             # modulo, wynik - 3
@@ -154,7 +154,7 @@ $num++; $num--;     # post-inkrementacja i post-dekrementacja
 Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
 dowolne ilości tesktu lub binarnych danych (o ile pozwala na to pamięć).
 Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
-````
+````perl
 my $string = 'bardzo ciekawy \tekst';
 my $text = "To jest $string.\n";
 ````
@@ -169,7 +169,7 @@ odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
 Alternatywnie można też użyć funkcji **q** i **qq**, które działają
 jak, odpowiednio, pojedynczy i podwójny cudzysłów, ale pozwalają wybrać
 inny znak do ograniczenia napisu:
-````
+````perl
 my $quote = qq{"Przaśnie!", takom rzekł. "Hue hue!"};
 my $other = q|It's very weird, don't you think?|;
 ````
@@ -177,7 +177,7 @@ W tym wypadku znak następujący po nazwie funkcji zostaje ograniczeniem
 napisu.
 
 Dla większej ilości tekstu warto rozważyć użycie **heredoc**.
-````
+````perl
 my $text =<<'END_HERE';
 Jakiś bardzo długi tekst, który
 jest wpisywany do zmiennej $text
@@ -191,7 +191,7 @@ zachowanie interpolacji wewnątrz dokumentu.
 
 **UWAGA:** Niezależnie od indentacji początku dokumentu, zakończenie musi
 zaczynać się od początku linii.
-````
+````perl
 unless (defined $text) {
     $text = <<'END_HERE';
     Dokuement, lorem ipsum
@@ -202,18 +202,18 @@ END_HERE
 
 ##### Operacje na napisach
 Konkatenacja (łączenie) napisów:
-````
+````perl
 my $string = 'first' . ' and ' . "second\n"; # wynik: "first and second\n"
 my $and_zero = 'zeroth and ' . $string;      # wynik: "zeroth and first and second\n"
 ````
 Zmiana wielkości liter:
-````
+````perl
 uc 'low';      # wynik: 'LOW'
 ucfirst 'low'; # wynik: 'Low'
 lc 'UP';       # wynik: 'up'
 lcfirst 'UP';  # wynik: 'uP'
 ````
 Wielokrotność napisu:
-````
+````perl
 'hue ' x 3; # wynik: hue hue hue 
 ````
