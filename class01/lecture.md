@@ -1,5 +1,6 @@
 # Warsztat 01
 
+<!--TOC_START--->
 ## Spis treści
 * [Instalacja](#instalacja)
     * [Edytor](#edytor)
@@ -9,13 +10,14 @@
     * [Przydatne strony dokumentacji](#przydatne-strony-dokumentacji)
 * [Zmienne](#zmienne)
     * [Skalary](#skalary)
-        * [Deklaracja z inicjalizacją:](#deklaracja-z-inicjalizacją)
+        * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
         * [Liczby](#liczby)
         * [Napisy](#napisy)
             * [Operacje na napisach](#operacje-na-napisach)
+<!--TOC_END--->
 
 ## Instalacja
-Perl jest zainstalowy domyślnie w większość dystrybucji GNU. Instalacja
+Perl jest zainstalowy domyślnie w większości dystrybucji GNU. Instalacja
 pakietu _perl_ powinna wystarczyć do normalnej pracy.
 
 Jeśli ktoś jest zmuszony do używania Windowsa, to
@@ -108,7 +110,7 @@ napis, uchwyt do pliku lub referencja (Perl nie posiada wbudowanych wartości
 _true_ i _false_). Konwersja między typami jest dynamiczna i zależy od
 kontekstu, po przypisaniu wartość może zmieniać się dowolnie.
 
-#### Deklaracja z inicjalizacją:
+#### Deklaracja z inicjalizacją
 ````
 my $string = 'hue';
 my $number = 7;
@@ -210,4 +212,8 @@ uc 'low';      # wynik: 'LOW'
 ucfirst 'low'; # wynik: 'Low'
 lc 'UP';       # wynik: 'up'
 lcfirst 'UP';  # wynik: 'uP'
+````
+Wielokrotność napisu:
+````
+'hue ' x 3; # wynik: hue hue hue 
 ````
