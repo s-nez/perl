@@ -14,6 +14,7 @@
         * [Liczby](#liczby)
         * [Napisy](#napisy)
             * [Operacje na napisach](#operacje-na-napisach)
+
 <!--TOC_END--->
 
 ## Instalacja

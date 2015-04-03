@@ -1,5 +1,5 @@
 # Wyśrodkowanie tekstu
-Wczytaj teskt ze standardowego wejścia i wypisz go w wyśrodkowanej formie.
+Wczytaj tekst ze standardowego wejścia i wypisz go w wyśrodkowanej formie.
 
 ## Przykład:
 
