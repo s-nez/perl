@@ -22,7 +22,7 @@ Perl jest zainstalowy domyślnie w większości dystrybucji GNU. Instalacja
 pakietu _perl_ powinna wystarczyć do normalnej pracy.
 
 Jeśli ktoś jest zmuszony do używania Windowsa, to
-[Strawberry Perl](http://strawberryperl.com/) wydaje się być najlepszą
+[Strawberry Perl](http://strawberryperl.com/) wydaje się najlepszą
 opcją.
 
 ### Edytor
