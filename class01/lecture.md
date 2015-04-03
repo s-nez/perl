@@ -218,3 +218,68 @@ Wielokrotność napisu:
 ````perl
 'hue ' x 3; # wynik: hue hue hue 
 ````
+
+### Tablice
+Tablice są pojemnikami przechowującymi 0 lub więcej skalarów. Dostęp do
+elementów jest sekwencyjny, można je dowolnie dodawać i usuwać, a tablica
+będzie zmieniać swój rozmiar w miarę potrzeby.
+
+#### Deklaracja z inicjalizacją 
+Tablice oznaczone są znakiem **@**. Deklaracja bez inicjalizacji stworzy pustą
+(0-elementową) tablicę, do inicjalizcji można użyć listy.
+````perl
+my @array;                   # pusta tablica
+my @array = ('one', 2, 3.0); # tablica zawierająca trzy wartości
+````
+Jak można zauważyć powyżej, typ skalarów wewnątrz jednej tablicy jest dowolny.
+
+#### Dostęp do elementów
+Do pojedynczego elementu tablicy można się odwołać używając standardowego
+operatora []. Należy zwrócić uwagę, że pojedynczy element tablicy jest
+skalarem, więc należy go poprzedzić znakiem **$**, a nie **@**. Próba dostępu
+do elementu, którego nie ma w tablicy zwraca wartość _undef_.
+````perl
+my @array = ('one', 2, 3.0);
+$array[0]; # 'one'
+$array[2]; # 3.0
+$array[5]; # undef
+````
+Istnieje też możliwość odwołania się do elementu na podstawie jego pozycji
+licząc od końca tablicy, używając indeksów ujemnych:
+````perl
+my @array = ('one', 2, 3.0);
+$array[-1]; # 3.0
+$array[-3]; # 'one'
+$array[-7]; # undef
+````
+Przypisanie tablicy do listy pozwala nam na dostęp do określonej liczby
+elementów tablicy, licząc od początku.
+````perl
+my @array = ('one', 2, 3.0);
+my ($one, $two, $three) = @array;
+$one;   # 'one'
+$two;   # 2
+$three; # 3.0
+````
+Tej składni można też użyć do deklaracji kilku skalarów naraz:
+````perl
+my ($a, $b, $c) = ('anything', 234, 3.5);
+````
+oraz do zamiany wartości skalarów:
+````perl
+($a, $b) = ($b, $a);
+$a; # 234
+$b; # 'anything'
+````
+
+#### Pojemność tablicy
+Tablice powiększają sie i zmniejszają w miarę potrzeb. Przypisanie wartości do
+nieistniejącego elementu, rozszerzy tablicę na tyle, żeby taki element w niej
+był.
+````perl
+my @array = (1, 2, 3);
+$array[6] = 'hue';
+@array; # (1, 2, 3, undef, undef, undef, 'hue')
+````
+Do tablicy dodane zostało tyle elementów, by indeks 6 istniał, a pośrednie
+wartości zostały ustawione na _undef_.
