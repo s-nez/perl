@@ -2,6 +2,7 @@
 
 <!--TOC_START--->
 ## Spis treści
+* [Spis treści](#spis-treści)
 * [Instalacja](#instalacja)
     * [Edytor](#edytor)
 * [Hello World! i uruchamianie programów](#hello-world-i-uruchamianie-programów)
@@ -13,11 +14,11 @@
         * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
         * [Liczby](#liczby)
         * [Napisy](#napisy)
-            * [Operacje na napisach](#operacje-na-napisach)
     * [Tablice](#tablice)
         * [Deklaracja z inicjalizacją ](#deklaracja-z-inicjalizacją-)
         * [Dostęp do elementów](#dostęp-do-elementów)
         * [Pojemność tablicy](#pojemność-tablicy)
+        * [Operacje na tablicach](#operacje-na-tablicach)
 
 <!--TOC_END--->
 
@@ -287,3 +288,27 @@ $array[6] = 'hue';
 ````
 Do tablicy dodane zostało tyle elementów, by indeks 6 istniał, a pośrednie
 wartości zostały ustawione na _undef_.
+
+Zmienna **$#array** zawiera ostatni indeks w tablicy **@array**. Przypisanie do
+niej wartości liczbowej zmienia rozmiar tablicy.
+````perl
+my @array = (1, 2, 3);
+$#array;     # 2
+$#array = 5; # @array = (1, 2, 3, undef, undef, undef)
+$#array = 1; # @array = (1, 2)
+````
+
+#### Operacje na tablicach
+Dodawanie i usuwanie wartości na końcu tablicy:
+````perl
+my @array;
+push @array, 1;        # @array = (1)
+push @array, 2, 3;     # @array = (1, 2, 3)
+pop @array;            # @array = (1, 2)
+my $last = pop @array; # @array = (1), $last = 2
+````
+Funkcja **push** dodaje podaną listę na koniec tablicy i zwraca nowy rozmiar
+tablicy, **pop** usuwa i zwraca ostatni element tablicy.
+
+Funkcje **shift** i **unshift** analogicznie usuwają i dodają elementy na
+początku tablicy.
