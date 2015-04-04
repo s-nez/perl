@@ -2,7 +2,6 @@
 
 <!--TOC_START--->
 ## Spis treści
-* [Spis treści](#spis-treści)
 * [Instalacja](#instalacja)
     * [Edytor](#edytor)
 * [Hello World! i uruchamianie programów](#hello-world-i-uruchamianie-programów)
@@ -19,6 +18,8 @@
         * [Dostęp do elementów](#dostęp-do-elementów)
         * [Pojemność tablicy](#pojemność-tablicy)
         * [Operacje na tablicach](#operacje-na-tablicach)
+        * [Podtablice](#podtablice)
+        * [Kontekst](#kontekst)
 
 <!--TOC_END--->
 
@@ -292,10 +293,10 @@ wartości zostały ustawione na _undef_.
 Zmienna **$#array** zawiera ostatni indeks w tablicy **@array**. Przypisanie do
 niej wartości liczbowej zmienia rozmiar tablicy.
 ````perl
-my @array = (1, 2, 3);
-$#array;     # 2
-$#array = 5; # @array = (1, 2, 3, undef, undef, undef)
-$#array = 1; # @array = (1, 2)
+my @array = 1..3; # @array = (1, 2, 3)
+$#array;          # 2
+$#array = 5;      # @array = (1, 2, 3, undef, undef, undef)
+$#array = 1;      # @array = (1, 2)
 ````
 
 #### Operacje na tablicach
@@ -312,3 +313,59 @@ tablicy, **pop** usuwa i zwraca ostatni element tablicy.
 
 Funkcje **shift** i **unshift** analogicznie usuwają i dodają elementy na
 początku tablicy.
+
+#### Podtablice
+Oprócz pojedynczych elementów, operator [] pozwala też uzyskać dostęp do
+podtablic.
+````perl
+my @array = a..g;         # @array = (a, b, c, d, e, f, g)
+@array[0,1,5];            # (a, b, f)
+@array[3,5] = ('X', 'X'); # (a b c X e X g)
+````
+
+#### Kontekst
+W kontekście listy, tablice "rozpakowują się" do formy list. Pozwala to na
+składanie dowolnej liczby tablic i skalarów w listę.
+````perl
+my @x = ('x', 'X');
+my @y = ('y', 'Y');
+my @combo = (@x, 4, @y); # @combo = ('x', 'X', 4, 'y', 'Y')
+my ($first, $second, @rest) = 1..10;
+$first;  # 1
+$second; # 2
+@rest;   # (3, 4, 5, 6, 7, 8, 9, 10)
+````
+W kontekście skalara, tablice zwracają liczbę swoich elementów. Kontekst
+skalarny jest wymuszany przez słowo kluczowe **scalar** i operatory skalarne.
+````perl
+my @array = 1..5; # @array = (1, 2, 3, 4, 5)
+scalar @array;    # 5
+@array + 2;       # 7
+````
+**UWAGA:** Należy zwrócić uwagę, że argumenty funkcji (jak **print** i **say**)
+są listą, więc następująca próba wypisania ilości elementów tablicy się nie
+powiedzie:
+````perl
+print 'Tablica @array ma ', @array, ' elementów';
+````
+Tablica @array zostanie rozpakowana do listy swoich elementów, więc efekt
+będzie taki sam, jak podanie jej elementów jako argumentów **print**. Wynik
+powyższego polecenia to:
+````
+Tablica @array ma 12345 elementów
+````
+Żeby podać liczbę argumentów jako argument funkcji należy zawsze używać słowa
+kluczowego **scalar**.
+
+Wewnątrz napisu tablica rozwija się w listę argumentów połączoną zawartością
+specjalnej zmiennej $", domyślnie jest to pojedyncza spacja.
+````perl
+my @array = ('kilka', 'słów o tablicy', 'i', 'jedno', 'więcej');
+say "Zawartość tablicy: @array";
+say 'Tablica zawiera ', scalar @array, ' elementów';
+````
+Wynik:
+````
+Zawartość tablicy: kilka słów o tablicy i jedno więcej
+Tablica zawiera 5 elementów
+````
