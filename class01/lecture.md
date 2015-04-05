@@ -236,6 +236,31 @@ Wielokrotność napisu:
 ````perl
 'hue ' x 3; # wynik: hue hue hue 
 ````
+Usuwanie kończących znaków nowej linii:
+````perl
+my $string = "content\n";
+chomp $string; # $string = "content"
+````
+Przy wczytywaniu danych bardzo często na końcu znajduje się znak "\n", który
+może przeszkadzać w operacjach na napisach. Funkcja **chomp** usuwa taki
+kończący znak, jeśli napis nie kończy się znakiem nowej linii, funkcja nie robi
+nic.
+
+Odcinanie ostatniego znaku:
+````perl
+my $string = 'abc';
+my $last = chop $string;
+$string; # 'ab'
+$last;   # 'c'
+````
+**chop** bezwarunkowo odcina i zwraca ostatni znak napisu (_undef_, jeśli napis
+jest pusty). Nie należy go używać jako zamiennika **chomp**.
+
+Sprawdzanie długości napisu:
+````perl
+my $string = 'abc';
+length $string; # 3
+````
 
 ### Tablice
 Tablice są pojemnikami przechowującymi 0 lub więcej skalarów. Dostęp do
@@ -445,6 +470,7 @@ należy ich używać do operacji na napisach.
 * ge - większy lub równy
 * eq - równość
 * ne - nierówność
+
 Adekwatnie, ten zestaw operatorów służy do operacji na napisach, narzuca na
 operandy kontekst napisowy i porównuje je leksykograficznie.
 
@@ -465,5 +491,5 @@ zawierające same białe znaki) są uznawane za prawdę.
 Wartośc _undef_ jest zawsze traktowana jako fałsz.
 
 #### Tablice, listy i hashe
-Jeśli dany pojemnik lub lista jest pusty, jest interpretowany jak fałsz, jeśli
+Jeśli dany pojemnik lub lista jest pusty, jest interpretowany jako fałsz, jeśli
 zawiera chociaż jeden element (nawet _undef_), jest uznawany za prawdę.
