@@ -320,7 +320,7 @@ podtablic.
 ````perl
 my @array = a..g;         # @array = (a, b, c, d, e, f, g)
 @array[0,1,5];            # (a, b, f)
-@array[3,5] = ('X', 'X'); # (a b c X e X g)
+@array[3,5] = ('X', 'X'); # @array = (a, b, c, X, e, X, g)
 ````
 
 #### Kontekst
@@ -363,9 +363,12 @@ specjalnej zmiennej $", domyślnie jest to pojedyncza spacja.
 my @array = ('kilka', 'słów o tablicy', 'i', 'jedno', 'więcej');
 say "Zawartość tablicy: @array";
 say 'Tablica zawiera ', scalar @array, ' elementów';
+local $" = ')(';
+say "Zawartość tablicy: (@array)";
 ````
 Wynik:
 ````
 Zawartość tablicy: kilka słów o tablicy i jedno więcej
 Tablica zawiera 5 elementów
+Zawartość tablicy: (kilka)(słów o tablicy)(i)(jedno)(więcej)
 ````
