@@ -32,6 +32,11 @@
         * [Napisy](#napisy)
         * [Undef](#undef)
         * [Tablice, listy i hashe](#tablice-listy-i-hashe)
+* [Pętle](#pętle)
+    * [foreach](#foreach)
+    * [for](#for)
+        * [Pętla w stylu C](#pętla-w-stylu-c)
+    * [while](#while)
 
 <!--TOC_END--->
 
@@ -493,3 +498,99 @@ Wartośc _undef_ jest zawsze traktowana jako fałsz.
 #### Tablice, listy i hashe
 Jeśli dany pojemnik lub lista jest pusty, jest interpretowany jako fałsz, jeśli
 zawiera chociaż jeden element (nawet _undef_), jest uznawany za prawdę.
+
+## Pętle
+### foreach
+Prawdopodobnie najczęściej używana pętla w Perlu. **foreach** służy do
+iterowania po liście. Pozwala wykonywać dany blok kodu po kolei dla każdego
+elementu listy.
+````perl
+my @array = 1..3;
+foreach my $element (@array) {
+    say $element;
+}
+````
+Wynik:
+````
+1
+2
+3
+````
+Po słowie kluczowym **foreach** można podać istniejącą zmienną lub zadeklarować
+nową, ta zmienna będzie na czas wykonania pętli aliasem dla poszczególnych
+elementów listy, następnie w nawiasie należy podać listę elementów, po których
+chcemy iterować. Łatwo się więc domyślić, że to wyrażenie ma narzucony kontekst
+listowy. Jeśli nie podamy aliasu dla pętli, użyta zostanie domyślna zmienna
+**$_**.
+
+Poniższa pętla zadziała tak samo, jak ta podana w pierwszym przykładzie:
+````perl
+foreach (@array) {
+    say $_;
+}
+````
+
+Alias to dodatkowa nazwa, za pomocą której odwołujemy się do innej, już
+istniejącej zmiennej. Oznacza to, że modyfikacja aliasu spowoduje modyfikację
+elementu listy.
+````perl
+my @array = 1..3; # @array = (1, 2, 3)
+foreach my $num (@array) {
+    ++$num;
+}
+@array;           # (2, 3, 4)
+````
+
+### for
+Słowo kluczowe **for** może  być używane zamiennie z **foreach**. Poniższe
+pętle są funkcjonalnie identyczne:
+````perl
+foreach my $number (1..5) {
+    print $number;
+}
+for my $number (1..5) {
+    print $number;
+}
+````
+#### Pętla w stylu C
+Perl obsługuje pętlę for w stylu C, z trzema pod-instrukcjami:
+````perl
+for (my $i = 0; $i < 5; ++$i) {
+    say $i;
+}
+````
+Pierwsza instrukcja to inicjalizacja, jest wykonywana raz - na początku pętli.
+Druga to warunek wykonywania pętli, będzie sprawdzany przed każdym wykonaniem i
+dopóki zwraca wartość uznawaną za prawdę pętla będzie się wykonywać.
+Trzecia instrukcja jest wykonywana po każdym wykonaniu pętli.
+
+### while
+Pętla **while** przyjmuje jedno wyrażenie logiczne jako argument i wykonuje się
+dopóki jest ono prawdziwe.
+````perl
+my $i = 0;
+while ($i < 5) {
+    say $i;
+    ++$i;
+}
+````
+
+Innym zastosowaniem pętli **while** jest iterowanie po wyrażeniach
+generowanych. Typowym przykładem jest czytanie standardowego wejścia linia po
+linii:
+````perl
+while (<STDIN>) {
+    print $_;
+}
+````
+Operator **<>** (lub **readline**) wczytuje jedną linię z podanego uchwytu do
+pliku, w kontekście logicznym zwraca prawdę, jeśli udało się poprawnie wczytać
+linię i fałsz, jeśli trafi na EOF. Jeśli wynik tej operacji nie zostanie
+przypisany do żadnej zmiennej, trafi do $_.
+
+W przeciwieństwie do **foreach**, pętla **while** narzuca wyrażeniu kontrolnemu
+kontekst skalarny. Dlatego **<>** czyta z pliku tylko jedną linię naraz. W
+kontekście listowym zwraca listę wszystkich linii w pliku.
+
+Przez to zachowanie zazwyczaj należy unikać czytania plików w kontekście
+listowym, zwłaszcza jeśli mogą być duże.
