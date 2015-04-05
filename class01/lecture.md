@@ -456,7 +456,7 @@ if ($warunek) {
 * not, !  - zaprzeczenie
 
 Mimo, że przy pojedynczym wyrażeniu operatory **and** i **&&** mają ten sam
-efekt, to należy pamiętać, że są to dwa różne operatory. Operator *&&** ma
+efekt, to należy pamiętać, że są to dwa różne operatory. Operator **&&** ma
 wyższy priorytet niż **and**. To samo tyczy się operatorów **or** i **||**.
 
 #### Operatory z kontekstem numerycznym

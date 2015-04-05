@@ -1,36 +1,32 @@
 # CSV
 Wczytaj plik CSV i wypisz dane w formie ponumerowanej tabeli.
-Dane do programu zostaną podane w formie argumentów linii poleceń:
+Nazwa pliku z danymi zostanie podana jako pierwszy i jedyny argument programu:
 ````
-program.pl [plik.csv] [separator] [hasło]
+program.pl [plik.csv]
 ````
-**plik.csv** - nazwa pliku do wczytania  
-**separator** - znak oddzielający wpisy w pliku, domyślnie _','_  
-**hasło** - dane, które trzeba zamienić na gwiazdki, domyślnie _'hunter2'_
+Program powinien zwrócić błąd jeśli nazwa pliku nie zostanie podana.
 
-Tylko pierwszy argument jest niezbędny, program powinien zwrócić błąd
-jeśli nie zostanie on podany, w przypadku braku pozostałych argumentów
-należy przyjąc domyślne wartości.
-
-Jeśli któryś z wpisów w pliku jest hasłem, należy zamiast niego wypisać
-ciąg gwiazdek(_'*'_) o takiej samej długości.
+Plik z danymi składa się z wierszy danych o takiej samej ilości wpisów
+oddzielonych przecinkami.
+Jeśli któryś z wpisów w pliku jest równy hasłu: _'hunter2'_, należy zamiast
+niego wypisać ciąg gwiazdek(_'*'_) o takiej samej długości.
 
 Jeśli hasło wystąpiło w pliku przynajmniej raz, należy wypisać na koniec
 ilość jego wystąpień.
 
-**UWAGA:** interesują nas tylko pełne wpisy, jeśli hasło to _'hunter2'_, to
-_'hunter22'_ należy zostawić bez zmian.
+**UWAGA:** interesują nas tylko pełne wpisy, wpis o treści _'hunter22'_ należy
+zostawić bez zmian.
 
 ## Przykładowe wejście i wyjście
 ````
-ex03-csv.pl file.csv ';' 'hunter3'
+ex03-csv.pl file.csv
 ````
 Zawartość pliku file.csv:
 ````
-martin;hunter3;54;beer and wine
-john;gr32fds;21;hunter
-mary;hunter2;90;deer1
-huebert;hue;17;hunter2
+martin,hunter3,54,beer and wine
+john,gr32fds,21,hunter
+mary,hunter2,90,deer1
+huebert,hue;17,hunter2
 ````
 Wyjście:
 ````
