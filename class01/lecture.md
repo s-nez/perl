@@ -20,9 +20,13 @@
         * [Operacje na tablicach](#operacje-na-tablicach)
         * [Podtablice](#podtablice)
         * [Kontekst](#kontekst)
-* [Instrukcje warunkowe](#instrukcje-warunkowe)
+* [Logika](#logika)
     * [Podstawowe instrukcje warunkowe](#podstawowe-instrukcje-warunkowe)
     * [Operator ternarny](#operator-ternarny)
+    * [Operatory logiczne](#operatory-logiczne)
+        * [Operatory z kontekstem logicznym](#operatory-z-kontekstem-logicznym)
+        * [Operatory z kontekstem numerycznym](#operatory-z-kontekstem-numerycznym)
+        * [Operatory z kontekstem napisowym](#operatory-z-kontekstem-napisowym)
 
 <!--TOC_END--->
 
@@ -376,7 +380,7 @@ Tablica zawiera 5 elementów
 Zawartość tablicy: (kilka)(słów o tablicy)(i)(jedno)(więcej)
 ````
 
-## Instrukcje warunkowe
+## Logika
 ### Podstawowe instrukcje warunkowe
 ````perl
 if ($warunek) {
@@ -410,3 +414,31 @@ if ($warunek) {
     print 'False';
 }
 ````
+### Operatory logiczne
+#### Operatory z kontekstem logicznym
+* and, && - koniunkcja
+* or, ||  - alternatywa
+* not, !  - zaprzeczenie
+Mimo, że przy pojedynczym wyrażeniu operatory **and** i **&&** mają ten sam
+efekt, to należy pamiętać, że są to dwa różne operatory. Operator *&&** ma
+wyższy priorytet niż **and**. To samo tyczy się operatorów **or** i **||**.
+
+#### Operatory z kontekstem numerycznym
+* <  - mniejszość
+* >  - większość
+* <= - mniejszy lub równy
+* >= - większy lub równy
+* == - równość
+* != - nierówność
+Wszystkie te operatory narzucają na swoje operandy kontekst numeryczny, nie
+należy ich używać do operacji na napisach.
+
+#### Operatory z kontekstem napisowym
+* lt  - mniejszość
+* gt  - większość
+* le  - mniejszy lub równy
+* ge  - większy lub równy
+* eq  - równość
+* ne  - nierówność
+Adekwatnie, ten zestaw operatorów służy do operacji na napisach, narzuca na
+operandy kontekst napisowy i porównuje je leksykograficznie.
