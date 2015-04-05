@@ -20,6 +20,9 @@
         * [Operacje na tablicach](#operacje-na-tablicach)
         * [Podtablice](#podtablice)
         * [Kontekst](#kontekst)
+* [Instrukcje warunkowe](#instrukcje-warunkowe)
+    * [Podstawowe instrukcje warunkowe](#podstawowe-instrukcje-warunkowe)
+    * [Operator ternarny](#operator-ternarny)
 
 <!--TOC_END--->
 
@@ -371,4 +374,39 @@ Wynik:
 Zawartość tablicy: kilka słów o tablicy i jedno więcej
 Tablica zawiera 5 elementów
 Zawartość tablicy: (kilka)(słów o tablicy)(i)(jedno)(więcej)
+````
+
+## Instrukcje warunkowe
+### Podstawowe instrukcje warunkowe
+````perl
+if ($warunek) {
+    ...;
+} elsif ($inny_warunek) {
+    ...;
+} else {
+    ...;
+}
+````
+**UWAGA:** Klamry dookoła bloku kodu są obowiązkowe, nawet przy pojedynczej
+instrukcji.
+
+Do pojedynczych instrukcji można stosować wersję postfixową:
+````perl
+print 'Warunek spełniony' if $warunek;
+````
+
+Istnieje również zanegowana wersja instrukcji **if** - **unless**.
+
+### Operator ternarny
+W Perlu można korzystać z operatora ternarego w takiej samej formie jak w C.
+````perl
+print $warunek ? 'True' : 'False';
+````
+jest efektywnie tym samym, co:
+````perl
+if ($warunek) {
+    print 'True';
+} else {
+    print 'False';
+}
 ````
