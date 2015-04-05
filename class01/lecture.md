@@ -27,6 +27,11 @@
         * [Operatory z kontekstem logicznym](#operatory-z-kontekstem-logicznym)
         * [Operatory z kontekstem numerycznym](#operatory-z-kontekstem-numerycznym)
         * [Operatory z kontekstem napisowym](#operatory-z-kontekstem-napisowym)
+    * [Kontekst logiczny](#kontekst-logiczny)
+        * [Liczby](#liczby)
+        * [Napisy](#napisy)
+        * [Undef](#undef)
+        * [Tablice, listy i hashe](#tablice-listy-i-hashe)
 
 <!--TOC_END--->
 
@@ -434,11 +439,31 @@ Wszystkie te operatory narzucają na swoje operandy kontekst numeryczny, nie
 należy ich używać do operacji na napisach.
 
 #### Operatory z kontekstem napisowym
-* lt  - mniejszość
-* gt  - większość
-* le  - mniejszy lub równy
-* ge  - większy lub równy
-* eq  - równość
-* ne  - nierówność
+* lt - mniejszość
+* gt - większość
+* le - mniejszy lub równy
+* ge - większy lub równy
+* eq - równość
+* ne - nierówność
 Adekwatnie, ten zestaw operatorów służy do operacji na napisach, narzuca na
 operandy kontekst napisowy i porównuje je leksykograficznie.
+
+### Kontekst logiczny
+Operatory logiczne oraz instrukcje warunkowe narzucają kontekst logiczny. Perl
+nie dostarcza typu logicznego (bool), za to wszystkie wbudowane typy Perla mogą
+być interpretowane w kontekście logicznym.
+
+#### Liczby
+Liczby w kontekście logicznym zachowują się tak samo jak w C, tzn. 0 jest
+uznawane za fałsz, a wszystkie inne wartości za prawdę.
+
+#### Napisy
+Pusty napis jest interpretowany jako fałsz, wszystkie niepuste napisy (nawet
+zawierające same białe znaki) są uznawane za prawdę.
+
+#### Undef
+Wartośc _undef_ jest zawsze traktowana jako fałsz.
+
+#### Tablice, listy i hashe
+Jeśli dany pojemnik lub lista jest pusty, jest interpretowany jak fałsz, jeśli
+zawiera chociaż jeden element (nawet _undef_), jest uznawany za prawdę.
