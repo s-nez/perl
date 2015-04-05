@@ -35,7 +35,7 @@
 * [Pętle](#pętle)
     * [foreach](#foreach)
     * [for](#for)
-        * [Pętla w stylu C](#pętla-w-stylu-c)
+    * [Pętla w stylu C](#pętla-w-stylu-c)
     * [while](#while)
 
 <!--TOC_END--->
@@ -176,7 +176,7 @@ $num++; $num--;     # post-inkrementacja i post-dekrementacja
 
 #### Napisy
 Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
-dowolne ilości tesktu lub binarnych danych (o ile pozwala na to pamięć).
+dowolne ilości tekstu lub binarnych danych (o ile pozwala na to pamięć).
 Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
 ````perl
 my $string = 'bardzo ciekawy \tekst';
@@ -454,6 +454,7 @@ if ($warunek) {
 * and, && - koniunkcja
 * or, ||  - alternatywa
 * not, !  - zaprzeczenie
+
 Mimo, że przy pojedynczym wyrażeniu operatory **and** i **&&** mają ten sam
 efekt, to należy pamiętać, że są to dwa różne operatory. Operator *&&** ma
 wyższy priorytet niż **and**. To samo tyczy się operatorów **or** i **||**.
@@ -465,6 +466,7 @@ wyższy priorytet niż **and**. To samo tyczy się operatorów **or** i **||**.
 * >= - większy lub równy
 * == - równość
 * != - nierówność
+
 Wszystkie te operatory narzucają na swoje operandy kontekst numeryczny, nie
 należy ich używać do operacji na napisach.
 
@@ -552,7 +554,7 @@ for my $number (1..5) {
     print $number;
 }
 ````
-#### Pętla w stylu C
+### Pętla w stylu C
 Perl obsługuje pętlę for w stylu C, z trzema pod-instrukcjami:
 ````perl
 for (my $i = 0; $i < 5; ++$i) {
@@ -586,7 +588,7 @@ while (<STDIN>) {
 Operator **<>** (lub **readline**) wczytuje jedną linię z podanego uchwytu do
 pliku, w kontekście logicznym zwraca prawdę, jeśli udało się poprawnie wczytać
 linię i fałsz, jeśli trafi na EOF. Jeśli wynik tej operacji nie zostanie
-przypisany do żadnej zmiennej, trafi do $_.
+przypisany do żadnej zmiennej, trafi do **$_**.
 
 W przeciwieństwie do **foreach**, pętla **while** narzuca wyrażeniu kontrolnemu
 kontekst skalarny. Dlatego **<>** czyta z pliku tylko jedną linię naraz. W
