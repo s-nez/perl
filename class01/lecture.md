@@ -40,6 +40,7 @@
     * [for](#for)
     * [Pętla w stylu C](#pętla-w-stylu-c)
     * [while](#while)
+    * [Pętle postfixowe](#pętle-postfixowe)
 * [Wejście i wyjście](#wejście-i-wyjście)
     * [Wypisywanie na standardowe wyjście](#wypisywanie-na-standardowe-wyjście)
     * [Wczytywanie ze standardowego wejścia](#wczytywanie-ze-standardowego-wejścia)
@@ -47,171 +48,171 @@
 <!--TOC_END--->
 
 ## Instalacja
-Perl jest zainstalowy domyślnie w większości dystrybucji GNU. Instalacja
-pakietu _perl_ powinna wystarczyć do normalnej pracy.
+    Perl jest zainstalowy domyślnie w większości dystrybucji GNU. Instalacja
+    pakietu _perl_ powinna wystarczyć do normalnej pracy.
 
-Jeśli ktoś jest zmuszony do używania Windowsa, to
-[Strawberry Perl](http://strawberryperl.com/) wydaje się najlepszą
-opcją.
+    Jeśli ktoś jest zmuszony do używania Windowsa, to
+    [Strawberry Perl](http://strawberryperl.com/) wydaje się najlepszą
+    opcją.
 
 ### Edytor
-Najprostszy edytor tekstu i terminal wystarczą do pisania i uruchamiania
-programów. [Geany](http://www.geany.org/) jest dobrym wyborem na początek.
+    Najprostszy edytor tekstu i terminal wystarczą do pisania i uruchamiania
+    programów. [Geany](http://www.geany.org/) jest dobrym wyborem na początek.
 
 ## Hello World! i uruchamianie programów
-Tradycyjny program Hello World! w Perlu:
-````perl
+    Tradycyjny program Hello World! w Perlu:
+    ````perl
 #!/usr/bin/perl
-print "Hello World!\n";
-````
-Jedyne, czego potrzebujemy, to charakterystyczny dla języków skryptowych
-shebang i instrukcja _print_, której nazwa mówi sama za siebie.
+    print "Hello World!\n";
+    ````
+    Jedyne, czego potrzebujemy, to charakterystyczny dla języków skryptowych
+    shebang i instrukcja _print_, której nazwa mówi sama za siebie.
 
-Zakładając, że program został zapisany w pliku _hello.pl_, możemy go
-uruchomić poleceniem:
-````
-perl hello.pl
-````
-lub, jeśli nadamy mu prawa do wykonywania:
-````
-./hello.pl
-````
+    Zakładając, że program został zapisany w pliku _hello.pl_, możemy go
+    uruchomić poleceniem:
+    ````
+    perl hello.pl
+    ````
+    lub, jeśli nadamy mu prawa do wykonywania:
+    ````
+    ./hello.pl
+    ````
 
 ## Strict i warnings
-Każdy program, który piszemy w Perlu powinien zawierać następujące dwie linie:
-````perl
-use strict;
-use warnings;
-````
-Włączenie **strict** wymusza deklarację zmiennych i blokuje wiele
-niebezpiecznych praktyk, a **warnings**, jak można się domyślić, włącza
-ostrzeżenia. Te dwie proste instrukcje pozwalają uniknąć wielu błędów i
-oszczędzić czas debuggowania.
+    Każdy program, który piszemy w Perlu powinien zawierać następujące dwie linie:
+    ````perl
+    use strict;
+    use warnings;
+    ````
+    Włączenie **strict** wymusza deklarację zmiennych i blokuje wiele
+    niebezpiecznych praktyk, a **warnings**, jak można się domyślić, włącza
+    ostrzeżenia. Te dwie proste instrukcje pozwalają uniknąć wielu błędów i
+    oszczędzić czas debuggowania.
 
 ## Perldoc
-Każda instalacja Perla jest wyposażona w narzędzie _perldoc_. Pozwala
-ono czytać dokumentację każdego aktualnie zainstalowaneg modułu,
-wbudowanych funkcji i specjalnych zmiennych. Dokumentacja języka
-zawiera też szczegółowe instrukcje obsługi i objaśnienia różnych części
-języka, jak również wprowadzenia dla początkujących. Dobra dokumentacja
-jest częścią kultury Perla.
+    Każda instalacja Perla jest wyposażona w narzędzie _perldoc_. Pozwala
+    ono czytać dokumentację każdego aktualnie zainstalowaneg modułu,
+    wbudowanych funkcji i specjalnych zmiennych. Dokumentacja języka
+    zawiera też szczegółowe instrukcje obsługi i objaśnienia różnych części
+    języka, jak również wprowadzenia dla początkujących. Dobra dokumentacja
+    jest częścią kultury Perla.
 
 ### Jak używać dokumentacji
-Dokumentacja języka:
-````
-perldoc perltoc
-perldoc perlrun
-perldoc perlreftut
-````
-Pierwsze polecenie wyświetli spis treści z krótkimi opisami głównej
-dokumentacji języka. Drugie, informacje o parametrach wywołania
-interpretera, a trzecie, wprowadzenie do referencji.
+    Dokumentacja języka:
+    ````
+    perldoc perltoc
+    perldoc perlrun
+    perldoc perlreftut
+    ````
+    Pierwsze polecenie wyświetli spis treści z krótkimi opisami głównej
+    dokumentacji języka. Drugie, informacje o parametrach wywołania
+    interpretera, a trzecie, wprowadzenie do referencji.
 
-Dokumentacja konkretnego modułu:
-````
-perldoc Data::Dumper
-perldoc Reddit::Client
-````
-Dokumentacja wbudowanych funkcji:
-````
-perldoc -f sort
-perldoc -f push
-````
-Opisy specjalnych zmiennych:
-````
-perldoc -v '$_'
-perldoc -v '$.'
-perldoc -v '@ARGV'
-````
-**UWAGA:** Wiele powłok używa $ do oznaczania swoich zmiennych, dlatego
-dobrym zwyczajem jest brać argumenty _perldoc -v_ w pojedynczy cudzysłów.
+    Dokumentacja konkretnego modułu:
+    ````
+    perldoc Data::Dumper
+    perldoc Reddit::Client
+    ````
+    Dokumentacja wbudowanych funkcji:
+    ````
+    perldoc -f sort
+    perldoc -f push
+    ````
+    Opisy specjalnych zmiennych:
+    ````
+    perldoc -v '$_'
+    perldoc -v '$.'
+    perldoc -v '@ARGV'
+    ````
+    **UWAGA:** Wiele powłok używa $ do oznaczania swoich zmiennych, dlatego
+    dobrym zwyczajem jest brać argumenty _perldoc -v_ w pojedynczy cudzysłów.
 
-Cała dokumentacja znajduje się też [online](http://perldoc.perl.org/).
+    Cała dokumentacja znajduje się też [online](http://perldoc.perl.org/).
 
 ### Przydatne strony dokumentacji
-````sh
-perldoc perlintro # krótkie wprowadzenie do języka
-perldoc perlstyle # styl kodu
-perldoc perlcheat # ściąga ze wszystkich podstawowych elementów składni
-perldoc perltrap  # pułapki i niuanse języka, na które trzeba uważać
-````
+    ````sh
+    perldoc perlintro # krótkie wprowadzenie do języka
+    perldoc perlstyle # styl kodu
+    perldoc perlcheat # ściąga ze wszystkich podstawowych elementów składni
+    perldoc perltrap  # pułapki i niuanse języka, na które trzeba uważać
+    ````
 
 ## Zmienne
-Zmiennne w Perlu zaczynają się od znaku oznaczającego ich typ, deklaracja
-zmiennych odbywa się za pomocą słowa kluczowego _my_:
-````perl
-my $scalar;
-my @array;
-my %hash;
-````
+    Zmiennne w Perlu zaczynają się od znaku oznaczającego ich typ, deklaracja
+    zmiennych odbywa się za pomocą słowa kluczowego _my_:
+    ````perl
+    my $scalar;
+    my @array;
+    my %hash;
+    ````
 
 ### Skalary
-Skalary to zmienne przechowujące pojedynczą wartość, może to być liczba,
-napis, uchwyt do pliku lub referencja (Perl nie posiada wbudowanych wartości
-_true_ i _false_). Konwersja między typami jest dynamiczna i zależy od
-kontekstu, po przypisaniu wartość może zmieniać się dowolnie.
+    Skalary to zmienne przechowujące pojedynczą wartość, może to być liczba,
+    napis, uchwyt do pliku lub referencja (Perl nie posiada wbudowanych wartości
+            _true_ i _false_). Konwersja między typami jest dynamiczna i zależy od
+    kontekstu, po przypisaniu wartość może zmieniać się dowolnie.
 
 #### Deklaracja z inicjalizacją
-````perl
-my $string = 'hue';
-my $number = 7;
-my ($a, $b, $c) = (1, 'two', 3.0);
-````
-Niezainicjalizowane skalary mają specjalną wartość **undef**, wbudowana
-funkcja **defined** służy do sprawdzania, czy skalar ma zdefiniowaną
-wartość. Próba użycia niezdefiniowanej wartości skutkuje ostrzeżeniem.
+    ````perl
+    my $string = 'hue';
+    my $number = 7;
+    my ($a, $b, $c) = (1, 'two', 3.0);
+    ````
+    Niezainicjalizowane skalary mają specjalną wartość **undef**, wbudowana
+    funkcja **defined** służy do sprawdzania, czy skalar ma zdefiniowaną
+    wartość. Próba użycia niezdefiniowanej wartości skutkuje ostrzeżeniem.
 
 #### Liczby
-Perl obsługuje liczby całkowite i zmiennoprzecinkowe. Możliwe jest kilka
-różnych notacji:
-````perl
-my $int       = 42;       # liczba całkowita
-my $float     = 0.04;     # ułamek
-my $sci_float = 1.15e8;   # notacja naukowa
-my $binary    = 0b101010; # system dwójkowy
-my $hex       = 0x20;     # system szesnastkowy
-my $octal     = 052;      # system ósemkowy
-````
-**UWAGA:** Liczba całkowita rozpoczynająca się od zera jest zawsze
-traktowana jako ósemkowa.
+    Perl obsługuje liczby całkowite i zmiennoprzecinkowe. Możliwe jest kilka
+    różnych notacji:
+    ````perl
+    my $int       = 42;       # liczba całkowita
+    my $float     = 0.04;     # ułamek
+    my $sci_float = 1.15e8;   # notacja naukowa
+    my $binary    = 0b101010; # system dwójkowy
+    my $hex       = 0x20;     # system szesnastkowy
+    my $octal     = 052;      # system ósemkowy
+    ````
+    **UWAGA:** Liczba całkowita rozpoczynająca się od zera jest zawsze
+    traktowana jako ósemkowa.
 
-Rozdzielanie długich liczb (te trzy instrukcje mają taki sam efekt):
-````perl
-my $billion = 1000000000;
-my $billion = 1_000_000_000;
-my $billion = 10_0_00_00_0_0_0;
-````
+    Rozdzielanie długich liczb (te trzy instrukcje mają taki sam efekt):
+        ````perl
+            my $billion = 1000000000;
+            my $billion = 1_000_000_000;
+            my $billion = 10_0_00_00_0_0_0;
+            ````
 
-Operacje arytmetyczne:
-````perl
-7 + 2 - 12 * 5 / 3; # standardowe operatory do podstawowych działań
-2**10;              # potęgowanie, wynik - 1024
-11 % 4;             # modulo, wynik - 3
-++$num1; --$num2;   # pre-inkrementacja i pre-dekrementacja
-$num++; $num--;     # post-inkrementacja i post-dekrementacja
-````
+            Operacje arytmetyczne:
+            ````perl
+            7 + 2 - 12 * 5 / 3; # standardowe operatory do podstawowych działań
+            2**10;              # potęgowanie, wynik - 1024
+            11 % 4;             # modulo, wynik - 3
+            ++$num1; --$num2;   # pre-inkrementacja i pre-dekrementacja
+            $num++; $num--;     # post-inkrementacja i post-dekrementacja
+            ````
 
 #### Napisy
-Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
-dowolne ilości tekstu lub binarnych danych (o ile pozwala na to pamięć).
-Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
-````perl
-my $string = 'bardzo ciekawy \tekst';
-my $text = "To jest $string.\n";
-````
-Pojedynczy cudzysłów służy do interpretacji dosłownej, każdy znak wewnątrz
-zostanie bez zmian wstawiony do zmiennej. Podwójny cudzysłów pozwala na
-interpolację znaków specjalnych (np. \t, \n) i innych zmiennych.
-W efekcie $string zawiera dokładnie _'bardzo ciekawy \tekst'_, a $text
-_'To jest bardzo ciekawy \tekst'_ i znak nowej linii. Znaki cudzysłowów w
-odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
-**\**.
+            Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
+            dowolne ilości tekstu lub binarnych danych (o ile pozwala na to pamięć).
+            Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
+            ````perl
+            my $string = 'bardzo ciekawy \tekst';
+            my $text = "To jest $string.\n";
+            ````
+            Pojedynczy cudzysłów służy do interpretacji dosłownej, każdy znak wewnątrz
+            zostanie bez zmian wstawiony do zmiennej. Podwójny cudzysłów pozwala na
+            interpolację znaków specjalnych (np. \t, \n) i innych zmiennych.
+            W efekcie $string zawiera dokładnie _'bardzo ciekawy \tekst'_, a $text
+            _'To jest bardzo ciekawy \tekst'_ i znak nowej linii. Znaki cudzysłowów w
+            odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
+            **\**.
 
-Alternatywnie można też użyć funkcji **q** i **qq**, które działają
-jak, odpowiednio, pojedynczy i podwójny cudzysłów, ale pozwalają wybrać
-inny znak do ograniczenia napisu:
-````perl
-my $quote = qq{"Przaśnie!", takom rzekł. "Hue hue!"};
+            Alternatywnie można też użyć funkcji **q** i **qq**, które działają
+            jak, odpowiednio, pojedynczy i podwójny cudzysłów, ale pozwalają wybrać
+            inny znak do ograniczenia napisu:
+            ````perl
+            my $quote = qq{"Przaśnie!", takom rzekł. "Hue hue!"};
 my $other = q|It's very weird, don't you think?|;
 ````
 W tym wypadku znak następujący po nazwie funkcji zostaje ograniczeniem
@@ -236,8 +237,8 @@ zaczynać się od początku linii.
 unless (defined $text) {
     $text = <<'END_HERE';
     Dokuement, lorem ipsum
-    i coś tam dalej.
-END_HERE
+        i coś tam dalej.
+        END_HERE
 }
 ````
 
@@ -277,7 +278,7 @@ $string; # 'ab'
 $last;   # 'c'
 ````
 **chop** bezwarunkowo odcina i zwraca ostatni znak napisu (_undef_, jeśli napis
-jest pusty). Nie należy go używać jako zamiennika **chomp**.
+        jest pusty). Nie należy go używać jako zamiennika **chomp**.
 
 Sprawdzanie długości napisu:
 ````perl
@@ -409,66 +410,66 @@ skalarny jest wymuszany przez słowo kluczowe **scalar** i operatory skalarne.
 my @array = 1..5; # @array = (1, 2, 3, 4, 5)
 scalar @array;    # 5
 @array + 2;       # 7
-````
+    ````
 **UWAGA:** Należy zwrócić uwagę, że argumenty funkcji (jak **print** i **say**)
-są listą, więc następująca próba wypisania ilości elementów tablicy się nie
-powiedzie:
-````perl
-print 'Tablica @array ma ', @array, ' elementów';
-````
-Tablica @array zostanie rozpakowana do listy swoich elementów, więc efekt
-będzie taki sam, jak podanie jej elementów jako argumentów **print**. Wynik
-powyższego polecenia to:
-````
-Tablica @array ma 12345 elementów
-````
-Żeby podać liczbę argumentów jako argument funkcji należy zawsze używać słowa
-kluczowego **scalar**.
+    są listą, więc następująca próba wypisania ilości elementów tablicy się nie
+    powiedzie:
+    ````perl
+    print 'Tablica @array ma ', @array, ' elementów';
+    ````
+    Tablica @array zostanie rozpakowana do listy swoich elementów, więc efekt
+    będzie taki sam, jak podanie jej elementów jako argumentów **print**. Wynik
+    powyższego polecenia to:
+    ````
+    Tablica @array ma 12345 elementów
+    ````
+    Żeby podać liczbę argumentów jako argument funkcji należy zawsze używać słowa
+    kluczowego **scalar**.
 
-Wewnątrz napisu tablica rozwija się w listę argumentów połączoną zawartością
-specjalnej zmiennej $", domyślnie jest to pojedyncza spacja.
-````perl
-my @array = ('kilka', 'słów o tablicy', 'i', 'jedno', 'więcej');
-say "Zawartość tablicy: @array";
-say 'Tablica zawiera ', scalar @array, ' elementów';
-local $" = ')(';
-say "Zawartość tablicy: (@array)";
-````
-Wynik:
-````
-Zawartość tablicy: kilka słów o tablicy i jedno więcej
-Tablica zawiera 5 elementów
+    Wewnątrz napisu tablica rozwija się w listę argumentów połączoną zawartością
+    specjalnej zmiennej $", domyślnie jest to pojedyncza spacja.
+    ````perl
+    my @array = ('kilka', 'słów o tablicy', 'i', 'jedno', 'więcej');
+    say "Zawartość tablicy: @array";
+    say 'Tablica zawiera ', scalar @array, ' elementów';
+    local $" = ')(';
+    say "Zawartość tablicy: (@array)";
+    ````
+    Wynik:
+    ````
+    Zawartość tablicy: kilka słów o tablicy i jedno więcej
+    Tablica zawiera 5 elementów
 Zawartość tablicy: (kilka)(słów o tablicy)(i)(jedno)(więcej)
-````
+    ````
 
 #### Domyślne zmienne tablicowe
-Funkcje operujące na tablicach przyjmują dwie domyślne wartości - **@ARGV** i
-**@_**.
+    Funkcje operujące na tablicach przyjmują dwie domyślne wartości - **@ARGV** i
+    **@_**.
 
-**@ARGV** zawiera wszystkie argumenty przekazane do programu przy wywołaniu.  
-**@_** zawiera argumenty funkcji.
+    **@ARGV** zawiera wszystkie argumenty przekazane do programu przy wywołaniu.  
+    **@_** zawiera argumenty funkcji.
 
-Wewnątrz funkcji operacje tablicowe przyjmują **@_** jako domyślną wartość, a
-poza funkcjami \- **@ARGV**. Tak więc, jeśli chcemy wczytac do zmiennej
-pierwszy argument podany do programu możemy napisać:
-````perl
-my $first_arg = shift;
-````
-co będzie miało taki sam efekt, jak:
-````perl
-my $first_arg = shift @ARGV;
-````
+    Wewnątrz funkcji operacje tablicowe przyjmują **@_** jako domyślną wartość, a
+    poza funkcjami \- **@ARGV**. Tak więc, jeśli chcemy wczytac do zmiennej
+    pierwszy argument podany do programu możemy napisać:
+    ````perl
+    my $first_arg = shift;
+    ````
+    co będzie miało taki sam efekt, jak:
+    ````perl
+    my $first_arg = shift @ARGV;
+    ````
 
 ## Logika
 ### Podstawowe instrukcje warunkowe
-````perl
-if ($warunek) {
-    ...;
-} elsif ($inny_warunek) {
-    ...;
-} else {
-    ...;
-}
+    ````perl
+    if ($warunek) {
+        ...;
+    } elsif ($inny_warunek) {
+        ...;
+    } else {
+        ...;
+    }
 ````
 **UWAGA:** Klamry dookoła bloku kodu są obowiązkowe, nawet przy pojedynczej
 instrukcji.
@@ -536,7 +537,7 @@ uznawane za fałsz, a wszystkie inne wartości za prawdę.
 
 #### Napisy
 Pusty napis jest interpretowany jako fałsz, wszystkie niepuste napisy (nawet
-zawierające same białe znaki) są uznawane za prawdę.
+        zawierające same białe znaki) są uznawane za prawdę.
 
 #### Undef
 Wartośc _undef_ jest zawsze traktowana jako fałsz.
@@ -641,12 +642,20 @@ kontekście listowym zwraca listę wszystkich linii w pliku.
 Przez to zachowanie zazwyczaj należy unikać czytania plików w kontekście
 listowym, zwłaszcza jeśli mogą być duże.
 
+### Pętle postfixowe
+Tak jak instrukcje warunkowe, pętle też mają postfixową wersję dla pojedynczej
+instrukcji.
+````perl
+my @array = a..f;
+say foreach @array;
+````
+
 ## Wejście i wyjście
 ### Wypisywanie na standardowe wyjście
 Do wypisywania informacji na standardowe wyjście służą funkcje **print** i
 **say**. Przyjmują listę argumentów i wypisują wszystkie, oddzielając je
 wartością specjalnej zmiennej **$,**, jeśli jest zdefiniowana (domyślnie nie
-jest).
+        jest).
 ````perl
 my ($when, $how_many) = ('Dzisiaj', 15);
 print $when, ' w systemie znaleziono ', $how_many, ' bugów', "\n";
