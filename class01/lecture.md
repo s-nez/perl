@@ -602,7 +602,7 @@ listowym, zwłaszcza jeśli mogą być duże.
 
 ## Wejście i wyjście
 ### Wypisywanie na standardowe wyjście
-Do wypsywania informacji na standardowe wyjście służą funkcje **print** i
+Do wypisywania informacji na standardowe wyjście służą funkcje **print** i
 **say**. Przyjmują listę argumentów i wypisują wszystkie, oddzielając je
 wartością specjalnej zmiennej **$,**, jeśli jest zdefiniowana (domyślnie nie
 jest).
@@ -623,7 +623,7 @@ local $, = ' ';
 say $when, 'w systemie znaleziono', $how_many, 'bugów';
 ````
 Funkcja **say** zachowuje się dokładnie tak samo jak **print**, z jedną różnicą
-- dopisuje znak nowej linii na koniec wyjścia.
+\- dopisuje znak nowej linii na koniec wyjścia.
 
 **UWAGA:** Aby użyć funkcji **say** należy w kodzie programu dopisać:
 ````perl
@@ -656,8 +656,8 @@ my $line = <>; # pierwsza linia pliku 'plik.txt'
 Jeśli ten sam program zostanie uruchomiony bez argumentów, do **$line**
 zostanie wczytana pierwsza linia standardowego wejścia.
 
-To zachowanie jest charakterystyczne dla wielu narzędzi UNIXowych. Możemy np. w
-bardzo prosty sposób zasymulować program **cat**:
+To zachowanie jest charakterystyczne dla wielu narzędzi UNIXowych. Możemy
+dzięki tamu w bardzo prosty sposób zasymulować program **cat**:
 ````perl
 print while <>;
 ````
