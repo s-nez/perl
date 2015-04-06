@@ -13,6 +13,7 @@
         * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
         * [Liczby](#liczby)
         * [Napisy](#napisy)
+        * [Domyślna zmienna skalarna](#domyślna-zmienna-skalarna)
     * [Tablice](#tablice)
         * [Deklaracja z inicjalizacją ](#deklaracja-z-inicjalizacją-)
         * [Dostęp do elementów](#dostęp-do-elementów)
@@ -20,6 +21,7 @@
         * [Operacje na tablicach](#operacje-na-tablicach)
         * [Podtablice](#podtablice)
         * [Kontekst](#kontekst)
+        * [Domyślne zmienne tablicowe](#domyślne-zmienne-tablicowe)
 * [Logika](#logika)
     * [Podstawowe instrukcje warunkowe](#podstawowe-instrukcje-warunkowe)
     * [Operator ternarny](#operator-ternarny)
@@ -270,6 +272,14 @@ my $string = 'abc';
 length $string; # 3
 ````
 
+#### Domyślna zmienna skalarna
+Wiele wbudowanych funkcji, przy wywołaniu bez argumentu przyjmą za niego **$_**
+\- domyślną zmienną skalarną. Dwa poniższe polecenia są identyczne w działaniu:
+````perl
+chomp $_;
+chomp;
+````
+
 ### Tablice
 Tablice są pojemnikami przechowującymi 0 lub więcej skalarów. Dostęp do
 elementów jest sekwencyjny, można je dowolnie dodawać i usuwać, a tablica
@@ -416,6 +426,24 @@ Wynik:
 Zawartość tablicy: kilka słów o tablicy i jedno więcej
 Tablica zawiera 5 elementów
 Zawartość tablicy: (kilka)(słów o tablicy)(i)(jedno)(więcej)
+````
+
+#### Domyślne zmienne tablicowe
+Funkcje operujące na tablicach przyjmują dwie domyślne wartości - **@ARGV** i
+**@_**.
+
+**@ARGV** zawiera wszystkie argumenty przekazane do programu przy wywołaniu.  
+**@_** zawiera argumenty funkcji.
+
+Wewnątrz funkcji operacje tablicowe przyjmują **@_** jako domyślną wartość, a
+poza funkcjami \- **@ARGV**. Tak więc, jeśli chcemy wczytac do zmiennej
+pierwszy argument podany do programu możemy napisać:
+````perl
+my $first_arg = shift;
+````
+co będzie miało taki sam efekt, jak:
+````perl
+my $first_arg = shift @ARGV;
 ````
 
 ## Logika
