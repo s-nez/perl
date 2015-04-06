@@ -5,6 +5,7 @@
 * [Instalacja](#instalacja)
     * [Edytor](#edytor)
 * [Hello World! i uruchamianie programów](#hello-world-i-uruchamianie-programów)
+* [Strict i warnings](#strict-i-warnings)
 * [Perldoc](#perldoc)
     * [Jak używać dokumentacji](#jak-używać-dokumentacji)
     * [Przydatne strony dokumentacji](#przydatne-strony-dokumentacji)
@@ -75,6 +76,17 @@ lub, jeśli nadamy mu prawa do wykonywania:
 ````
 ./hello.pl
 ````
+
+## Strict i warnings
+Każdy program, który piszemy w Perlu powinien zawierać następujące dwie linie:
+````perl
+use strict;
+use warnings;
+````
+Włączenie **strict** wymusza deklarację zmiennych i blokuje wiele
+niebezpiecznych praktyk, a **warnings**, jak można się domyślić, włącza
+ostrzeżenia. Te dwie proste instrukcje pozwalają uniknąć wielu błędów i
+oszczędzić czas debuggowania.
 
 ## Perldoc
 Każda instalacja Perla jest wyposażona w narzędzie _perldoc_. Pozwala
@@ -235,6 +247,7 @@ Konkatenacja (łączenie) napisów:
 my $string = 'first' . ' and ' . "second\n"; # wynik: "first and second\n"
 my $and_zero = 'zeroth and ' . $string;      # wynik: "zeroth and first and second\n"
 ````
+
 Zmiana wielkości liter:
 ````perl
 uc 'low';      # wynik: 'LOW'
