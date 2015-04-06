@@ -481,7 +481,7 @@ print 'Warunek spełniony' if $warunek;
 Istnieje również zanegowana wersja instrukcji **if** - **unless**.
 
 ### Operator ternarny
-W Perlu można korzystać z operatora ternarego w takiej samej formie jak w C.
+W Perlu można korzystać z operatora ternarnego w takiej samej formie jak w C.
 ````perl
 print $warunek ? 'True' : 'False';
 ````
