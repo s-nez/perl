@@ -37,6 +37,9 @@
     * [for](#for)
     * [Pętla w stylu C](#pętla-w-stylu-c)
     * [while](#while)
+* [Wejście i wyjście](#wejście-i-wyjście)
+    * [Wypisywanie na standardowe wyjście](#wypisywanie-na-standardowe-wyjście)
+    * [Wczytywanie ze standardowego wejścia](#wczytywanie-ze-standardowego-wejścia)
 
 <!--TOC_END--->
 
@@ -596,3 +599,65 @@ kontekście listowym zwraca listę wszystkich linii w pliku.
 
 Przez to zachowanie zazwyczaj należy unikać czytania plików w kontekście
 listowym, zwłaszcza jeśli mogą być duże.
+
+## Wejście i wyjście
+### Wypisywanie na standardowe wyjście
+Do wypsywania informacji na standardowe wyjście służą funkcje **print** i
+**say**. Przyjmują listę argumentów i wypisują wszystkie, oddzielając je
+wartością specjalnej zmiennej **$,**, jeśli jest zdefiniowana (domyślnie nie
+jest).
+````perl
+my ($when, $how_many) = ('Dzisiaj', 15);
+print $when, ' w systemie znaleziono ', $how_many, ' bugów', "\n";
+````
+Wyjście:
+````
+Dzisiaj w systemie znaleziono 15 bugów
+````
+Żeby nie przejmować się wpisywaniem spacji w odpowiednie miejsca, możemy
+zmienić wartość zmiennej **$,**. Poniższy kod zadziała tak samo jak pierwszy
+przykład.
+````perl
+my ($when, $how_many) = ('Dzisiaj', 15);
+local $, = ' ';
+say $when, 'w systemie znaleziono', $how_many, 'bugów';
+````
+Funkcja **say** zachowuje się dokładnie tak samo jak **print**, z jedną różnicą
+- dopisuje znak nowej linii na koniec wyjścia.
+
+**UWAGA:** Aby użyć funkcji **say** należy w kodzie programu dopisać:
+````perl
+use feature 'say';
+````
+
+### Wczytywanie ze standardowego wejścia
+Do wczytywania danych służy operator **<>** lub **readline**. Aby wczytać jedną
+linię ze standardowego wejścia do zmiennej:
+```perl
+my $input = <STDIN>;
+my $input = readline STDIN;
+````
+Tego samego operatora można użyć w kontekście listowym, do wczytania całego
+wejśca do tablicy. Każdy element tablicy będzie zawierał jedną linię wejścia:
+````perl
+my @input = <STDIN>;
+````
+
+Operator **<>** przyjmuje jak argument otwarty uchwyt do pliku, ale jeśli nie
+dostanie żadnego argumentu będzie wczytywał zawartośc plików podanych jako
+argumenty programu, jeśli żadnych nie podano wczyta STDIN.
+````shell
+./program.pl plik.txt
+````
+program.pl:
+````perl
+my $line = <>; # pierwsza linia pliku 'plik.txt'
+````
+Jeśli ten sam program zostanie uruchomiony bez argumentów, do **$line**
+zostanie wczytana pierwsza linia standardowego wejścia.
+
+To zachowanie jest charakterystyczne dla wielu narzędzi UNIXowych. Możemy np. w
+bardzo prosty sposób zasymulować program **cat**:
+````perl
+print while <>;
+````
