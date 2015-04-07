@@ -44,6 +44,9 @@
 * [Wejście i wyjście](#wejście-i-wyjście)
     * [Wypisywanie na standardowe wyjście](#wypisywanie-na-standardowe-wyjście)
     * [Wczytywanie ze standardowego wejścia](#wczytywanie-ze-standardowego-wejścia)
+* [Rozdzielanie i łączenie tekstu](#rozdzielanie-i-łączenie-tekstu)
+    * [Split](#split)
+    * [Join](#join)
 
 <!--TOC_END--->
 
@@ -707,7 +710,28 @@ Jeśli ten sam program zostanie uruchomiony bez argumentów, do **$line**
 zostanie wczytana pierwsza linia standardowego wejścia.
 
 To zachowanie jest charakterystyczne dla wielu narzędzi UNIXowych. Możemy
-dzięki tamu w bardzo prosty sposób zasymulować program **cat**:
+dzięki temu w bardzo prosty sposób zasymulować program **cat**:
 ````perl
 print while <>;
+````
+
+## Rozdzielanie i łączenie tekstu
+### Split
+Funkcja **split** pozwala podzielić tekst na części.
+````perl 
+my $text = 'Kilka słów o podziałach';
+my @words = split ' ', $text;
+@words; # ('Kilka', 'słów', 'o', 'podziałach')
+````
+**split** przyjmuje dwa argumenty \- separator i tekst do podziału, zwraca
+listę podnapisów, które były oddzielone separatorem w tekście źródłowym.
+Separator nie pojawia się w wynikowej liście.
+
+### Join
+Funkcja **join** przyjmuje napis i listę jako argumenty, zwraca elementy listy
+połączone w jeden napis używając wartości pierwszego argumentu jako separatora.
+````perl
+my @array = 1..5;
+my $seq = join ', ', @array;
+$seq; # '1, 2, 3, 4, 5'
 ````
