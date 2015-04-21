@@ -8,6 +8,10 @@
     * [Zapisywanie plików](#zapisywanie-plików)
         * [Dopisywanie danych do pliku](#dopisywanie-danych-do-pliku)
         * [Domyślny uchwyt wyjściowy](#domyślny-uchwyt-wyjściowy)
+    * [Wczytywanie i zapisywanie tego samego pliku](#wczytywanie-i-zapisywanie-tego-samego-pliku)
+    * [Wymiana danych pomiędzy programami (pipes)](#wymiana-danych-pomiędzy-programami-pipes)
+        * [Wczytywanie danych z innego programu](#wczytywanie-danych-z-innego-programu)
+        * [Wysyłanie danych do innego programu](#wysyłanie-danych-do-innego-programu)
 
 <!--TOC_END--->
 
@@ -95,3 +99,33 @@ a do pliku _plik.out_:
 Explicit file
 FILE
 ````
+
+### Wczytywanie i zapisywanie tego samego pliku
+Dodanie znaku **+** do trybów wczytywania i zapisywania pliku (**<** i **>**)
+otworzy plik w trybie do zapisu i odczytu.
+````perl
+open my $FH, '+<', 'plik.io' or die $!;
+````
+Teraz na uchwycie **$FH** działa zarówno **print**, jak i **readline**.
+Tryb **+>** dodatkowo wyzeruje plik.
+
+
+### Wymiana danych pomiędzy programami (pipes)
+Na danych z innego programu możemy operować w identyczny sposób jak na plikach.
+
+#### Wczytywanie danych z innego programu
+Do wczytania danych z innego programu można użyć trybu **-|**. Zamiast nazwy
+pliku należy wtedy podać nazwę programu, z którego chcemy wczytać dane, oraz
+jego argumenty.
+````perl
+open my $LOGS, '-|', 'journalctl', '-u', 'tor.service', '-f' or die $!;
+while (<$LOGS>) {
+    ...;
+}
+````
+Powyższy kod pozwala nam wczytywać na bieżąco logi usługi
+[TOR](https://www.torproject.org/).
+
+#### Wysyłanie danych do innego programu
+Analogicznie, używając trybu **|-**, możemy wysyłać dane do innego programu,
+wszystkie opracje działają dokładnie tak samo jak w przypadku zapisu pliku.
