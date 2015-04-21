@@ -33,12 +33,14 @@ open my $FH, '<', 'plik.md' or die $!;
 Funkcja **die** przyjmuje komunikat o błędzie jako argument i kończy działanie
 programu informując użytkownika o błędzie.
 
-Po zakońzeniu pracy z plikiem należy zamknąć uchwyt:
+Po zakończeniu pracy z plikiem należy zamknąć uchwyt:
 ````perl
 close $FH;
 ````
 
 ### Odczytywanie plików
+Czytanie plików odbywa się tak samo jak czytanie ze standardowego wejścia,
+**STDIN** wystarczy zastąpić uchwytem do pliku, z którego dane chcemy wczytać.
 ````perl
 open my $FH, '<', 'plik.in' or die $!;
 while (<$FH>) {
@@ -46,8 +48,6 @@ while (<$FH>) {
 }
 close $FH;
 ````
-Czytanie plików odbywa się tak samo jak czytanie ze standardowego wejścia,
-**STDIN** wystarczy zastąpić uchwytem do pliku, z którego dane chcemy wczytać.
 
 ### Zapisywanie plików
 Otwarcie pliku w trybie **>** zeruje plik (usuwa całą jego zawartość) i
@@ -79,6 +79,7 @@ modyfikatora, wypiszą dane do domyślnego uchwytu wyjściowego. Zazwyczaj jest 
 ````perl
 open my $FH, '>', 'plik.out' or die $!;
 say 'Standard';
+say $FH 'Explicit file'
 select $FH;
 say 'File';
 say STDOUT 'Explicit standard';
@@ -91,5 +92,6 @@ Explicit standard
 ````
 a do pliku _plik.out_:
 ````
+Explicit file
 FILE
 ````
