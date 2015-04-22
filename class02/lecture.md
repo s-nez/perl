@@ -118,7 +118,7 @@ Do wczytania danych z innego programu można użyć trybu **-|**. Zamiast nazwy
 pliku należy wtedy podać nazwę programu, z którego chcemy wczytać dane, oraz
 jego argumenty.
 ````perl
-open my $LOGS, '-|', 'journalctl', '-u', 'tor.service', '-f' or die $!;
+open my $LOGS, '-|', qw( journalctl -u tor.service -f ) or die $!;
 while (<$LOGS>) {
     ...;
 }
@@ -129,3 +129,38 @@ Powyższy kod pozwala nam wczytywać na bieżąco logi usługi
 #### Wysyłanie danych do innego programu
 Analogicznie, używając trybu **|-**, możemy wysyłać dane do innego programu,
 wszystkie opracje działają dokładnie tak samo jak w przypadku zapisu pliku.
+
+### Właściwości plików
+Perl dostarcza wielu operatorów pozwalających sprawdzać właściwości plików.
+Wszystkie te operatory przyjmują nazwę pliku jako argument. Kilka z bardziej
+przydatnych:
+- **-e** czy plik istnieje
+- **-s** rozmiar pliku
+- **-M** czas od ostatniej modyfikacji pliku
+- **-A** czas od ostatniego dostępu do pliku
+- **-d** plik jest katalogiem
+Pełna lista:
+````
+perldoc -f -X
+````
+
+Następujący program będzie wczytywał wejście aż użytkownik nie poda nazwy
+istniejącego pliku:
+````perl
+my $filename;
+do {
+    $filename = <>;
+    chomp $filename;
+} until (-e $filename);
+````
+
+### Przeszukiwanie folderów
+Funkcja **opendir** pozwala otworzyć uchwyt do folderu. Wykonanie **readdir**
+na takim uchwycie pozwala wczytywać po kolei nazwy plików znajdujących się
+w folderze.
+````perl
+opendir my $DIR, '.' or die $!;
+say while readdir $DIR;
+close $DIR;
+````
+Powyższy przykład wyświetla listę plików w aktualnym folderze.
