@@ -12,6 +12,10 @@
     * [Wymiana danych pomiędzy programami (pipes)](#wymiana-danych-pomiędzy-programami-pipes)
         * [Wczytywanie danych z innego programu](#wczytywanie-danych-z-innego-programu)
         * [Wysyłanie danych do innego programu](#wysyłanie-danych-do-innego-programu)
+    * [Właściwości plików](#właściwości-plików)
+    * [Zmiana nazwy i kopiowanie plików](#zmiana-nazwy-i-kopiowanie-plików)
+    * [Przeszukiwanie katalogów](#przeszukiwanie-katalogów)
+    * [Tworzenie i usuwanie katalogów](#tworzenie-i-usuwanie-katalogów)
 
 <!--TOC_END--->
 
@@ -154,7 +158,27 @@ do {
 } until (-e $filename);
 ````
 
-### Przeszukiwanie folderów
+### Zmiana nazwy i kopiowanie plików
+Funkcja **rename** pozwala zmieniać nazwę (i przenosić) pliku. Następujący kod
+zmieni nazwę pliku _old\_name_ na _new\_name_.
+````perl
+rename 'old_name', 'new_name';
+````
+Jeśli chcemy przyszpanować stylem, możemy użyć **=>** zamiast przecinka:
+````perl
+rename 'old_name' => 'new_name';
+````
+
+Do kopiowania plików potrzebny jest moduł
+[File::Copy](https://metacpan.org/pod/File::Copy), jest to domyślny moduł
+Perla, więc nie trzeba niczego doinstalowywać. Dostarcza on m. in. funkcje
+**copy** i **move**. Pierwszej z nich możemy użyć do skopiowania pliku:
+```perl
+use File::Copy;
+copy 'some_file', 'copy_of_some_file';
+```
+
+### Przeszukiwanie katalogów
 Funkcja **opendir** pozwala otworzyć uchwyt do folderu. Wykonanie **readdir**
 na takim uchwycie pozwala wczytywać po kolei nazwy plików znajdujących się
 w folderze.
@@ -164,3 +188,12 @@ say while readdir $DIR;
 close $DIR;
 ````
 Powyższy przykład wyświetla listę plików w aktualnym folderze.
+
+### Tworzenie i usuwanie katalogów
+Perl dostarcza funkcję o znajomej nazwie **mkdir** do tworzenia katalogów.
+````perl
+mkdir 'new_directory';
+````
+Powyższy kod stworzy w aktualnym katalogu nowy o nazwie _new\_directory_.
+
+Analogicznie, funkcja **rmdir** pozwala usunąć puste katalogi.
