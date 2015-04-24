@@ -15,7 +15,6 @@ Wyjście:
 ````
 Palindromy:
 tattarrattat
-11
 Oho
 kajak
 ````
