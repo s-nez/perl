@@ -60,7 +60,7 @@ opcją.
 
 ### Edytor
 Najprostszy edytor tekstu i terminal wystarczą do pisania i uruchamiania
-programów. [Geany](http://www.geany.org/) jest dobrym wyborem na początek.
+programów. [Gedit](https://wiki.gnome.org/Apps/Gedit) jest dobrym wyborem na początek.
 
 ## Hello World! i uruchamianie programów
 Tradycyjny program Hello World! w Perlu:
