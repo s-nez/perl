@@ -1,7 +1,7 @@
 # Pytania i odpowiedzi
 <!--TOC_START--->
 * [Q: Perl ciągle wyrzuca błędy, co jest nie tak?](#q-perl-ciągle-wyrzuca-błędy-co-jest-nie-tak)
-* [Q: Co to znaczy "_Global symbol "$x" requires explicit package name_"?](#q-co-to-znaczy-_global-symbol-x-requires-explicit-package-name_)
+* [Q: Co to znaczy "_Global symbol "$x" requires explicit package name_"?](#q-co-to-znaczy-global-symbol-x-requires-explicit-package-name)
 * [Q: Jak pominąć niektóre wartości zwracane przez **split**?](#q-jak-pominąć-niektóre-wartości-zwracane-przez-split)
 
 <!--TOC_END--->
