@@ -70,7 +70,7 @@ close $FH;
 ````
 Funkcje **print** i **say** mogą przyjąć uchwyt do pliku jako modyfikator przed
 listą argumentów. Ich zachowanie jest dokładnie takie samo jak w przypadku
-wypisywania na standardowe wyjście, jedyna różnicą jest fakt, że wyjście trafia
+wypisywania na standardowe wyjście, jedyną różnicą jest fakt, że wyjście trafia
 do wybranego pliku.
 
 **UWAGA**: Modyfikator uchwytu do pliku dla **say** i **print** nie jest
@@ -101,7 +101,7 @@ Explicit standard
 a do pliku _plik.out_:
 ````
 Explicit file
-FILE
+File
 ````
 
 ### Wczytywanie i zapisywanie tego samego pliku
@@ -159,7 +159,7 @@ do {
 ````
 
 ### Zmiana nazwy i kopiowanie plików
-Funkcja **rename** pozwala zmieniać nazwę (i przenosić) pliku. Następujący kod
+Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący kod
 zmieni nazwę pliku _old\_name_ na _new\_name_.
 ````perl
 rename 'old_name', 'new_name';
