@@ -31,3 +31,10 @@ Line 2:
 ---
 > another line not the same
 ````
+
+## Przydatne informacje
+Wykonanie poniższego polecenia stworzy dwa pliki z nazwami i zawartością
+jak w podanym przykładzie:
+````
+echo -e "line\nanother line\nhue" > file1; echo -e "line\nanother line not the same\nhue" > file2
+````
