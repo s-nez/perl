@@ -2,6 +2,15 @@
 
 <!--TOC_START--->
 ## Spis treści
+* [Hasze](#hasze)
+    * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
+    * [Dostęp do elementów](#dostęp-do-elementów)
+        * [Dostęp do kilku elementów jednocześnie](#dostęp-do-kilku-elementów-jednocześnie)
+        * [Istnienie konkretnego klucza](#istnienie-konkretnego-klucza)
+    * [Iterowanie po haszu](#iterowanie-po-haszu)
+        * [Iterowanie po kluczach](#iterowanie-po-kluczach)
+        * [Iterowanie po wartościach](#iterowanie-po-wartościach)
+        * [Iterowanie po parach klucz-wartość](#iterowanie-po-parach-klucz-wartość)
 * [Operacje na plikach](#operacje-na-plikach)
     * [Uchwyty](#uchwyty)
     * [Odczytywanie plików](#odczytywanie-plików)
@@ -18,6 +27,110 @@
     * [Tworzenie i usuwanie katalogów](#tworzenie-i-usuwanie-katalogów)
 
 <!--TOC_END--->
+
+## Hasze
+Hasz jest strukturą danych, która przyporządkowuje wartości do kluczy.
+Tak jak tablica, przechowuje 0 lub więcej skalarów.
+
+### Deklaracja z inicjalizacją
+Hasze oznaczone są znakiem **%**, Deklaracja bez inicjalizacji stworzy pusty
+hasz. Do inicjalizacji hasza można użyć listy par.
+````perl
+my %hash = ('one', 1, 'two', 2, 'three', 3);
+````
+Alternatywnie, dla zwiększenia czytelności, można użyć tzw. "grubego przecinka":
+````perl
+my %hash = (
+    one   => 1,
+    two   => 2,
+    three => 3
+);
+````
+Operator **=>** dodaje pojedynczy cudzysłów do lewego operandu, jeśli nie jest
+on zmienną ani wywołaniem funkcji.
+
+### Dostęp do elementów
+Do uzyskania wartości odpowiadającej kluczowi używa się opertora **{}**.
+````perl
+my %hash = (one => 1, two => 2, three => 3);
+$hash{one};   # 1
+$hash{two};   # 2
+$hash{three}; # 3
+````
+Używanie cudzysłowia nie jest konieczne wewnątrz klamr.
+
+Przypisanie do nieistniejącego klucza stworzy go w hashu, przypisanie do
+istniejącego powoduje nadpisanie wartości.
+````perl
+$hash{one} = 10;
+$hash{four} = 40;
+````
+**$hash** zawiera teraz 4 klucze - "one", "two", "three" i "four", a wartość
+"one" zmieniła się na 10.
+
+#### Dostęp do kilku elementów jednocześnie
+Użycie znaku **@** przy dostępie do hasza pozwala podać listę wewnątrz klamr
+i odczytać lub przypisać kilka wartości.
+````perl
+my %hash = (a => 1, b => 2, c => 3, d => 4, e => 5);
+@hash{qw(a b c)}; # (1, 2, 3)
+@hash{qw(a b c)} = ('A', 'B', 'C');
+%hash; # (a => 'A', b => 'B', c => 'C', d => 4, e => 5);
+````
+
+#### Istnienie konkretnego klucza
+Istnienie konkretnego klucza w haszu można sprawdzić za pomocą operatora
+**exists**.
+````perl
+my %hash = (key => 'value');
+exists $hash{key};   # true
+exists $hash{other}; # false
+````
+
+### Iterowanie po haszu
+#### Iterowanie po kluczach
+````perl
+my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
+foreach my $key (keys %hash) {
+    say "$key: $hash{$key}";
+}
+````
+Wynik:
+````
+number: 12
+word: hue
+sentence: to be or not to be
+````
+**UWAGA:** Kolejność kluczy w haszu może się zmieniać, nawet jeśli dwa hasze
+mają taki sam zbiór kluczy, to ich kolejność może się różnić.
+
+#### Iterowanie po wartościach
+````perl
+my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
+say foreach (values %hash);
+````
+Wynik:
+````
+hue
+to be or not to be
+12
+````
+Uwaga o kolejności kluczy stosuje się również do wartości.
+
+#### Iterowanie po parach klucz-wartość
+Operator **each** działa również dla haszy.
+````perl
+my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
+while (my ($key, $value) = each %hash) {
+    say "$key: $value";
+}
+````
+Wynik:
+````
+number: 12
+word: hue
+sentence: to be or not to be
+````
 
 ## Operacje na plikach
 ### Uchwyty
