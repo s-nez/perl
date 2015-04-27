@@ -1,7 +1,7 @@
 # Liczenie słów
 Wczytuj standardowe wejście lub plik podany jako argument programu aż do
 EOF i policz wystąpienia każdego słowa, które pojawi sie na wejściu. Słowo
-definiujemy jako ciąg znaków oddzielone spacjami.
+definiujemy jako ciąg znaków oddzielony spacjami.
 
 ## Przykładowe wejście i wyjście
 Wejście:
