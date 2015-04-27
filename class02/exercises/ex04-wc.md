@@ -18,7 +18,7 @@ którym mamy liczyć słowa, znaki lub linie. Jeśli nie zostanie podany, należ
 zamiast niego wczytać standardowe wejście.
 
 ## Przykładowe wejście i wyjście
-Dla pliku o następującej zawartości:
+Dla pliku o następującej zawartości (plik [sample.input](https://github.com/slimakuj/perl/blob/devel/class02/exercises/sample.input)):
 ````
 dowód tautologia aksjomat
 aksjomat
