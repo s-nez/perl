@@ -73,8 +73,8 @@ Użycie znaku **@** przy dostępie do hasza pozwala podać listę wewnątrz kla
 i odczytać lub przypisać kilka wartości.
 ````perl
 my %hash = (a => 1, b => 2, c => 3, d => 4, e => 5);
-@hash{qw(a b c)}; # (1, 2, 3)
-@hash{qw(a b c)} = ('A', 'B', 'C');
+@hash{'a', 'b', 'c'}; # (1, 2, 3)
+@hash{'a', 'b', 'c'} = ('A', 'B', 'C');
 %hash; # (a => 'A', b => 'B', c => 'C', d => 4, e => 5);
 ````
 
@@ -272,8 +272,8 @@ do {
 ````
 
 ### Zmiana nazwy i kopiowanie plików
-Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący kod
-zmieni nazwę pliku _old\_name_ na _new\_name_.
+Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący
+kod zmieni nazwę pliku _old\_name_ na _new\_name_.
 ````perl
 rename 'old_name', 'new_name';
 ````
