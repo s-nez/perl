@@ -19,7 +19,7 @@ zostawić bez zmian.
 
 ## Przykładowe wejście i wyjście
 ````
-ex03-csv.pl file.csv
+./ex06-csv.pl file.csv
 ````
 Zawartość pliku file.csv:
 ````
