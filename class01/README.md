@@ -11,11 +11,17 @@ Data: 24.04.2015
 
 ## Zadania
 * 01 \- [Tabliczka mnożenia](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex01-mult-table.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex01-mult-table.pl)\]
 * 02 \- [Palindromy](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex02-palindrome.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex02-palindrome.pl)\]
 * 03 \- [Dane o tablicy](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex03-array-stats.md)
-* 04 \- [Wyśrodkowanie tekstu](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex03-array-stats.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex03-array-stats.pl)\]
+* 04 \- [Wyśrodkowanie tekstu](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex04-center.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex04-center.pl)\]
 * 05 \- [Użytkownicy systemu](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex05-passwd.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex05-passwd.pl)\]
 * 06 \- [CSV](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex06-csv.md)
+\- \[[ROZWIĄZANIE](https://github.com/slimakuj/perl/blob/master/class01/exercises/ex06-csv.pl)\]
 
 ## Dodatkowe informacje
 * [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class01/useful-constructs.md)
