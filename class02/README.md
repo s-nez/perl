@@ -11,6 +11,7 @@ Data: 30.04.2015
 * 03 \- [Liczenie słów](https://github.com/slimakuj/perl/blob/master/class02/exercises/ex03-counter.md)
 * 04 \- [WC](https://github.com/slimakuj/perl/blob/master/class02/exercises/ex04-wc.md)
 
-<!--## Dodatkowe informacje-->
-<!--* [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class02/useful-constructs.md)-->
+## Dodatkowe informacje
+* [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class02/useful-constructs.md)
+
 <!--* [Pytania i odpowiedzi](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md)-->
