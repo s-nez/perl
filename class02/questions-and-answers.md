@@ -4,7 +4,7 @@
 * [Q: Co robi funkcja qw()?](#q-co-robi-funkcja-qw)
 * [Q: Dlaczego w moim rozwiązaniu zadania 2 numeracja zaczyna się od 2?](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md#q-dlaczego-w-moim-rozwi%C4%85zaniu-zadania-2-numeracja-zaczyna-si%C4%99-od-2)
 * [Q: Próbuję wczytać po jednej linijce z każdego z dwóch plików, a dostaję dwie linijki z tego samego pliku. Dlaczego?](#q-próbuję-wczytać-po-jednej-linijce-z-każdego-z-dwóch-plików-a-dostaję-dwie-linijki-z-tego-samego-pliku-dlaczego)
-* [Q: Czy mogę skorzystać z domyślnego zachowania **<>**, jeśli któryś z](#q-czy-mogę-skorzystać-z-domyślnego-zachowania--jeśli-któryś-z)
+* [Q: Czy mogę skorzystać z domyślnego zachowania **<>**, jeśli któryś z argumentów programu nie jest nazwą pliku?](#q-czy-mogę-skorzystać-z-domyślnego-zachowania--jeśli-któryś-z-argumentów-programu-nie-jest-nazwą-pliku)
 * [Q: Nie chce mi się pisać "or die" przy każdym **open**, co począć?](#q-nie-chce-mi-się-pisać-or-die-przy-każdym-open-co-począć)
 
 <!--TOC_END--->
@@ -38,7 +38,7 @@ można zmieniać. Są technicznie uznawane za foldery, więc pominięcie
 folderów, zgodnie z treścią zadania, pozwoli uniknąć tego błędu.
 
 ## Q: Próbuję wczytać po jednej linijce z każdego z dwóch plików, a dostaję dwie linijki z tego samego pliku. Dlaczego?
-**A:** Jeśli próbujesz wczytać linijkę z uchwytu **$FH1** to zmiennej
+**A:** Jeśli próbujesz wczytać linijkę z uchwytu **$FH1** do zmiennej
 **$line1** i linijkę z **$FH2** do zmiennej **$line2** w następujący sposób:
 ````perl
 my ($line1, $line2) = (<$FH1>, <$FH2>);
@@ -51,10 +51,9 @@ kontekst skalarny:
 my ($line1, $line2) = (scalar <$FH1>, scalar <$FH2>);
 ````
 
-## Q: Czy mogę skorzystać z domyślnego zachowania **<>**, jeśli któryś z
-argumentów programu nie jest nazwą pliku?
-**A:** Tak, wystarczy usunąć ten argument z @ARGV przd użyciem **<>**. Np.
-jeśli przeszkadza w tym pierwszy argument programu możemy go wczytać
+## Q: Czy mogę skorzystać z domyślnego zachowania **<>**, jeśli któryś z argumentów programu nie jest nazwą pliku?
+**A:** Tak, wystarczy usunąć ten argument z **@ARGV** przd użyciem **<>**.
+Np.  jeśli przeszkadza w tym pierwszy argument programu, możemy go wczytać
 za pomocą **shift**:
 ````perl
 my $arg = shift;
