@@ -5,13 +5,13 @@ zostaną podane jako argumenty programu:
 ./diff.pl file1 file2
 ````
 Należy sprawdzić, czy pliki są identyczne. Jeśli tak, to na wyjście powinien
-zostac wypisany komunikat:
+zostać wypisany komunikat:
 ````
 Files file1 and file2 are identical
 ````
-W przeciwnym razie, dla tych linii, na których pliki sie różnią należy wypisać
-numer linii i jej zawartośc w obu plikach. Przykładowo, dla plików _file1_ i
-_file2_ o zawartościach:
+W przeciwnym razie, dla tych linii, na których pliki sie różnią,
+należy wypisać numer linii i jej zawartośc w obu plikach.
+Przykładowo, dla plików _file1_ i _file2_ o zawartościach:  
 file1:
 ````
 line

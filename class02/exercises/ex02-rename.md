@@ -1,6 +1,6 @@
 # Zmiana nazw plików
 Napisz program, który przyjmie napis X jako pierwszy argument i zmieni nazwy
-wszystkich zwykłych plików plików (nie folderów) w aktualnym folderze na
+wszystkich zwykłych plików (nie folderów) w aktualnym folderze na
 X-N, gdzie N to liczba naturalna.
 
 Zakładając, że w aktualnym folderze jest 5 plików, po wykonaniu:

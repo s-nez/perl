@@ -1,5 +1,5 @@
 # WC
-Napisz prostę wersję programu
+Napisz prostą wersję programu
 [wc](https://en.wikipedia.org/wiki/Wc_%28Unix%29), który będzie liczył linie,
 słowa lub znaki na standardowym wejściu lub w plikach.
 
