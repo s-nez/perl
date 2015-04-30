@@ -13,5 +13,4 @@ Data: 30.04.2015
 
 ## Dodatkowe informacje
 * [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class02/useful-constructs.md)
-
-<!--* [Pytania i odpowiedzi](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md)-->
+* [Pytania i odpowiedzi](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md)
