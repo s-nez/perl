@@ -56,8 +56,8 @@ sub print_all_args {
 ````
 
 Do argumentów można odwoływać się bezpośrenio przez tablicę **@_**, więc
-$_[0] to pierwszy argument, $_[1] to drugi, itd. Dla czytelności zaleca
-się jednak rozpakowywać argumenty na początku funkcji:
+**$\_[0]** to pierwszy argument, **$\_[1]** to drugi, itd. Dla czytelności
+zaleca się jednak rozpakowywać argumenty na początku funkcji:
 ````perl
 sub print_x_times {
     my ($text, $times) = @_;
@@ -80,7 +80,7 @@ sub need_three_args {
 ````
 
 #### Argumenty domyślne
-Jeśli podczas rozpakowania argumentów okaże się, że któryś nie zostanie podany,
+Jeśli podczas rozpakowania argumentów okaże się, że któryś nie został podany,
 pozostanie niezdefiniowany. Dzięki temu, możemy w prosty sposób przypisać
 domyślne argumenty operatorem **//**:
 ````perl
