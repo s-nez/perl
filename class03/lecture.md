@@ -11,6 +11,11 @@
         * [Argumenty nazwane](#argumenty-nazwane)
         * [Modyfikacja argumentów](#modyfikacja-argumentów)
     * [Zwracanie wartości](#zwracanie-wartości)
+* [Przydatne funkcje wbudowane](#przydatne-funkcje-wbudowane)
+    * [sort](#sort)
+    * [map](#map)
+    * [grep](#grep)
+    * [Łączenie wywołań](#łączenie-wywołań)
 
 <!--TOC_END--->
 
@@ -37,7 +42,7 @@ Argumentem funkcji zawsze jest lista, więc wszystkie zmienne i wyrażenia
 podawane jako argumenty będą interpretowane w kontekście listowym.
 ````perl
 foo($scalar); # jednoelementowa lista
-foo(@array);  # lista elementóœ tablicy
+foo(@array);  # lista elementów tablicy
 foo(%hash);   # lista par klucz-wartość hasza
 ````
 
@@ -167,3 +172,133 @@ my @entries = qw(word two test); # ('word', 'two', 'test')
 prepend_id(42, @entries);
 @entries; # ('42:word', '42:two', '42:test')
 ````
+
+## Przydatne funkcje wbudowane
+### sort
+Funkcja **sort** służy do sortowania list. Domyślnie sortuje elementy
+leksykograficznie. Aby uzyskać inny rodzaj sortowania możemy przekazać
+do sort funkcję, która zwraca -1, jeśli pierwszy argument jest większy,
+1 jeśli drugi i 0 jeśli argumenty są równe. Wewnątrz tej funkcji mamy
+dostęp do dwóch porównywanych wartości przez zmienne **$a** i **$b**.
+````perl
+my @nums = (1, 23, 43, 12, 876, 3242, 453, 33131, 24, 520, 3, 45543);
+say 'Default: ', join ', ', sort @nums;
+say 'Numeric: ', join ', ', sort { $a <=> $b } @nums;
+say 'Inverse: ', join ', ', sort { $b <=> $a } @nums;
+````
+Wynik:
+````
+Default: 1, 12, 23, 24, 3, 3242, 33131, 43, 453, 45543, 520, 876
+Numeric: 1, 3, 12, 23, 24, 43, 453, 520, 876, 3242, 33131, 45543
+Inverse: 45543, 33131, 3242, 876, 520, 453, 43, 24, 23, 12, 3, 1
+````
+
+Sortowanie napisów według długości:
+````perl
+my @words = qw(joke test max goto break continue);
+say join ', ', sort { length $a <=> length $b } @words;
+````
+Wynik:
+````
+max, joke, test, goto, break, continue
+````
+
+### map
+Funkcja **map** pozwala przekształcać listy. Przyjmuje funkcję i listę jako 
+argumenty i wykonuje funkcję na każdym elemencie listy. Do aktualnego
+elementu listy można się dostać przez domyślną zmienną **$\_**.
+
+Stworzenie listy potrojonych liczb:
+````perl
+my @nums = 1 .. 10;
+my @tripled = map { $_ * 3 } @nums;
+say "@nums";
+say "@tripled";
+````
+
+Wynik:
+````
+1 2 3 4 5 6 7 8 9 10
+3 6 9 12 15 18 21 24 27 30
+````
+
+Zamiana napisów na ciągi gwiazdek:
+````perl
+my @passwords = qw(hunter2 password abc123 verydifficult easy);
+local $, = ' ';
+say @passwords;
+say map { '*' x length } @passwords;
+````
+
+Wynik:
+````
+hunter2 password abc123 verydifficult easy
+******* ******** ****** ************* ****
+````
+
+Generowanie tablicy losowych liczb:
+````perl
+my @random = map { int rand 100 } 1 .. 10;
+````
+
+### grep
+**grep** jest funkcją filtrującą. Przyjmuje funkcję i listę jako argument,
+zwraca te elementy listy, dla których funkcja zwraca prawdę. Tak samo jak
+w przypadku **map**, do aktualnego elementu listy możemy się dostać przez
+**$\_**.
+
+Odrzucenie niezdefiniowanych wartości z tablicy:
+````perl
+my @array = (1, 2, 3, 4, undef, 6, 7, undef, undef, 10);
+@array = grep { defined } @array;
+say "@array";
+````
+
+Wynik:
+````
+1 2 3 4 6 7 10
+````
+
+Wybranie liczb z konkretnego przedziału:
+````perl
+my @array = 1 .. 100;
+my ($start, $end) = (50, 60);
+local $, = ', ';
+say grep { $start <= $_ and $_ <= $end } @array;
+````
+
+Wynik:
+````
+50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
+````
+
+### Łączenie wywołań
+Każda z funkcji **sort**, **map** i **grep** przyjmuje listę jako argumentów
+i zwraca listę. Pozwala to na łączenie wywołań tych funkcji.
+
+Dopisanie długości do posortowanego malejąco podzbioru napisów o długości
+większej niż 5:
+````perl
+my @strings = qw(short long verylong testete hueuehuehue blah heh grr warrr);
+local $, = "\n";
+say map { $_ . "(" . length . ")" } sort { length $b <=> length $a } grep { length > 5 } @strings;
+````
+
+Wynik:
+````
+hueuehuehue(11)
+verylong(8)
+testete(7)
+````
+
+**COMBO x3!**
+
+Sortowanie leksykograficznie pełnych nazw normalnych użytkowników
+z /etc/passwd:
+````perl
+open my $PASSWD, '<', '/etc/passwd';
+local $, = "\n";
+say sort map { (split ':')[4] } grep { my $uid = (split ':')[2]; 1000 <= $uid and $uid <= 60000 } <$PASSWD>;
+````
+
+**COMBO x6!**
