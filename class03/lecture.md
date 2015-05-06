@@ -359,7 +359,7 @@ Do anonimowych zmiennych można odwoływać się tylko i wyłącznie przez
 referencje.
 
 ### Wielowymiarowe tablice
-W kontekście listowym nie ma możliwości separowania list, dlatego próba
+W kontekście listowym nie ma możliwości separowania list, dlatego 
 następująca próba stworzenia dwuwymiarowej tablicy się nie powiedzie:
 ````perl
 my @array2d = ((1,2,3), (4, 5, 6));
@@ -395,9 +395,10 @@ i pozwala tworzyć w locie dowolne struktury danych.
 my $var;
 $var->[0]{Key}[4] = 'we need to go deeper';
 ````
-W powyższym przykładzie skalar $var został potraktowany jako referencja do
+W powyższym przykładzie skalar **$var** został potraktowany jako referencja do
 tablicy w haszu w tablicy. Cała struktura została stworzona wedle
-zapotrzebowania i $var faktycznie jest teraz referencją do wymaganej struktury.
+zapotrzebowania i **$var** faktycznie jest teraz referencją do wymaganej
+struktury.
 
 ### Data::Dumper
 **Data::Dumper** jest wbudowanym modułem, który pozwala wyświetlić dowolną
