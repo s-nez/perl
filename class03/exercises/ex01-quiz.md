@@ -1,5 +1,6 @@
 # Quiz
-Napisz prosty quiz. Wczytaj pytania i odpowiedzi z pliku ex01-quiz.input.
+Napisz prosty quiz. Wczytaj pytania i odpowiedzi z pliku
+[ex01-quiz.input](https://github.com/slimakuj/perl/blob/devel/class03/exercises/ex01-quiz.input).
 Program może zakładać pełną poprawność danych wejściowych.
 
 Program powinien przyjąc jeden lub dwa argumenty:
