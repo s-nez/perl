@@ -67,7 +67,7 @@ sub print_all_args {
 }
 ````
 
-Do argumentów można odwoływać się bezpośrenio przez tablicę **@_**, więc
+Do argumentów można odwoływać się bezpośrednio przez tablicę **@_**, więc
 **$\_[0]** to pierwszy argument, **$\_[1]** to drugi, itd. Dla czytelności
 zaleca się jednak rozpakowywać argumenty na początku funkcji:
 ````perl
@@ -317,7 +317,7 @@ danych używa się referencji.
 
 ### Referencje
 Referencja jest specjalnym skalarem, który wskazuje na inną zmienną.
-Aby uzyskać referencję do istniejącej zmiennej uzywa się operatora **\**.
+Aby uzyskać referencję do istniejącej zmiennej używa się operatora **\**.
 ````perl
 my @array = 1 .. 10;
 my $array_ref = \@array;
