@@ -15,7 +15,7 @@
     * [sort](#sort)
     * [map](#map)
     * [grep](#grep)
-    * [Łączenie wywołań](#łączenie-wywołań)
+    * [Łączenie wywołań](#Łączenie-wywołań)
 
 <!--TOC_END--->
 
