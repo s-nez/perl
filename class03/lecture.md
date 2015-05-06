@@ -16,6 +16,13 @@
     * [map](#map)
     * [grep](#grep)
     * [Łączenie wywołań](#Łączenie-wywołań)
+* [Zagnieżdżone struktury danych](#zagnieżdżone-struktury-danych)
+    * [Referencje](#referencje)
+        * [Anonimowe zmienne](#anonimowe-zmienne)
+    * [Wielowymiarowe tablice](#wielowymiarowe-tablice)
+    * [Inne rodzaje zagnieżdżonych struktur danych](#inne-rodzaje-zagnieżdżonych-struktur-danych)
+    * [Autovivification](#autovivification)
+    * [Data::Dumper](#datadumper)
 
 <!--TOC_END--->
 
@@ -302,3 +309,136 @@ say sort map { (split ':')[4] } grep { my $uid = (split ':')[2]; 1000 <= $uid an
 ````
 
 **COMBO x6!**
+
+## Zagnieżdżone struktury danych
+Kontenery (tablice i hasze) mogą przetrzymywać tylko skalary, nie mogą
+przechowywać innych kontenerów. Dlatego do tworzenia rozbudowanych struktur
+danych używa się referencji.
+
+### Referencje
+Referencja jest specjalnym skalarem, który wskazuje na inną zmienną.
+Aby uzyskać referencję do istniejącej zmiennej uzywa się operatora **\**.
+````perl
+my @array = 1 .. 10;
+my $array_ref = \@array;
+````
+Zmiana wartości wskazywanej przez referencję spowoduje zmianę we wskazywanej
+zmiennej. Do uzyskania dostępu do wskazywanej zmiennej można użyć operatora
+**->**:
+````perl
+$array_ref->[2] = 'changed';
+@array; # (1, 2, changed, 4, 5, 6, 7, 8, 9, 10)
+````
+podwójnego znaku kluczowego:
+````perl
+$$array_ref[3] = 'X';
+@array; # (1, 2, changed, X, 5, 6, 7, 8, 9, 10)
+````
+lub bloku interpolacyjnego:
+````perl
+@{ $array_ref }[4] = 'wat';
+@array; # (1, 2, changed, X, wat, 6, 7, 8, 9, 10)
+````
+Te same zasady dotyczą referencji do haszy:
+````perl
+my %hash;
+my $hash_ref = \%hash;
+%$hash_ref; %{ $hash_ref }; # hasz wskazywany przez hash_ref
+$hash_ref->{key};           # klucz w haszu wskazywanym przez hasz_ref
+````
+
+#### Anonimowe zmienne
+Oprócz tworzenia referencji do istniejących nazwanych zmiennych, można też
+tworzyć zmienne anonimowe.
+````perl
+my $scalar_ref = \12;
+my $array_ref  = [1, 2, 3, 4];
+my $hash_ref   = { key => 'value', number => 14 };
+````
+Do anonimowych zmiennych można odwoływać się tylko i wyłącznie przez
+referencje.
+
+### Wielowymiarowe tablice
+W kontekście listowym nie ma możliwości separowania list, dlatego próba
+następująca próba stworzenia dwuwymiarowej tablicy się nie powiedzie:
+````perl
+my @array2d = ((1,2,3), (4, 5, 6));
+````
+Listy zostaną połączone w jedną i w efekcie otrzymamy jednowymiarową tablicę
+zawierającą elementy wszystkich podanych list.
+
+Bez problemu można jednak stworzyć tablicę referencji do anonimowych tablic:
+````perl
+my @array2d = ([1, 2, 3], [4, 5, 6]);
+````
+Do elementów takich zagnieżdżonych tablic można się dostać operatorem **->**:
+````perl
+$arry2d[0]->[0] = 42;
+@array2d; # ([42, 2, 3], [4, 5, 6])
+````
+Jako, że referencje są jedynym sposobem na tworzenie zagnieżdżonych struktur
+danych, nie ma żadnego problemu, by pominąć operator **->**:
+````perl
+$arry2d[0][0] = 42;
+````
+
+### Inne rodzaje zagnieżdżonych struktur danych
+Struktury danych można dowolnie łączyć i zagnieżdżać. W identyczny sposób
+jak wielowymiarowe tablice, możemy tworzyć tablice haszy, hasze tablic,
+hasze haszy, tablice haszy tablic tablic, itd.
+
+### Autovivification
+Perl dostosowuje się do programisty. Jeśli potraktujemy skalar jak referencję,
+stanie się on referencją. Działa to na dowolnym poziomie zagnieżdżenia
+i pozwala tworzyć w locie dowolne struktury danych.
+````perl
+my $var;
+$var->[0]{Key}[4] = 'we need to go deeper';
+````
+W powyższym przykładzie skalar $var został potraktowany jako referencja do
+tablicy w haszu w tablicy. Cała struktura została stworzona wedle
+zapotrzebowania i $var faktycznie jest teraz referencją do wymaganej struktury.
+
+### Data::Dumper
+**Data::Dumper** jest wbudowanym modułem, który pozwala wyświetlić dowolną
+strukturę danych. Aby go użyć należy dodać na początku programu:
+````perl
+use Data::Dumper;
+````
+Teraz możemy wypisać dowolną strukturę danych funkcją **Dumper**.
+````perl
+my @array2d = ([1, 2, 3], [4, 5, 6]);
+my $var;
+$var->[0]{Key}[4] = 'we need to go deeper';
+print Dumper(\@array2d, $var);
+````
+Wyjście:
+````
+$VAR1 = [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ];
+$VAR2 = [
+          {
+            'Key' => [
+                       undef,
+                       undef,
+                       undef,
+                       undef,
+                       'we need to go deeper'
+                     ]
+          }
+        ];
+````
+
+**UWAGA:** Do wyświetlania struktur zaczynających się od nazwanych kontenerów
+lepiej jest przekazać referencję, w przeciwnym przypadku startowy kontener
+zostanie "spłaszczony" do postaci listy.
