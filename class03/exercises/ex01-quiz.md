@@ -44,7 +44,7 @@ D) Berserker
 Odpowiedź: A
 Poprawna odpowiedź!
 
-Jaka jest odpowiedź na wszystkie pytania wszechświata?
+Jaka jest odpowiedź na wszystkie pytania wszechświata i sens istnienia?
 
 A) Matematyka
 B) Undef
