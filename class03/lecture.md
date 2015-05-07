@@ -134,7 +134,7 @@ sub double_arg {
 }
 
 my $num = 2;
-double_arg(2);
+double_arg($num);
 $num; # 4
 ````
 
