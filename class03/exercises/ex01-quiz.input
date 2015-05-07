@@ -1,4 +1,4 @@
-Q: Jaka jest odpowiedź na wszystkie pytania wszechświata?
+Q: Jaka jest odpowiedź na wszystkie pytania wszechświata i sens istnienia?
 A) Matematyka
 B) Undef
 C) 42
@@ -39,3 +39,10 @@ B) 1990
 C) 2006
 D) 1971
 Correct = A
+
+Q: Więcej niż jedno zwierzę to ... ?
+A) Stado
+B) Grupa
+C) Wataha
+D) Lama
+Correct = D
