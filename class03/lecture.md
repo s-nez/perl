@@ -11,6 +11,7 @@
         * [Argumenty nazwane](#argumenty-nazwane)
         * [Modyfikacja argumentów](#modyfikacja-argumentów)
     * [Zwracanie wartości](#zwracanie-wartości)
+* [Moduły](#moduły)
 * [Przydatne funkcje wbudowane](#przydatne-funkcje-wbudowane)
     * [sort](#sort)
     * [map](#map)
@@ -179,6 +180,29 @@ my @entries = qw(word two test); # ('word', 'two', 'test')
 prepend_id(42, @entries);
 @entries; # ('42:word', '42:two', '42:test')
 ````
+
+## Moduły
+Funkcje można grupować w modułach dla lepszego uporządkowania kodu lub
+umożliwienia łatwego korzystania z nich w nowych programach. 
+
+Najprostszy moduł Perla ma rozszerzenie .pm i następującą postać:
+````perl
+package Modname;
+use Exporter 'import';
+our @EXPORT = qw(foo bar);
+
+sub foo { ... }
+sub bar { ... }
+sub helper { ... }
+````
+
+Aby użyć modułu w programie, na początku należy dodać:
+````perl
+use Modname;
+````
+
+Teraz w programie dostępne będą funkce **foo** i **bar**, ale nie **helper**,
+ponieważ nie ma jej w globalnej tablicy @EXPORT.
 
 ## Przydatne funkcje wbudowane
 ### sort
