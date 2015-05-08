@@ -13,6 +13,7 @@ Data: 07.05.2015
 * 04 \- [Książka telefoniczna](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-phonebook.md)
 
 
-<!-- ## Dodatkowe informacje-->
-<!--* [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class02/useful-constructs.md)-->
+## Dodatkowe informacje
+* [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class03/useful-constructs.md)
+
 <!--* [Pytania i odpowiedzi](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md)-->
