@@ -24,6 +24,7 @@
     * [Inne rodzaje zagnieżdżonych struktur danych](#inne-rodzaje-zagnieżdżonych-struktur-danych)
     * [Autovivification](#autovivification)
     * [Data::Dumper](#datadumper)
+* [Transformata Schwartza](#transformata-schwartza)
 
 <!--TOC_END--->
 
@@ -464,6 +465,38 @@ $VAR2 = [
         ];
 ````
 
-**UWAGA:** Do wyświetlania struktur zaczynających się od nazwanych kontenerów
-lepiej jest przekazać referencję, w przeciwnym przypadku startowy kontener
-zostanie "spłaszczony" do postaci listy.
+**UWAGA:** Do wyświetlania struktur zaczynających się od nazwanych
+kontenerów lepiej jest przekazać referencję, w przeciwnym przypadku startowy
+kontener zostanie "spłaszczony" do postaci listy.
+
+## Transformata Schwartza
+Przy przetwarzaniu danych często zdarza się, że należy je posortować
+względem jakiejś cechy, której uzyskanie wymaga dodatkowej obróbki.
+Najprostszym przykładem takiej cechy jest długość:
+````perl
+sort { length $a <=> length $b } @data;
+````
+
+Transformata Schwartza to idiom Perla, który polega na wykonaniu
+obróbki całego zestawu danych przed rozpoczęciem sortowania i przywróceniu
+zestawu do prawidłowej postaci po jego zakończeniu. Załóżmy, że sortujemy
+dane według wartości funkcji **extract()**, która zwraca liczbę.
+
+Sortowanie używające bezpośredniego wywołania **extract()**:
+````perl
+sort { extract($a) <=> extract($b) } @data;
+````
+
+Transformata Schwartza:
+````perl
+map { $_->[0] }
+sort { $a->[1] <=> $b->[1] }
+map { [ $_, extract($_) ] } @data;
+````
+Czytając od tyłu - najpierw do każdego elementu **@data** jest
+przyporządkowana para [ ORYGINAŁ, CECHA ], gdzie ORYGINAŁ to element
+tablicy **@data**, a CECHA to wartość, według której będziemy sortować.
+Następnie pary zostają posortowane według wartości drugiego elementu (czyli
+CECHA). Na koniec do każdej pary zostaje przyporządkowany jej pierwszy
+element, innymi słowy, CECHA zostaje odrzucona i zostają same wartości
+oryginalne, odpowiednio posortowane.
