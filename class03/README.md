@@ -5,6 +5,7 @@ Data: 07.05.2015
 * [Funkcje](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#funkcje)
 * [Przydatne funkcje wbudowane](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#przydatne-funkcje-wbudowane)
 * [Zagnieżdżone struktury danych](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#zagnieżdżone-struktury-danych)
+* [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#transformata-schwartza)
 
 ## Zadania
 * 01 \- [Quiz](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex01-quiz.md)
