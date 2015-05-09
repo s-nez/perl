@@ -1,11 +1,11 @@
 # Quiz
 Napisz prosty quiz. Wczytaj pytania i odpowiedzi z pliku
-[ex01-quiz.input](https://github.com/slimakuj/perl/blob/devel/class03/exercises/ex01-quiz.input).
+[ex04-quiz.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-quiz.input).
 Program może zakładać pełną poprawność danych wejściowych.
 
 Program powinien przyjąć jeden lub dwa argumenty:
 ````
-./prog.pl ex01-quiz.input 4
+./prog.pl ex04-quiz.input 4
 ````
 Pierwszy argument to nazwa pliku z pytaniami, drugi to liczba pytań, które
 mają być zadane użytkownikowi. Jeśli drugi argument nie zostanie podany,
@@ -22,7 +22,7 @@ Twój wynik: [liczba poprawnych odpowiedzi]/[liczba pytań]
 ## Przykładowe wejście i wyjście
 Argumenty programu:
 ````
-./prog.pl ex01-quiz.input 3
+./prog.pl ex04-quiz.input 3
 ````
 Wyjście programu z wejściem użytkownikowa:
 ````
