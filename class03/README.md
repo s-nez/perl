@@ -8,10 +8,10 @@ Data: 07.05.2015
 * [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#transformata-schwartza)
 
 ## Zadania
-* 01 \- [Quiz](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex01-quiz.md)
-* 02 \- [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-passwd-sort.md)
-* 03 \- [Moduł](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex03-module.md)
-* 04 \- [Książka telefoniczna](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-phonebook.md)
+* 01 \- [Moduł](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex01-module.md)
+* 02 \- [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-schwartz.md)
+* 03 \- [Książka telefoniczna](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex03-phonebook.md)
+* 04 \- [Quiz](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-quiz.md)
 
 
 ## Dodatkowe informacje
