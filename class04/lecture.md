@@ -21,7 +21,7 @@ rozbudowany sposób uzyskiwać informacje o tekście i danych w nim zawartych.
 Do operowania na wyrażeniach regularnych używa się dwóch operatorów:
 **=~** i **!~**, lewy operand jest napisem, a prawy wzorcem do dopasowania.
 Wzorce są ciągami znaków otoczonymi znakami ograniczajacymi
-(domyślnie **/**, ale można to użyć innego).
+(domyślnie **/**, ale można też użyć innego).
 
 W kontekście logicznym operator **=~** zwraca prawdę, jeśli napis zawiera
 wzorzec i fałsz w przeciwnym wypadku. **!~** jest zwykłą negacją tego
@@ -68,7 +68,7 @@ cdef
 ````
 
 Klasy mogą również zawierać zakresy znaków, wzorzec powyżej można zapisać
-też jako:
+również jako:
 ````perl
 /[a-c]def/
 ````
@@ -111,7 +111,7 @@ Poniższy wzorzec pasuje do wszystkich napisów zaczynających się od słowa
 Będzie więc pasował do m. in. do następujących napisów:
 ````perl
 "break"
-"breakthrough
+"breakthrough"
 "breaks"
 "break and something else"
 ````
@@ -122,13 +122,14 @@ ale już nie do:
 ````
 
 W podobny sposób znak **\z** dopasowuje koniec napisu. Jako, że wczytywane dane
-często kończą się znakiem nowej linii, mamy róznież do dyspozycji znak **\Z**,
+często kończą się znakiem nowej linii, mamy również do dyspozycji znak **\Z**,
 który pasuje do końca napisu lub znaku nowej linii kończącego napis:
 ````perl
 "more text" =~ /text\z/;   # True
 "more text" =~ /text\Z/;   # True
 "more text\n" =~ /text\z/; # False
 "more text\n" =~ /text\Z/; # True
+````
 
 W połączeniu ze znakami **\Z** i **\z**, **\A** pozwala tworzyć dopasowania
 całego napisu.
