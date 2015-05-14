@@ -12,6 +12,10 @@
         * [Raz lub więcej](#raz-lub-więcej)
         * [Dowolna ilość](#dowolna-ilość)
         * [Przedział liczbowy](#przedział-liczbowy)
+    * [Grupowanie i przechwytywanie](#grupowanie-i-przechwytywanie)
+        * [Grupy elementów](#grupy-elementów)
+        * [Przechwytywanie podnapisów](#przechwytywanie-podnapisów)
+        * [Grupowanie bez przechwytywania](#grupowanie-bez-przechwytywania)
 
 <!--TOC_END--->
 
@@ -164,10 +168,10 @@ hue abcd de
 ### Krotność
 Każdy element wzorca może mieć zdefiniowaną krotność. To znaczy, że do wzorca
 można dopasować dowolną ilość wystąpień danego elementu. Krotność elementu
-określa się przez dodanie do niego odpowiedniego modyfikatora krotności.
+określa się przez dodanie do niego odpowiedniego kwantyfikatora.
 
 #### Zero lub jeden raz
-Modyfikator krotności **?** oznacza 0 lub 1 wystąpienie. To znaczy, że poniższy
+Kwantyfikator **?** oznacza 0 lub 1 wystąpienie. To znaczy, że poniższy
 wzorzec:
 ````perl
 /abcd?/
@@ -178,12 +182,12 @@ będzie pasował do napisów:
 'abcd'
 ````
 
-**UWAGA:** Modyfikatory krotności mają wpływ tylko na element bezpośrednio
+**UWAGA:** Kwantyfikatory mają wpływ tylko na element bezpośrednio
 je poprzedzający (znak, klasę znaków lub grupę). W powyższym przykładzie,
-modyfikator **?** dotyczy tylko i wyłącznie znaku 'd'.
+kwantyfikator **?** dotyczy tylko i wyłącznie znaku 'd'.
 
 #### Raz lub więcej
-Modyfikator **+** pasuje do liczby wystąpień większej lub równej jeden.
+Kwantyfikator **+** pasuje do liczby wystąpień większej lub równej jeden.
 
 Wzorzec:
 ````perl
@@ -202,7 +206,7 @@ he
 ````
 
 #### Dowolna ilość
-Modyfikator **\*** dopasowuje dowolną ilość wystąpień elementu. Może on nie
+Kwantyfikator **\*** dopasowuje dowolną ilość wystąpień elementu. Może on nie
 występować w ogóle, występować raz, dwa, trzy, itd.
 
 Wzorzec:
@@ -219,14 +223,74 @@ będzie pasował m. in. do:
 ````
 
 #### Przedział liczbowy
-Dwuargumentowy modyfikator **{$a, $b}** pozwala zdefiniować przedział, w którym
-ma się znajdować liczba wystąpień elementu.
+Dwuargumentowy kwantyfikator **{$a, $b}** pozwala zdefiniować przedział, w
+którym ma się znajdować liczba wystąpień elementu.
 
 Wzorzec:
 ````perl
 /a{1,5}/
 ````
-oznacza "znak a występujący conajmniej raz, ale nie więcej niż 5 razy".
+oznacza "znak 'a' występujący conajmniej raz, ale nie więcej niż 5 razy".
 
 Pominięcie jednego z argumentów znosi ograniczenia, tzn. **{2,}** oznacza
 "conajmniej dwa razy", a **{,2}** "conajwyżej dwa razy".
+
+Podanie jednego argumentu bez przecinka dopasowuje dokładną ilość wystąpień,
+**{2}** jest tym samym, co **{2,2}**.
+
+### Grupowanie i przechwytywanie
+#### Grupy elementów
+Wzięcie sekwencji elementów wzorca w okrągłe nawiasy stworzy z nich grupę,
+na zewnątrz nawiasów sekwencja ta będzie traktowana jako pojedynczy element.
+Pozwala to stosować kwantyfikatory do całych sekwencji.
+
+Np. jeśli chcemy dopasować dość długi śmiech:
+````perl
+/(ha){3,}/
+````
+Taki wzorzec będzie pasował do:
+````
+'hahaha'
+'hahahaha'
+'hahahahahahaha'
+````
+
+#### Przechwytywanie podnapisów
+Nawiasy okrągłe oprócz grupowania elementów przypisują dopasowane podnapisy
+do specjalnych zmiennych, **$1**, **$2**, itd. Oznaczają one
+odpowiednio "zawartość pierwszego nawiasu", "zawartość drugiego nawiasu", itd.
+
+Jeśli w którymś z napisów pojawi się numer telefonu, to zostanie on wypisany
+na standardowe wyjście:
+````perl
+my @strings = (
+    'napis bez sensu',
+    'napis z sensem',
+    'zadzwoń pod 112-321-543',
+    'hue hue 123943, 2341',
+    'policja 997-112',
+    'pizzeria "Primo", 324-123-984, promocja 50% zniżki! na pizzę 2cm',
+    'no i tu nie ma numeru 999999'
+);
+
+foreach (@strings) {
+    say $1 if /(\d{3}-\d{3}-\d{3})/;
+}
+````
+
+Wyjście:
+````
+112-321-543
+324-123-984
+````
+
+#### Grupowanie bez przechwytywania
+Jeśli nie chcemy zachowywać danej części tesktu, ale potrzbne jest grupowanie,
+można na początek zawartości nawiasu dodać **?:**, wtedy będzie to wyłącznie
+kontrukt grupujący, bez efektów ubocznych. Nie będzie się też liczył do
+numerów zmiennych **$1**, **$2**, itd.
+
+Dopasowanie a, od 2 do 5 sekwencji abc i trzech liczb, bez przechwytywania:
+````perl
+/a(?:abc){2,5}\d{3}/
+````
