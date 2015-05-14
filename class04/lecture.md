@@ -7,6 +7,11 @@
     * [Metaznaki](#metaznaki)
         * [Klasy znaków](#klasy-znaków)
         * [Miejsca w napisie](#miejsca-w-napisie)
+    * [Krotność](#krotność)
+        * [Zero lub jeden raz](#zero-lub-jeden-raz)
+        * [Raz lub więcej](#raz-lub-więcej)
+        * [Dowolna ilość](#dowolna-ilość)
+        * [Przedział liczbowy](#przedział-liczbowy)
 
 <!--TOC_END--->
 
@@ -155,3 +160,73 @@ abc
 abcdef
 hue abcd de
 ````
+
+### Krotność
+Każdy element wzorca może mieć zdefiniowaną krotność. To znaczy, że do wzorca
+można dopasować dowolną ilość wystąpień danego elementu. Krotność elementu
+określa się przez dodanie do niego odpowiedniego modyfikatora krotności.
+
+#### Zero lub jeden raz
+Modyfikator krotności **?** oznacza 0 lub 1 wystąpienie. To znaczy, że poniższy
+wzorzec:
+````perl
+/abcd?/
+````
+będzie pasował do napisów:
+````
+'abc'
+'abcd'
+````
+
+**UWAGA:** Modyfikatory krotności mają wpływ tylko na element bezpośrednio
+je poprzedzający (znak, klasę znaków lub grupę). W powyższym przykładzie,
+modyfikator **?** dotyczy tylko i wyłącznie znaku 'd'.
+
+#### Raz lub więcej
+Modyfikator **+** pasuje do liczby wystąpień większej lub równej jeden.
+
+Wzorzec:
+````perl
+/hu+e/
+````
+pasuje m. in. do napisów:
+````
+'hue'
+'huue'
+'huuue'
+'huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue'
+````
+Ale nie pasuje już do:
+````
+he
+````
+
+#### Dowolna ilość
+Modyfikator **\*** dopasowuje dowolną ilość wystąpień elementu. Może on nie
+występować w ogóle, występować raz, dwa, trzy, itd.
+
+Wzorzec:
+````perl
+/hu*e/
+````
+będzie pasował m. in. do:
+````
+'he'
+'hue'
+'huue'
+'huuue'
+'huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue'
+````
+
+#### Przedział liczbowy
+Dwuargumentowy modyfikator **{$a, $b}** pozwala zdefiniować przedział, w którym
+ma się znajdować liczba wystąpień elementu.
+
+Wzorzec:
+````perl
+/a{1,5}/
+````
+oznacza "znak a występujący conajmniej raz, ale nie więcej niż 5 razy".
+
+Pominięcie jednego z argumentów znosi ograniczenia, tzn. **{2,}** oznacza
+"conajmniej dwa razy", a **{,2}** "conajwyżej dwa razy".
