@@ -66,6 +66,18 @@ say if m+ee+;
 say if m{ee};
 ````
 
+### Wzorce, a zmienne
+Wzorce można zapisywać w zmiennych za pomocą operatora **qr**.
+
+Wszystkie dopasowania poniżej są równoznaczne:
+````perl
+my $regex   = qr/abc/;
+my $same_rx = qr(abc);
+'abcdef' =~ /abc/;
+'abcdef' =~ $regex;
+'abcdef' =~ $same_rx;
+````
+
 ### Metaznaki
 Oprócz dosłownych znaków, wzorce mogą zawierać również metaznaki, które
 opisują jakiś podzbiór wszystkich znaków, miejsce w napisie lub pozwalają
@@ -302,6 +314,8 @@ Wyrażenie dopasowujące pustą parę tagów HTML:
 ````perl
 m{<(\w+)></\g1>}
 ````
+
+**UWAGA:** Zmiennych **$1**, **$2**, ... nie należy używać wewnątrz wzorca.
 
 #### Grupowanie bez przechwytywania
 Jeśli nie chcemy zachowywać danej części tekstu, ale potrzebne jest grupowanie,
