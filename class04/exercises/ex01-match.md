@@ -25,8 +25,8 @@ gdzie C jest cyfrą od 0 do 9.
 
 ## $sentence
 Dopasuj napis, który jest zdaniem, tzn. ciągiem wyrazów oddzielonych spacjami
-i kończący się kropką. Zdanie jest prymitywne i nie może zawierać znaków
-interpunkcyjnych (oprócz kropki na końcu), nie musi się też zaczynać duża
+i kończącym się kropką. Zdanie jest prymitywne i nie może zawierać znaków
+interpunkcyjnych (oprócz kropki na końcu), nie musi się też zaczynać dużą
 literą.
 
 ## $five\_l\_word
