@@ -79,6 +79,37 @@ my $same_rx = qr(abc);
 'abcdef' =~ $same_rx;
 ````
 
+W zakresie inetrpolcaji, wzroce zachowują się jak podwójny cudzysłów,
+to znaczy, że można używać zmiennych jako części wzorca.
+
+Dopasowanie z interpolacją zmiennej:
+````perl
+my $text = 'abc';
+'abcdef' =~ /$abc/;
+````
+
+Jako, że wzorce często są zbitkami dużej ilości tekstu, dla bezpieczeństwa,
+lepiej jest interpolować zmienne w następujący sposób:
+````perl
+my $text = 'abc';
+'abcdef' =~ /${text}/;
+````
+
+Pozwala to uniknąć błędów w odczycie nazw zmmiennych.
+````perl
+my $system = 'unix';
+'abcunixd' =~ /$systemd/;
+````
+W powyższym przykładzie parser próbuje interpolować zmienną **$systemd**,
+która nie istnieje. Z włączonym **strict** będzie to błąd kompilacji,
+bez **strict** będzie to dopasowanie pustego wzorca.
+
+Poprawne dopasowanie _"zawartości zmiennej **$system** i d"_:
+````perl
+my $system = 'unix';
+'abcunixd' =~ /${system}d/;
+````
+
 ### Metaznaki
 Oprócz dosłownych znaków, wzorce mogą zawierać również metaznaki, które
 opisują jakiś podzbiór wszystkich znaków, miejsce w napisie lub pozwalają
