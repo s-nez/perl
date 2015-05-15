@@ -4,6 +4,7 @@
 ## Spis treści
 * [Wyrażania regularne](#wyrażania-regularne)
     * [Operator dopasowania wzorca](#operator-dopasowania-wzorca)
+    * [Wzorce, a zmienne](#wzorce-a-zmienne)
     * [Metaznaki](#metaznaki)
         * [Klasy znaków](#klasy-znaków)
         * [Miejsca w napisie](#miejsca-w-napisie)
