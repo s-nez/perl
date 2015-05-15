@@ -26,8 +26,8 @@ gdzie C jest cyfrą od 0 do 9.
 ## $sentence
 Dopasuj napis, który jest zdaniem, tzn. ciągiem wyrazów oddzielonych
 spacjami i kończącym się kropką lub znakiem zapytania. Zdanie jest
-prymitywne i nie może zawierać znaków interpunkcyjnych (oprócz kropki na
-końcu), nie musi się też zaczynać dużą literą.
+prymitywne i nie może zawierać znaków interpunkcyjnych (oprócz kropki lub 
+znaku zapytania na końcu), nie musi się też zaczynać dużą literą.
 
 ## $five\_l\_word
 Dopasuj napis, który zawiera słowo, które ma dokładnie 5 liter
