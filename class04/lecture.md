@@ -33,8 +33,7 @@ Wzorce są ciągami znaków otoczonymi znakami ograniczajacymi
 (domyślnie **/**, ale można też użyć innego).
 
 W kontekście logicznym operator **=~** zwraca prawdę, jeśli napis zawiera
-wzorzec i fałsz w przeciwnym wypadku. **!~** jest zwykłą negacją tego
-operatora.
+wzorzec. **!~** jest zwykłą negacją tego operatora.
 ````perl
 if ('this is a test' =~ /this/) {} # True
 if ('this is a test' !~ /this/) {} # False
@@ -58,7 +57,7 @@ bleed
 ````
 
 Aby użyć innego znaku ograniczającego, należy dodać oznaczenie trybu do 
-wyrażenia. Domślny tryb (dopasowanie) oznacza się przez **m**.
+wyrażenia. Domyślny tryb (dopasowanie) oznacza się przez **m**.
 
 Te trzy linie są równoznaczne:
 ````perl
@@ -125,7 +124,7 @@ Znak **\A** dopasowuje początek napisu.
 Poniższy wzorzec pasuje do wszystkich napisów zaczynających się od słowa
 "break":
 ````perl
-/\Abreak/
+m/\Abreak/
 ````
 Będzie więc pasował do m. in. do następujących napisów:
 ````perl
@@ -150,8 +149,8 @@ który pasuje do końca napisu lub znaku nowej linii kończącego napis:
 "more text\n" =~ /text\Z/; # True
 ````
 
-W połączeniu ze znakami **\Z** i **\z**, **\A** pozwala tworzyć dopasowania
-całego napisu.
+Otoczenie całego wzorca znakami **\A** i **\Z** (lub **\z**) pozwala tworzyć
+dopasowania całego napisu.
 ````perl
 "lorem ipsum" =~ /\Alorem ipsum\Z/;                # True
 "lorem ipsum dolor sit amet" =~ /\Alorem ipsum\Z/; # False
@@ -165,7 +164,7 @@ tablicy, które zawierają słowo zaczynające się ciągiem znaków "abc":
 ````perl
 my @array = ('abc', 'abcdef', 'mrabc', 'hue abcd de', 'moar hue rabc');
 foreach (@array) {
-    say if /\babc/;
+    say if m/\babc/;
 }
 ````
 Wynik:
@@ -184,10 +183,10 @@ określa się przez dodanie do niego odpowiedniego kwantyfikatora.
 Kwantyfikator **?** oznacza 0 lub 1 wystąpienie. To znaczy, że poniższy
 wzorzec:
 ````perl
-/abcd?/
+m/abcd?/
 ````
 będzie pasował do napisów:
-````
+````perl
 'abc'
 'abcd'
 ````
@@ -201,18 +200,18 @@ Kwantyfikator **+** pasuje do liczby wystąpień większej lub równej jeden.
 
 Wzorzec:
 ````perl
-/hu+e/
+m/hu+e/
 ````
 pasuje m. in. do napisów:
-````
+````perl
 'hue'
 'huue'
 'huuue'
 'huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue'
 ````
 Ale nie pasuje już do:
-````
-he
+````perl
+'he'
 ````
 
 #### Dowolna ilość
@@ -221,10 +220,10 @@ występować w ogóle, występować raz, dwa, trzy, itd.
 
 Wzorzec:
 ````perl
-/hu*e/
+m/hu*e/
 ````
 będzie pasował m. in. do:
-````
+````perl
 'he'
 'hue'
 'huue'
@@ -238,12 +237,12 @@ którym ma się znajdować liczba wystąpień elementu.
 
 Wzorzec:
 ````perl
-/a{1,5}/
+m/a{1,5}/
 ````
 oznacza "znak 'a' występujący co najmniej raz, ale nie więcej niż 5 razy".
 
 Pominięcie jednego z argumentów znosi ograniczenia, tzn. **{2,}** oznacza
-"co najmniej dwa razy", a **{,2}** "co najwyżej dwa razy".
+_"co najmniej dwa razy"_, a **{,2}** _"co najwyżej dwa razy"_.
 
 Podanie jednego argumentu bez przecinka dopasowuje dokładną ilość wystąpień,
 **{2}** jest tym samym, co **{2,2}**.
@@ -256,10 +255,10 @@ Pozwala to stosować kwantyfikatory do całych sekwencji.
 
 Np. jeśli chcemy dopasować dość długi śmiech:
 ````perl
-/(ha){3,}/
+m/(ha){3,}/
 ````
 Taki wzorzec będzie pasował do:
-````
+````perl
 'hahaha'
 'hahahaha'
 'hahahahahahaha'
@@ -268,7 +267,8 @@ Taki wzorzec będzie pasował do:
 #### Przechwytywanie podnapisów
 Nawiasy okrągłe oprócz grupowania elementów przypisują dopasowane podnapisy
 do specjalnych zmiennych, **$1**, **$2**, itd. Oznaczają one
-odpowiednio "zawartość pierwszego nawiasu", "zawartość drugiego nawiasu", itd.
+odpowiednio _"zawartość pierwszego nawiasu"_, _"zawartość drugiego nawiasu"_,
+itd.
 
 Jeśli w którymś z napisów pojawi się numer telefonu, to zostanie on wypisany
 na standardowe wyjście:
@@ -284,7 +284,7 @@ my @strings = (
 );
 
 foreach (@strings) {
-    say $1 if /(\d{3}-\d{3}-\d{3})/;
+    say $1 if m/(\d{3}-\d{3}-\d{3})/;
 }
 ````
 
@@ -309,7 +309,8 @@ można na początek zawartości nawiasu dodać **?:**, wtedy będzie to wyłącz
 konstrukt grupujący, bez efektów ubocznych. Nie będzie się też liczył do
 numerów zmiennych **$1**, **$2**, itd.
 
-Dopasowanie a, od 2 do 5 sekwencji abc i trzech liczb, bez przechwytywania:
+Dopasowanie wzorca _"a, od 2 do 5 sekwencji abc i trzy liczby"_,
+bez przechwytywania:
 ````perl
-/a(?:abc){2,5}\d{3}/
+m/a(?:abc){2,5}\d{3}/
 ````
