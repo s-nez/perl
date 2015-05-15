@@ -16,6 +16,7 @@
     * [Grupowanie i przechwytywanie](#grupowanie-i-przechwytywanie)
         * [Grupy elementów](#grupy-elementów)
         * [Przechwytywanie podnapisów](#przechwytywanie-podnapisów)
+        * [Listy podnapisów](#listy-podnapisów)
         * [Grupowanie bez przechwytywania](#grupowanie-bez-przechwytywania)
 
 <!--TOC_END--->
@@ -348,6 +349,71 @@ m{<(\w+)></\g1>}
 ````
 
 **UWAGA:** Zmiennych **$1**, **$2**, ... nie należy używać wewnątrz wzorca.
+
+#### Listy podnapisów
+Użycie wyrażenia regularnego w kontekście listowym zwróci listę wszystkich
+przechwyconych podnapisów. Jeśli we wzorcu nie ma ani jednej grupy
+przechwytującej, zwracana jest lista dopasowań całego wzorca.
+
+Wyciągnięcie wszystkich 3-cyfrowych liczb z napisu:
+````perl
+my @matches = 'nums123 fds5 fds341 fdsna102' =~ /\d\d\d/g;
+say foreach @matches;
+````
+Wyjście:
+````
+123
+341
+102
+````
+
+Wyciągnięcie wszystkich słów w pojedynczych cudzysłowach:
+````perl
+my $string = q(quotes 'hue', more 'tests', brrr 'cold' and 'all that');
+my @matches = $string =~ /'(\w+)'/g;
+say foreach @matches;
+````
+Wynik:
+````
+hue
+tests
+cold
+````
+
+Modyfikator **/g** na końcu wzorca powoduje przechwycenie wszystkich
+dopasowań grup. Użycie wyrażenia regularnego bez tego modyfikatora
+spowoduje przechwycenie tylko pierwszego dopasowania.
+````perl
+my $string = q(quotes 'hue', more 'tests', brrr 'cold' and 'all that');
+my @matches = $string =~ /'(\w+)'/;
+say foreach @matches;
+````
+Wynik:
+````
+hue
+````
+
+Warto pamiętać o listach składanych ze skalarów. Używając ich z wyrażeniami
+regularnymi, możemy w bardzo prosty sposób odfiltrować potrzebne informacje
+z tekstu o znanym formacie. 
+````perl
+my $log = 'Jan 04 20:20:03 S3 systemd[11935]: Startup finished in 13ms.';
+my ($date, $host, $unit, $message) = $log =~ /\A(\w{3} \d\d \d\d:\d\d:\d\d) (\w+) (\w+)\[\d+\]: (.+)\Z/;
+print <<"END_LOG"
+Date: $date
+Hostname: $host
+Unit: $unit
+Message: $message
+END_LOG
+````
+
+Wyjście:
+````
+Date: Jan 04 20:20:03
+Hostname: S3
+Unit: systemd
+Message: Startup finished in 13ms.
+````
 
 #### Grupowanie bez przechwytywania
 Jeśli nie chcemy zachowywać danej części tekstu, ale potrzebne jest grupowanie,
