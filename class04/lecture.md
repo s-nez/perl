@@ -57,6 +57,16 @@ creed
 bleed
 ````
 
+Aby użyć innego znaku ograniczającego, należy dodać oznaczenie trybu do 
+wyrażenia. Domślny tryb (dopasowanie) oznacza się przez **m**.
+
+Te trzy linie są równoznaczne:
+````perl
+say if /ee/;
+say if m+ee+;
+say if m{ee};
+````
+
 ### Metaznaki
 Oprócz dosłownych znaków, wzorce mogą zawierać również metaznaki, które
 opisują jakiś podzbiór wszystkich znaków, miejsce w napisie lub pozwalają
@@ -206,7 +216,7 @@ he
 ````
 
 #### Dowolna ilość
-Kwantyfikator **\*** dopasowuje dowolną ilość wystąpień elementu. Może on nie
+Kwantyfikator __*__ dopasowuje dowolną ilość wystąpień elementu. Może on nie
 występować w ogóle, występować raz, dwa, trzy, itd.
 
 Wzorzec:
@@ -230,10 +240,10 @@ Wzorzec:
 ````perl
 /a{1,5}/
 ````
-oznacza "znak 'a' występujący conajmniej raz, ale nie więcej niż 5 razy".
+oznacza "znak 'a' występujący co najmniej raz, ale nie więcej niż 5 razy".
 
 Pominięcie jednego z argumentów znosi ograniczenia, tzn. **{2,}** oznacza
-"conajmniej dwa razy", a **{,2}** "conajwyżej dwa razy".
+"co najmniej dwa razy", a **{,2}** "co najwyżej dwa razy".
 
 Podanie jednego argumentu bez przecinka dopasowuje dokładną ilość wystąpień,
 **{2}** jest tym samym, co **{2,2}**.
@@ -284,10 +294,19 @@ Wyjście:
 324-123-984
 ````
 
+Do napisów przechwyconych w ten sposób można sie też odwołać bezpośrednio
+wewnątrz wyrażenia regularnego. Zmiennym **$1**, **$2**, **$3**, itd.
+odpowiadają znaki specjalne **\g1**, **\g2**, **\g3**, itd.
+
+Wyrażenie dopasowujące pustą parę tagów HTML:
+````perl
+m{<(\w+)></\g1>}
+````
+
 #### Grupowanie bez przechwytywania
-Jeśli nie chcemy zachowywać danej części tesktu, ale potrzbne jest grupowanie,
+Jeśli nie chcemy zachowywać danej części tekstu, ale potrzebne jest grupowanie,
 można na początek zawartości nawiasu dodać **?:**, wtedy będzie to wyłącznie
-kontrukt grupujący, bez efektów ubocznych. Nie będzie się też liczył do
+konstrukt grupujący, bez efektów ubocznych. Nie będzie się też liczył do
 numerów zmiennych **$1**, **$2**, itd.
 
 Dopasowanie a, od 2 do 5 sekwencji abc i trzech liczb, bez przechwytywania:
