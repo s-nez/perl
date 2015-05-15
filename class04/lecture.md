@@ -121,44 +121,44 @@ Klasy znaków są podzbiorami zbioru znaków. Dopasowanie do klasy dopasowuje
 dowolny znak w niej zawarty. Klasy znaków definiuje się przez nawiasy
 kwadratowe. Wzorzec:
 ````perl
-/[abc]def/
+m/[abc]def/
 ````
 będzie pasował do trzech napisów:
 ````
-adef
-bdef
-cdef
+'adef'
+'bdef'
+'cdef'
 ````
 
 Klasy mogą również zawierać zakresy znaków, wzorzec powyżej można zapisać
 również jako:
 ````perl
-/[a-c]def/
+m/[a-c]def/
 ````
 
 W jednej klasie może znajdować się kilka zakresów, np. żeby dopasować
 litery od 'd' do 'g' i cyfry od 1 do 7:
 ````perl
-/[d-g1-7]/
+m/[d-g1-7]/
 ````
 
 Jeśli pierwszym znakiem w klasie jest **^**, to jest to klasa zanegowana,
 dopasowuje wszystko, oprócz zawartych w niej znaków. Poniższy wzorzec
 dopasowuje wszystkie znaki oprócz cyfr:
 ````perl
-/[^0-9]/
+m/[^0-9]/
 ````
 
 ##### Klasy wbudowane
 Kilka często używanych klas jest dostępnych jako znaki specjalne wewnątrz
 wzorców:
-* \s - znaki białe (spacje, taby, entery)
-* \S - negacja \s, wszystkie niebiałe znaki
-* \d - cyfry
-* \D - wszystko oprócz cyfr
-* \w - znaki "słowne", wszystkie znaki alfanumeryczne i '_'
-* \W - negacja \w, znaki niealfanumeryczne
-* .  - dowolny znak oprócz "\n"
+* **\s** - znaki białe (spacje, taby, entery)
+* **\S** - negacja **\s**, wszystkie niebiałe znaki
+* **\d** - cyfry
+* **\D** - wszystko oprócz cyfr
+* **\w** - znaki _"słowne"_, wszystkie znaki alfanumeryczne i '_'
+* **\W** - negacja **\w**, znaki niealfanumeryczne
+* **.**  - dowolny znak oprócz _"\n"_
 
 #### Miejsca w napisie
 Kilka metaznaków dopasowuje miejsca w napisie zamiast zbioru liter, są to
