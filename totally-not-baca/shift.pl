@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# przykład użycia funkcji test
+# przykład użycia funkcji shift
 use strict;
 use warnings;
 use feature 'say';
