@@ -1,0 +1,12 @@
+# Co tu jest
+* [Złożona struktura danych](https://github.com/slimakuj/perl/blob/master/totally-not-baca/db.pl)
+* [Dispatch table jako parser](https://github.com/slimakuj/perl/blob/master/totally-not-baca/dispatch-table.pl)
+* [Usuwanie haszy, w których dany klucz pasuje do regexa](https://github.com/slimakuj/perl/blob/master/totally-not-baca/grep.pl)
+* [Przykład działania funkcji map](https://github.com/slimakuj/perl/blob/master/totally-not-baca/map.pl)
+* [Wyciąganie kilku parametrów w dowolnej kolejności ze znacznika](https://github.com/slimakuj/perl/blob/master/totally-not-baca/multi-extract.pl)
+* [Wypisywanie danych z haszy na podstawie szablonu](https://github.com/slimakuj/perl/blob/master/totally-not-baca/replace.pl)
+* [Przykład użycia funkcji shift](https://github.com/slimakuj/perl/blob/master/totally-not-baca/shift.pl)
+* [Wczytanie porcji wejścia kończącej się konkretnym znacznikiem](https://github.com/slimakuj/perl/blob/master/totally-not-baca/slurp.pl)
+* [Malejące sortowanie leksykograficzne referencji do haszy według konkretnego klucza](https://github.com/slimakuj/perl/blob/master/totally-not-baca/sort.pl)
+* [Przykład splita](https://github.com/slimakuj/perl/blob/master/totally-not-baca/split.pl)
+* [Tworzenie zagnieżdżonych struktur](https://github.com/slimakuj/perl/blob/master/totally-not-baca/structures.pl)
