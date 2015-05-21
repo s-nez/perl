@@ -2,7 +2,7 @@
 ## Wyrażenia regularne - ciąg dalszy
 ### Alternatywa
 Alternatywa pozwala nam dopasować dwa różne wzorce w jednym miescu. Metaznak
-**|**, oznacza, że w danym miescu może pasować i wzorzec po prawej
+**|** oznacza, że w danym miescu może pasować i wzorzec po prawej
 i wzorzec po lewej.
 ```perl
 m/abc|def/;
@@ -33,7 +33,7 @@ Powyższe wyrażenie dopasuje:
 
 ### Chciwe i skąpe dopasowania
 Kwantyfikatory **+** i __\*__ są _chciwe_. To znaczy, że dopasowują
-największą część napisu, jaką się da. Nie zawsze jest to pożądane
+najdłuższą część napisu, jaką się da. Nie zawsze jest to pożądane
 zachowanie.
 
 Załóżmy, że chcemy wyciągnąć z napisu tekst znajdujący się pomiędzy dwoma
@@ -146,7 +146,7 @@ Składnia zamiany wygląda następująco:
 ```perl
 s/old/new/
 ```
-Znak przed **s/** wzorcem oznacza tryb zamiany. Po nim następuje wzorzec do
+Znak **s/** przed wzorcem oznacza tryb zamiany. Po nim następuje wzorzec do
 dopasowania i ciąg znaków, którym będzie zastąpiony. Na końcu mogą zostać
 dodane modyfikatory, np. **/g**.
 ```perl
