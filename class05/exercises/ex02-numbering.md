@@ -9,8 +9,8 @@ jego ponumerowaną formą:
 <tag-[NR]>
 ```
 gdzie [NR] to liczba całkowita, która odpowiada numerowi wystąpienia danego
-tagu. To znaczy: pierwsze wystąpienie tagu **<tag>** należy zamienić na
-**<tag-0>**, drugie na **<tag-1>** itd. Każdy tag ma swoją własna, niezależną
+tagu. To znaczy: pierwsze wystąpienie tagu **\<tag\>** należy zamienić na
+**\<tag-0\>**, drugie na **\<tag-1\>** itd. Każdy tag ma swoją własna, niezależną
  numerację.
 
 ## Przykładowe wejście i wyjście

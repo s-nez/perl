@@ -27,5 +27,5 @@ nie kończy się sekwencją 666.
 Dopasuj napis, który jest prawidłową ramką odczytu mRNA, to znaczy składa się
 z trójek liter A, U, C i G, zaczyna się sekwencją START, czyli _"AUG"_, a
 kończy jedną z sekwencji STOP: _"UAG"_, _"UGA"_ lub _"UAA"_. Wewnątrz ramki
-może występować dowolna ilość sekwencji _"AUG"_, ale nie może pojawić się żadna
+może występować dowolna ilość sekwencji START, ale nie może pojawić się żadna
 sekwencja STOP (taka może być tylko na końcu).
