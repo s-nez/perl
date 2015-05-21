@@ -1,0 +1,47 @@
+<users>
+[john]
+name = "John Smith"
+email = "john@johnsons.co.uk"
+role = "tank"
+level = "81"
+
+[mark]
+e-mail= 'mark@marker.us'
+lvl ='12'
+role="healer"
+
+name='Mark Marker'
+[steve]
+name='Steven Poulsen'
+level = "75"
+
+
+email = "steven@gmail.com"
+role = 'dps'
+
+</users>
+
+<template>
+Our level [level] [role] is [name].
+You can contact him via email: [email].
+</template>
+
+<users>
+[dany]
+name = "Dany Hill"
+email = "dany@hi.ll"
+level = "53"
+role = "support"
+
+[torlak]
+name = "Torlak Torlaksson"
+email = "torlak@scandinavia.se"
+level = "100"
+role = "viking"
+</users>
+
+<select>
+john torlak
+
+steve dany
+</select>
