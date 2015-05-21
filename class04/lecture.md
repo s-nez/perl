@@ -286,8 +286,8 @@ m/a{1,5}/
 ````
 oznacza "znak 'a' występujący co najmniej raz, ale nie więcej niż 5 razy".
 
-Pominięcie jednego z argumentów znosi ograniczenia, tzn. **{2,}** oznacza
-_"co najmniej dwa razy"_, a **{,2}** _"co najwyżej dwa razy"_.
+Pominięcie drugiego argumentu znosi górne ograniczenie, tzn. **{2,}**
+oznacza _"co najmniej dwa razy"_.
 
 Podanie jednego argumentu bez przecinka dopasowuje dokładną ilość wystąpień,
 **{2}** jest tym samym, co **{2,2}**.
