@@ -18,9 +18,9 @@ dopasować liczbę z enterem na końcu.
 
 ## $phone\_number
 Dopasuj numer telefonu w formacie:
-````
+```
 CCC-CCC-CCC
-````
+```
 gdzie C jest cyfrą od 0 do 9.
 
 ## $sentence
@@ -35,9 +35,9 @@ Dopasuj napis, który zawiera słowo, które ma dokładnie 5 liter
 ## $dialog\_three
 Dopasuj napis, który zaczyna się słowem z dwukropkiem, po którym następują
 trzy identyczne wyrazy, np.
-````
+```
 Person: hue hue hue
-````
+```
 Po takim dialogu może znajdować się dowolny ciąg znaków.
 
 ## $web\_address
@@ -45,11 +45,11 @@ Dopasuj adres strony internetowej. Może, ale nie musi zaczynać się od "http:/
 lub "https://". Przedrostek "www." również jest opcjonalny.
 
 Przykładowe dopasowania:
-````
+```
 http://www.strona.com
 https://www.page.co.uk
 www.test.ru
 uj.edu.pl
 http://fsf.org
-````
-````
+```
+```

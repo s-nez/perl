@@ -1,20 +1,20 @@
 # Książka telefoniczna
 Wczytaj plik zawierający wpisy z nazwiskiem, numerem telefonu i miastem w
 następującym formacie:
-````
+```
 Imię Nazwisko, telefon, miasto
 ...
-````
+```
 Podziel wpisy według miast i dla każdego miasta wypisz nazwiska z numerami
 telefonów w następujący sposób:
-````
+```
 ----------
 Miasto
 
 Nazwisko1 Imię1 - telefon1
 Nazwisko2 Imię2 - telefon2
 ...
-````
+```
 
 Wpisy w każdym mieście powinny być posortowane według nazwisk, a miasta
 według ilości wpisów, malejąco, w przypadku równej ilości wpisów,
@@ -22,7 +22,7 @@ decyduje kolejność alfabetyczna.
 
 ## Przykładowe wejście i wyjście
 Dla przykładowego pliku [ex03-phonebook.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex03-phonebook.input):
-````
+```
 Krzysztof Chuciński, 123456789, Warszawa
 Marcin Matajski, 543123903, Poznań
 Damian Korba, 391405811, Łódź
@@ -47,9 +47,9 @@ Stefan Mielizna, 247433687, Kraków
 Danuta Ogórek, 742205640, Toruń
 Katarzyna Dżem, 992489181, Łodź
 Joanna Marmolada, 290834207, Łodź
-````
+```
 Wyjście:
-````
+```
 ----------
 Kraków
 
@@ -96,4 +96,4 @@ Gdańsk
 Buła Jan - 595057360
 Kisiel Włodzimierz - 391197314
 ----------
-````
+```

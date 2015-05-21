@@ -1,9 +1,9 @@
 # CSV
 Wczytaj plik CSV i wypisz dane w formie ponumerowanej tabeli.
 Nazwa pliku z danymi zostanie podana jako pierwszy i jedyny argument programu:
-````
+```
 program.pl [plik.csv]
-````
+```
 Program powinien zwrócić błąd jeśli nazwa pliku nie zostanie podana.
 
 Plik z danymi składa się z wierszy danych o takiej samej ilości wpisów
@@ -18,18 +18,18 @@ ilość jego wystąpień.
 zostawić bez zmian.
 
 ## Przykładowe wejście i wyjście
-````
+```
 ./ex06-csv.pl file.csv
-````
+```
 Zawartość pliku file.csv:
-````
+```
 martin,hunter3,54,beer and wine
 john,gr32fds,21,hunter
 mary,hunter2,90,deer1
 huebert,hue;17,hunter2
-````
+```
 Wyjście:
-````
+```
 +-------+-------+--+-------------+
 | martin|hunter3|54|beer and wine|
 +-------+-------+--+-------------+
@@ -41,4 +41,4 @@ Wyjście:
 +-------+-------+--+-------------+
 
 Wystąpienia hasła: 2
-````
+```

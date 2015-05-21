@@ -6,18 +6,18 @@ ignorować wielkość liter.
 
 ## Przykładowe wejście i wyjście
 Wejście:
-````
+```
 tattarrattat
 hueu moher Oho
 kajak barka widelec
-````
+```
 Wyjście:
-````
+```
 Palindromy:
 tattarrattat
 Oho
 kajak
-````
+```
 
 ## Przydatne informacje
 Palindrom to słowo, które czyta się tak samo od przodu i od tyłu.  

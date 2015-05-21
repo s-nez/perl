@@ -35,110 +35,110 @@ Tak jak tablica, przechowuje 0 lub więcej skalarów.
 ### Deklaracja z inicjalizacją
 Hasze oznaczone są znakiem **%**, Deklaracja bez inicjalizacji stworzy pusty
 hasz. Do inicjalizacji hasza można użyć listy par.
-````perl
+```perl
 my %hash = ('one', 1, 'two', 2, 'three', 3);
-````
+```
 Alternatywnie, dla zwiększenia czytelności, można użyć tzw. "grubego przecinka":
-````perl
+```perl
 my %hash = (
     one   => 1,
     two   => 2,
     three => 3
 );
-````
+```
 Operator **=>** dodaje pojedynczy cudzysłów do lewego operandu, jeśli nie jest
 on zmienną ani wywołaniem funkcji.
 
 ### Dostęp do elementów
 Do uzyskania wartości odpowiadającej kluczowi używa się opertora **{}**.
-````perl
+```perl
 my %hash = (one => 1, two => 2, three => 3);
 $hash{one};   # 1
 $hash{two};   # 2
 $hash{three}; # 3
-````
+```
 Używanie cudzysłowia nie jest konieczne wewnątrz klamr.
 
 Przypisanie do nieistniejącego klucza stworzy go w hashu, przypisanie do
 istniejącego powoduje nadpisanie wartości.
-````perl
+```perl
 $hash{one} = 10;
 $hash{four} = 40;
-````
+```
 **$hash** zawiera teraz 4 klucze - "one", "two", "three" i "four", a wartość
 "one" zmieniła się na 10.
 
 #### Dostęp do kilku elementów jednocześnie
 Użycie znaku **@** przy dostępie do hasza pozwala podać listę wewnątrz klamr
 i odczytać lub przypisać kilka wartości.
-````perl
+```perl
 my %hash = (a => 1, b => 2, c => 3, d => 4, e => 5);
 @hash{'a', 'b', 'c'}; # (1, 2, 3)
 @hash{'a', 'b', 'c'} = ('A', 'B', 'C');
 %hash; # (a => 'A', b => 'B', c => 'C', d => 4, e => 5);
-````
+```
 
 #### Istnienie konkretnego klucza
 Istnienie konkretnego klucza w haszu można sprawdzić za pomocą operatora
 **exists**.
-````perl
+```perl
 my %hash = (key => 'value');
 exists $hash{key};   # true
 exists $hash{other}; # false
-````
+```
 
 ### Iterowanie po haszu
 #### Iterowanie po kluczach
-````perl
+```perl
 my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
 foreach my $key (keys %hash) {
     say "$key: $hash{$key}";
 }
-````
+```
 Wynik:
-````
+```
 number: 12
 word: hue
 sentence: to be or not to be
-````
+```
 **UWAGA:** Kolejność kluczy w haszu może się zmieniać, nawet jeśli dwa hasze
 mają taki sam zbiór kluczy, to ich kolejność może się różnić.
 
 #### Iterowanie po wartościach
-````perl
+```perl
 my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
 say foreach (values %hash);
-````
+```
 Wynik:
-````
+```
 hue
 to be or not to be
 12
-````
+```
 Uwaga o kolejności kluczy stosuje się również do wartości.
 
 #### Iterowanie po parach klucz-wartość
 Operator **each** działa również dla haszy.
-````perl
+```perl
 my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
 while (my ($key, $value) = each %hash) {
     say "$key: $value";
 }
-````
+```
 Wynik:
-````
+```
 number: 12
 word: hue
 sentence: to be or not to be
-````
+```
 
 ## Operacje na plikach
 ### Uchwyty
 Zanim zaczniemy pracę z plikiem, należy go otworzyć. Załóżmy, że chcemy
 odczytać plik o nazwie "plik.md":
-````perl
+```perl
 open my $FH, '<', 'plik.md';
-````
+```
 Funkcja **open** przyjmuje trzy argumenty:
 * zmienną, która będzie uchwytem do pliku
 * tryb operacji na pliku
@@ -148,39 +148,39 @@ Funkcja **open** przyjmuje trzy argumenty:
 niego dostępu, itp.), **open** zwraca fałsz i ustawia specjalną zmienną **$!**,
 zawierającą ostatni błąd, jeśli otwarcie pliku się nie powiedzie. Pozwala to na
 wykrycie błędu otwierania pliku w następujący sposób:
-````perl
+```perl
 open my $FH, '<', 'plik.md' or die $!;
-````
+```
 Funkcja **die** przyjmuje komunikat o błędzie jako argument i kończy działanie
 programu informując użytkownika o błędzie.
 
 Po zakończeniu pracy z plikiem należy zamknąć uchwyt:
-````perl
+```perl
 close $FH;
-````
+```
 
 ### Odczytywanie plików
 Czytanie plików odbywa się tak samo jak czytanie ze standardowego wejścia,
 **STDIN** wystarczy zastąpić uchwytem do pliku, z którego dane chcemy wczytać.
-````perl
+```perl
 open my $FH, '<', 'plik.in' or die $!;
 while (<$FH>) {
     print;
 }
 close $FH;
-````
+```
 
 ### Zapisywanie plików
 Otwarcie pliku w trybie **>** zeruje plik (usuwa całą jego zawartość) i
 pozwala na zapis danych. Analogicznie do odczytu, zapis nie różni się zbytnio
 od operacji wypisywania danych na standardowe wyjście.
-````perl
+```perl
 open my $FH, '>', 'plik.out' or die $!;
 foreach my $data ('some data', 'some other data', 'more data') {
     say $FH "OUT: $data";
 }
 close $FH;
-````
+```
 Funkcje **print** i **say** mogą przyjąć uchwyt do pliku jako modyfikator przed
 listą argumentów. Ich zachowanie jest dokładnie takie samo jak w przypadku
 wypisywania na standardowe wyjście, jedyną różnicą jest fakt, że wyjście trafia
@@ -197,7 +197,7 @@ Jeśli nie podamy funkcji **print** lub **say** uchwytu do pliku jako
 modyfikatora, wypiszą dane do domyślnego uchwytu wyjściowego. Zazwyczaj jest to
 **STDOUT**, ale istnieje możliwość wyboru innego uchwytu za pomocą funkcji
 **select**.
-````perl
+```perl
 open my $FH, '>', 'plik.out' or die $!;
 say 'Standard';
 say $FH 'Explicit file'
@@ -205,24 +205,24 @@ select $FH;
 say 'File';
 say STDOUT 'Explicit standard';
 close $FH;
-````
+```
 W wyniku działania tego programu na standardowe wyjście zostanie wypisane:
-````
+```
 Standard
 Explicit standard
-````
+```
 a do pliku _plik.out_:
-````
+```
 Explicit file
 File
-````
+```
 
 ### Wczytywanie i zapisywanie tego samego pliku
 Dodanie znaku **+** do trybów wczytywania i zapisywania pliku (**<** i **>**)
 otworzy plik w trybie do zapisu i odczytu.
-````perl
+```perl
 open my $FH, '+<', 'plik.io' or die $!;
-````
+```
 Teraz na uchwycie **$FH** działa zarówno **print**, jak i **readline**.
 Tryb **+>** dodatkowo wyzeruje plik.
 
@@ -234,12 +234,12 @@ Na danych z innego programu możemy operować w identyczny sposób jak na plikac
 Do wczytania danych z innego programu można użyć trybu **-|**. Zamiast nazwy
 pliku należy wtedy podać nazwę programu, z którego chcemy wczytać dane, oraz
 jego argumenty.
-````perl
+```perl
 open my $LOGS, '-|', qw( journalctl -u tor.service -f ) or die $!;
 while (<$LOGS>) {
     ...;
 }
-````
+```
 Powyższy kod pozwala nam wczytywać na bieżąco logi usługi
 [TOR](https://www.torproject.org/).
 
@@ -257,30 +257,30 @@ przydatnych:
 - **-A** czas od ostatniego dostępu do pliku
 - **-d** plik jest katalogiem
 Pełna lista:
-````
+```
 perldoc -f -X
-````
+```
 
 Następujący program będzie wczytywał wejście aż użytkownik nie poda nazwy
 istniejącego pliku:
-````perl
+```perl
 my $filename;
 do {
     $filename = <>;
     chomp $filename;
 } until (-e $filename);
-````
+```
 
 ### Zmiana nazwy i kopiowanie plików
 Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący
 kod zmieni nazwę pliku _old\_name_ na _new\_name_.
-````perl
+```perl
 rename 'old_name', 'new_name';
-````
+```
 Jeśli chcemy przyszpanować stylem, możemy użyć **=>** zamiast przecinka:
-````perl
+```perl
 rename 'old_name' => 'new_name';
-````
+```
 
 Do kopiowania plików potrzebny jest moduł
 [File::Copy](https://metacpan.org/pod/File::Copy), jest to domyślny moduł
@@ -295,18 +295,18 @@ copy 'some_file', 'copy_of_some_file';
 Funkcja **opendir** pozwala otworzyć uchwyt do folderu. Wykonanie **readdir**
 na takim uchwycie pozwala wczytywać po kolei nazwy plików znajdujących się
 w folderze.
-````perl
+```perl
 opendir my $DIR, '.' or die $!;
 say while readdir $DIR;
 close $DIR;
-````
+```
 Powyższy przykład wyświetla listę plików w aktualnym folderze.
 
 ### Tworzenie i usuwanie katalogów
 Perl dostarcza funkcję o znajomej nazwie **mkdir** do tworzenia katalogów.
-````perl
+```perl
 mkdir 'new_directory';
-````
+```
 Powyższy kod stworzy w aktualnym katalogu nowy o nazwie _new\_directory_.
 
 Analogicznie, funkcja **rmdir** pozwala usunąć puste katalogi.
