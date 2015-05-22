@@ -252,3 +252,93 @@ w nawiasie
 
 Wykorzystując nazwane grupy można znacznie zwiększyć czytelność kodu
 odwołującego się do dopasowań.
+
+### Sprawdzenia (assertions)
+Wyrażenia regularne mają możliwość dopasowania wzorców w środowisku które
+spełnia pewne warunki. Przykładami takich dopasowań są metaznaki
+**\b**, **\A** i **\Z**. Sprawdzają czy wzorzec pojawił się na początku lub
+końcu napisu lub na brzegu słowa.
+
+W podobny sposób można sprawdzać obecność innych wzorców dookoła dopasowywanego
+napisu.
+
+Wyrażenie:
+```perl
+m/\bcat(?!astrophe)/;
+```
+dopasuje wyrazy zaczynające się od _"cat"_, gdzie po _"cat"_ nie
+występuje słowo _"astrophe"_.
+
+Taki wzorzec będzie pasował m. in. do:
+```perl
+'cat'
+'catnip'
+'catlog'
+```
+Ale nie do _"catastrophe"_.
+
+**UWAGA:** Takie konstrukcje sprawdzające nie zabierają dopasowanej
+części napisu. To znaczy, że jeśli wyciągniemy z napisu dopasowania,
+to nie będą one zawierały sprawdzanej części:
+```perl
+my @cats = '1cat 2catnip 3catastrophe 4catlog' =~ m/\b\dcat(?!astrophe)/g;
+say foreach @cats;
+```
+Wynik:
+```
+1cat
+2cat
+4cat
+```
+
+Sprawdzeń można używać do zawężania dopasowań wzorców. Np. jeśli chcemy
+dopasować 4-literowy wyraz, ale nie lubimy testów:
+```perl
+my @words = 'test ball ground wind up help man test ban' =~ /\b(?!test)\w{4}\b/g;
+say foreach @words;
+```
+Wynik:
+```
+ball
+wind
+help
+```
+
+Wszystkie sprawdzania działają w podobny sposób. Do wyboru mamy 4 rodzaje:
+* (?!$regex) - sprawdź, czy $regex nie znajduje się z przodu
+* (?=$regex) - sprawdź, czy $regex znajduje się z przodu
+* (?<=$regex) - sprawdź, czy $regex znajduje się z tyłu
+* (?<\!$regex) - sprawdź, czy $regex nie znajduje się z tyłu
+
+**UWAGA:** Sprawdzania do tyłu mogą zawierać tylko wzorce o stałej długości.
+
+## Funkcje ze stanem
+Zmienne stanowe wewnątrz funkcji zachowują się jak zmienne lokalne (są widoczne
+tylko wewnątrz funkcji), ale inicjalizowane są tylko raz i zachowują swoją
+wartość pomiędzy wywołaniami funkcji. Do deklaracji zmiennych stanowych używa
+się słowa kluczowego **state**.
+```perl
+sub counter {
+    state $count = 0;
+    return $count++;
+}
+say counter() for 1..3;
+```
+Wynik:
+```
+0
+1
+2
+```
+**state** deklaruje zmienną, więc nie należy dodawać do deklaracji słowa
+kluczowego **my**.
+
+**UWAGA:** Żeby użyć zmiennych stanowych do programu trzeba dodać:
+```perl
+use feature 'state';
+```
+lub
+```
+use v5.10;
+```
+ewentualnie wyższą wersję.
