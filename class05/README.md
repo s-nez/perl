@@ -3,6 +3,8 @@ Data: 22.05.2015
 
 ## Zakres materiału
 * [Wyrażenia regularne - ciąg dalszy](https://github.com/slimakuj/perl/blob/master/class05/lecture.md#wyra%C5%BCenia-regularne---ci%C4%85g-dalszy)
+* [Funkcje ze stanem](https://github.com/slimakuj/perl/blob/devel/class05/lecture.md#funkcje-ze-stanem)
+* [Dispatch tables](...)
 
 ## Zadania
 * 01 \- [Wyszukiwanie](https://github.com/slimakuj/perl/blob/master/class05/exercises/ex01-grep.md)
