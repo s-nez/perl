@@ -1,4 +1,21 @@
 # Warsztat 05
+
+<!--TOC_START--->
+## Spis treści
+* [Wyrażenia regularne - ciąg dalszy](#wyrażenia-regularne---ciąg-dalszy)
+    * [Alternatywa](#alternatywa)
+    * [Chciwe i skąpe dopasowania](#chciwe-i-skąpe-dopasowania)
+    * [Modyfikatory dopasowań](#modyfikatory-dopasowań)
+        * [/i](#i)
+        * [/s](#s)
+        * [/x](#x)
+    * [Quotemeta](#quotemeta)
+    * [Zamiana dopasowań](#zamiana-dopasowań)
+        * [Modyfikatory zamiany](#modyfikatory-zamiany)
+    * [Nazwane grupy](#nazwane-grupy)
+
+<!--TOC_END--->
+
 ## Wyrażenia regularne - ciąg dalszy
 ### Alternatywa
 Alternatywa pozwala nam dopasować dwa różne wzorce w jednym miescu. Metaznak
