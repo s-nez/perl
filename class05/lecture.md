@@ -13,6 +13,8 @@
     * [Zamiana dopasowań](#zamiana-dopasowań)
         * [Modyfikatory zamiany](#modyfikatory-zamiany)
     * [Nazwane grupy](#nazwane-grupy)
+    * [Sprawdzenia (assertions)](#sprawdzenia-assertions)
+* [Funkcje ze stanem](#funkcje-ze-stanem)
 
 <!--TOC_END--->
 
