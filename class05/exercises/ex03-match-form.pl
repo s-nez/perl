@@ -25,7 +25,7 @@ my @tasks = (
             '# //',
             'other // style',
             'why # not // both',
-            '#//'
+            '#//', "   \n# cmnt"
         ],
         tests_false => [
             '', '#', '#comment', "#\n", '#', "//comment", 'no comment',
