@@ -312,7 +312,7 @@ Wszystkie sprawdzania działają w podobny sposób. Do wyboru mamy 4 rodzaje:
 * (?<=$regex) - sprawdź, czy $regex znajduje się z tyłu
 * (?<\!$regex) - sprawdź, czy $regex nie znajduje się z tyłu
 
-**UWAGA:** Sprawdzania do tyłu mogą zawierać tylko wzorce o stałej długości.
+**UWAGA:** Sprawdzenia do tyłu mogą zawierać tylko wzorce o stałej długości.
 
 ## Funkcje ze stanem
 Zmienne stanowe wewnątrz funkcji zachowują się jak zmienne lokalne (są widoczne
