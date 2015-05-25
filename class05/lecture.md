@@ -383,7 +383,7 @@ my %parser = (
 Klucze hasza **%parser** odpowiadają stanom przetwarzania. Na przykład,
 jeśli chcemy wyszukać jakąś wartość na wejściu, a po znalezieniu jej
 wykonywać na pozostałej części jakąś inną czynność, stanami mogły
-by być 'start', 'not\_found' i 'found'.
+by być _'start'_, _'not\_found'_ i _'found'_.
 
 Główna pętla przetwarzająca wejście z wykorzystaniem takiego parsera:
 ```perl
@@ -416,7 +416,7 @@ znajdują się linie wejścia w identycznym formacie. W zależności od tego,
 w której sekcji znajdują się dane, chcemy umieścić dane w tablicy **@A**
 lub w tablicy **@B**.
 
-Tworzenie parsera rozpoczynami od zdefiniowania potrzebnych stanów. W tym
+Tworzenie parsera rozpoczynamy od zdefiniowania potrzebnych stanów. W tym
 przykładzie będą nam potrzebne 3 stany:
 * poza znacznikami (start)
 * wewnątrz znacznika **a** (in\_a)
@@ -535,3 +535,6 @@ in_a: </a>
 123-098
 333-111
 ```
+
+Przetwarzanie wejścia w ten sposób pozwala nam podzielić problem na mniejsze
+podproblemy i znacznie upraszcza cały proces.
