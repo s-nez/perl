@@ -1,4 +1,13 @@
 # Warsztat 06
+
+## Spis treści
+* [Parametry interpretera](#parametry-interpretera)
+    * [Podawanie kodu na linii poleceń](#podawanie-kodu-na-linii-poleceń)
+    * [Wczytywanie wejścia](#wczytywanie-wejścia)
+    * [Autosplit](#autosplit)
+
+<!--TOC_END--->
+
 ## Parametry interpretera
 Interpreter Perla można wywoływać z dodatkowymi parametrami, które
 pozwalają podawać kod bezpośrednio z linii poleceń i dodawać
