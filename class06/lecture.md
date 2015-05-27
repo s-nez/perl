@@ -39,7 +39,7 @@ while (<>) {
 ```
 Wywołanie:
 ```
-perl -pe 'print if length > 3';
+perl -ne 'print if length > 3';
 ```
 
 Jest równoznaczne z wykonaniem następującego programu:
