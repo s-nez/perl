@@ -31,11 +31,7 @@ perl -e 'print "Hello World\n"';
 ```
 
 Opcja **-E** działa dokładnie tak samo, ale włącza dodatkowo wszystkie
-opcjonalne funkcjonalności języka (np. **say**). Jest odpowiednikiem
-dodania na początek programu (w Perlu 5.20):
-```perl
-use v5.20;
-```
+opcjonalne funkcjonalności języka (np. **say**).
 
 Powyższy "Hello World" można więc zapisać tak:
 ```perl
