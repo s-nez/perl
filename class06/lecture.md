@@ -1,10 +1,17 @@
 # Warsztat 06
 
+<!--TOC_START--->
 ## Spis treści
 * [Parametry interpretera](#parametry-interpretera)
     * [Podawanie kodu na linii poleceń](#podawanie-kodu-na-linii-poleceń)
     * [Wczytywanie wejścia](#wczytywanie-wejścia)
     * [Autosplit](#autosplit)
+    * [Więcej opcji](#więcej-opcji)
+* [Bloki BEGIN i END](#bloki-begin-i-end)
+* [CPAN](#cpan)
+    * [Konfiguracja cpanminus](#konfiguracja-cpanminus)
+    * [Instalacja](#instalacja)
+    * [Lokalne repozytorium modułów](#lokalne-repozytorium-modułów)
 
 <!--TOC_END--->
 
@@ -113,4 +120,113 @@ zmienić za pomocą opcji **-F**.
 Wypisanie nazw zwykłych użytkowników z /etc/passwd:
 ```
 perl -F: -ane 'print $F[0] if 1000 <= $F[2] and $F[2] <= 60000' /etc/passwd
+```
+
+### Więcej opcji
+Wszystkie parametry interpretera są opisane w:
+```
+perldoc perlrun
+```
+
+## Bloki BEGIN i END
+Bloki **BEGIN** i **END** są wykonywane tylko raz, na początku lub na końcu
+programu, niezależnie do tego, w którym miejscu programu sie znajdują.
+```perl
+END { say 'Finish'; }
+print foreach 1 .. 10;
+print "\n";
+BEGIN { say 'Start'; }
+```
+Wynik:
+```
+Start
+12345678910
+Finish
+```
+
+**UWGA:** Jeśli blok **END** zawiera odwołania do zmiennych, to muszę one być
+w zakresie bloku i istnieć w momencie zakończenia programu.
+
+Bloki **BEGIN** i **END** są przydatne przy pisaniu jednolinijkowych programów
+z dodanymi pętlami (**-p** i **-n**). Mimo, że program zawiera się
+w pętli, dzięki blokom **BEGIN** i **END** możemy wykonać jakieś operacje
+jednorazowo na początku programu.
+
+Program, który zainicjalizuje licznik na 100 i odejmie od niego wszystkie
+liczby całkowite znalezione na wejściu, a na koniec wypisze stan licznika:
+```
+perl -nE 'BEGIN { $c = 100 } $c -= $_ for (/(\d+)/g); END { say $c, " left" }'
+```
+Przykładowe wejście:
+```
+test
+nic
+40
+10 oraz 15
+koniec
+```
+Wynik dla podanego wejścia:
+```
+35 left
+```
+
+## CPAN
+W repozytorium [CPAN](http://www.cpan.org/) (Comprehensive Perl Archive
+Network) znajdują się wszelkiego rodzaju moduły do Perla, zarówno główne,
+będące częścią domyślnej dystrybucji, jak i dodatkowe.
+
+Ilość dostępnych modułów jest naprawdę duża i dla wielu problemów, z którymi
+możemy się spotkać podczas programowania, jest spora szansa, że rozwiązanie
+jest już na CPANie.
+
+Moduły można pobierać bezpośrednio lub używać klientów. Wiele popularnych
+modułów można też znaleźć w repozytoriach pakietów dystrybucji GNU.
+Przykładowo, w repozytoriach Fedory jest ponad 3000 modułów.
+
+### Konfiguracja cpanminus
+Jednym z prostszych w obsłudze klientów do CPANu jest
+[cpanminus](https://metacpan.org/pod/App::cpanminus). Pozwala automatycznie
+pobierać, rozpakowywać i instalować moduły razem z zależnościami.
+
+### Instalacja
+cpanminus znajduje się w repozytoriach większości dystrybucji:
+* Fedora, openSUSE: perl-App-cpanminus
+* Ubuntu, Debian, Arch: cpanminus
+
+### Lokalne repozytorium modułów
+cpanminus nie powinno się używać do globalnej instalacji modułów. Dlatego
+lepiej jest stworzyć lokalne repozytorium w swoim katalogu domowym.
+
+Na początek należy stworzyć katalog, w którym będziemy trzymać repozytorium,
+np. **~/.perl**. Potem możemy użyć cpanminus do skonfigurowania repozytorium:
+```
+cpanm --local-lib=~/.perl local::lib && eval $(perl -I ~/.perl/lib/perl5/ -Mlocal::lib)
+```
+
+Żeby Perl uwzględnił nowopowstałe repozytorium przy szukaniu modułów, do
+zmiennej środowiskowej **PERLLIB** należy dodać jego lokalizację.
+```bash
+PERLLIB=$HOME/.perl/lib/perl5
+export PERLLIB=$PERLLIB:$PERLLIB/x86_64-linux-thread-multi
+```
+Druga część zmiennej jest potrzebna, jeśli instalujemy moduły, które
+korzystają z wielowątkowości. Żeby zmiana została utrwalona,
+modyfikację zmiennej należy umieścić w skrypcie inicjalizacyjnym powłoki
+(w przypadku Basha - **~/bashrc**).
+
+Przy instalacji modułu za każdym razem trzeba podawać ścieżkę do lokalnego
+repozytorium. Na przykład, żeby zainstalować moduł
+[Reddit::Client](https://metacpan.org/pod/Reddit::Client):
+```
+cpanm --local-lib=~/.perl Reddit::Client
+```
+
+Możemy ułatwić sobie życie i uniknąć literówek dodając alias, np.:
+```bash
+alias cpan-install='cpanm --local-lib=~/.perl'
+```
+
+Wtedy moduły możemy instalować w dużo prostszy sposób:
+```
+cpan-install Reddit::Client
 ```
