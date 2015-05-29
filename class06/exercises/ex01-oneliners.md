@@ -56,3 +56,35 @@ loooooooooooooooooooooooooooooooooooo...
 limit ------------------------------ ...
 test very long and stuff long long lo...
 ```
+
+## Zmiana nazw plików
+Napisz program, który przyjmie wejście z **ls -1** i zmienia nazwy wszystkich
+plików w formacie:
+```
+[napis][liczba]
+```
+na:
+```
+[liczba]-[napis]
+```
+Przykładowa zawartość katalogu:
+```
+test01  test04  test07  test11  test14  test17  test20  testc  testf
+test02  test05  test08  test12  test15  test18  testa   testd
+test03  test06  test09  test13  test16  test19  testb   teste
+```
+Wywołanie programu:
+```
+ls -1 | perl [parametry]
+```
+Zawartość katalogu po wykonaniu programu:
+```
+01-test  04-test  07-test  11-test  14-test  17-test  20-test  testc  testf
+02-test  05-test  08-test  12-test  15-test  18-test  testa    testd
+03-test  06-test  09-test  13-test  16-test  19-test  testb    teste
+```
+
+Zawartość przykładowego katalogu można wygenerować poleceniem:
+```
+perl -e 'open $F, ">", "test$_" for 11 .. 20, a .. f, map { "0" . $_ } 1 .. 9'
+```
