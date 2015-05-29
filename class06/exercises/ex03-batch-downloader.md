@@ -6,8 +6,8 @@ Program będzie przyjmował dwa argumenty:
 * tryb - '-a', '-d' lub '-r'
 * nazwę pliku
 
-Argumenty mogą zostać podane w dowolnej kolejności. Jeśli podana zostanie
-więcej niż jedna flaga trybu, program powinien zwrócić błąd:
+Jeśli podana zostanie więcej niż jedna flaga trybu, program powinien zwrócić
+błąd:
 ```
 BŁĄD: Za dużo trybów
 ```
@@ -25,7 +25,7 @@ BŁĄD: Nie podano nazwy pliku
 ### Tryb -a
 Uruchomienie programu z trybem **-a** weźmie zawartość schowka systemowego
 i sprawdzi, czy zawiera on coś, co wygląda jak link. Jeśli będzie wyglądało
-jak link spyta użytkownika czy chce dodać link do pliku:
+jak link, spyta użytkownika czy chce dodać link do pliku:
 
 Wywołanie:
 ```
@@ -70,3 +70,7 @@ umożliwia tworzenie prostych pasków postępu.
 
 Moduł [Clipboard](https://metacpan.org/pod/Clipboard) udostępnia interfejs
 do schowka systemowego.
+
+Moduł
+[Data::Validate::URI](http://search.cpan.org/~sonnen/Data-Validate-URI-0.06/lib/Data/Validate/URI.pm) dostarcza funkcję sprawdzającą, czy napis wygląda
+jak link.
