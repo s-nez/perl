@@ -33,6 +33,29 @@ Wynik:
 4  hue
 ```
 
+## Składanie argumentów
+Wczytuj wejście lub plik linia po linii, każdą linię słów oddzielonych
+niałymi znakami zamień na listę argumentów napisowych.
+
+### Przykładowe wejśce i wyjście
+Wejście:
+```
+one two three
+hue hue 
+test
+
+test more test
+```
+
+Wyjście:
+```
+('one', 'two', 'three')
+('hue', 'hue')
+('test')
+('')
+('test', 'more', 'test')
+```
+
 ## Skracanie linii
 Wypisz linie wejścia lub pliku. Jeśli linia ma więcej niż 40 znaków,
 skróć ją do 40 (odetnij resztę) i zastąp osttanie 3 znaki kropkami.
