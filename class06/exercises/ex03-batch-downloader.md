@@ -58,6 +58,33 @@ linków, które chce usunąć.
 
 Jeśli podano jakiekolwiek prawidłowe numery linków, należy je usunąć z pliku.
 
+Przykładowa zawartość pliku:
+```
+http://link1.com
+http://link2.com
+http://link3.com
+http://link4.com
+```
+
+Wyjście po wywołaniu z opcją **-r**:
+```
+Plik zawiera następujące linki:
+1) http://link1.com
+2) http://link2.com
+3) http://link3.com
+4) http://link4.com
+
+Podaj listę linków do usinięcia:
+```
+
+Użytkownik wpisuje: "4 2 5". Z pliku powinnny zostać usunięte linki nr 2 i 4.
+
+Zawartość pliku po wykonaniu programu:
+```
+http://link1.com
+http://link3.com
+```
+
 ## Przydatne informacje
 Do przetwarzania flag na linii poleceń służy wbudowany moduł Getopt::Std.
 
