@@ -18,7 +18,7 @@ my %parser = (
     },
     users => sub {
         my $line = shift;
-        state ($current_user, %tr);
+        state($current_user, %tr);
         %tr = (lvl => 'level', 'e-mail' => 'email');
 
         if ($line =~ /\[(\w+)\]/) {
@@ -26,8 +26,7 @@ my %parser = (
         } elsif ($line =~ m(</users>)) {
             $state = 'start';
         } elsif ($line =~ /(\w+)\s*=\s*["'](.+?)["']/) {
-            my $property = $tr{$1} // $1;
-            $users{$current_user}{$property} = $2;
+            $users{$current_user}{ $tr{$1} // $1 } = $2;
         }
     },
     template => sub {
