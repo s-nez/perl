@@ -13,4 +13,4 @@ Data: 29.05.2015
 * 04 \- [Zadanie ostateczne](https://github.com/slimakuj/perl/blob/master/class06/exercises/ex04-FINAL.md)
 
 ## Dodatkowe informacje
-* [Przykłady użycia modułów] (https://github.com/slimakuj/perl/blob/master/module-use-examples.md)
+* [Przykłady użycia modułów] (https://github.com/slimakuj/perl/blob/master/class06/module-use-examples.md)
