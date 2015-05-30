@@ -11,3 +11,6 @@ Data: 29.05.2015
 * 02 \- [Reddit](https://github.com/slimakuj/perl/blob/master/class06/exercises/ex02-reddit.md)
 * 03 \- [Batch downloader](https://github.com/slimakuj/perl/blob/master/class06/exercises/ex03-batch-downloader.md)
 * 04 \- [Zadanie ostateczne](https://github.com/slimakuj/perl/blob/master/class06/exercises/ex04-FINAL.md)
+
+## Dodatkowe informacje
+* [Przykłady użycia modułów] (https://github.com/slimakuj/perl/blob/master/module-use-examples.md)
