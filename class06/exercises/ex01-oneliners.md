@@ -1,6 +1,6 @@
 # Jednolinijkowce
-Dla każdego polecenia napisz jednolinijkowy program, który je wykona
-program powinien składać się tylko z wywołania interpetera,
+Dla każdego polecenia napisz jednolinijkowy program, który je wykona.
+Program powinien składać się tylko z wywołania interpetera,
 a całość nie może być dłuższa niż 80 znaków. Argumenty programu
 (nie interpetera) nie liczą się do limitu.
 
@@ -35,7 +35,7 @@ Wynik:
 
 ## Składanie argumentów
 Wczytuj wejście lub plik linia po linii, każdą linię słów oddzielonych
-niałymi znakami zamień na listę argumentów napisowych.
+białymi znakami zamień na listę argumentów napisowych.
 
 ### Przykładowe wejśce i wyjście
 Wejście:
@@ -58,7 +58,7 @@ Wyjście:
 
 ## Skracanie linii
 Wypisz linie wejścia lub pliku. Jeśli linia ma więcej niż 40 znaków,
-skróć ją do 40 (odetnij resztę) i zastąp osttanie 3 znaki kropkami.
+skróć ją do 40 (odetnij resztę) i zastąp ostatnie 3 znaki kropkami.
 
 ### Przykładowe wejśce i wyjście
 Wejście:
@@ -81,7 +81,7 @@ test very long and stuff long long lo...
 ```
 
 ## Zmiana nazw plików
-Napisz program, który przyjmie wejście z **ls -1** i zmienia nazwy wszystkich
+Napisz program, który przyjmuje wejście z **ls -1** i zmienia nazwy wszystkich
 plików w formacie:
 ```
 [napis][liczba]

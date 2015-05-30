@@ -49,6 +49,11 @@ pliki należy umieścić w aktualnym folderze.
 Podczas pobierania program powien wyświetlać pasek postępu, sygnalizujący,
 jaka część plików została już pobrana.
 
+Przykładowy pasek postępu w momencie, kiedy pobrano 3 z 10 plików:
+```
+Downloading:  30% [===============                                   ]0m07s Left
+```
+
 Po udanym pobraniu plików, plik z linkami powinien zostać usunięty.
 
 ### Tryb -r
@@ -74,7 +79,7 @@ Plik zawiera następujące linki:
 3) http://link3.com
 4) http://link4.com
 
-Podaj listę linków do usinięcia:
+Podaj listę linków do usunięcia:
 ```
 
 Użytkownik wpisuje: "4 2 5". Z pliku powinnny zostać usunięte linki nr 2 i 4.
