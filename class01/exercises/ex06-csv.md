@@ -26,7 +26,7 @@ Zawartość pliku file.csv:
 martin,hunter3,54,beer and wine
 john,gr32fds,21,hunter
 mary,hunter2,90,deer1
-huebert,hue;17,hunter2
+huebert,hue,17,hunter2
 ```
 Wyjście:
 ```
