@@ -1,5 +1,5 @@
 # CSV
-Wczytaj plik CSV i wypisz dane w formie ponumerowanej tabeli.
+Wczytaj plik CSV i wypisz dane w formie tabeli.
 Nazwa pliku z danymi zostanie podana jako pierwszy i jedyny argument programu:
 ```
 program.pl [plik.csv]
