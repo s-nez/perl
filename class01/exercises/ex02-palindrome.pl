@@ -10,5 +10,6 @@ while (<>) {
         push @palindromes, $word if lc $word eq reverse lc $word;
     }
 }
+
 say 'Palindromy:';
 say foreach @palindromes;
