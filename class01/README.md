@@ -1,5 +1,4 @@
 # Warsztat 01
-Data: 24.04.2015
 
 ## Zakres materiału
 * [Dokumentacja](https://github.com/slimakuj/perl/blob/master/class01/lecture.md#perldoc)

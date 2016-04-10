@@ -1,5 +1,4 @@
 # Warsztat 06
-Data: 29.05.2015
 
 ## Zakres materiału
 * [Parametry interpretera](https://github.com/slimakuj/perl/blob/master/class06/lecture.md#parametry-interpretera)

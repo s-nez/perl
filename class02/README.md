@@ -1,5 +1,4 @@
 # Warsztat 02
-Data: 30.04.2015
 
 ## Zakres materiału
 * [Hasze](https://github.com/slimakuj/perl/blob/master/class02/lecture.md#hasze)

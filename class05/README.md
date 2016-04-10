@@ -1,5 +1,4 @@
 # Warsztat 05
-Data: 22.05.2015
 
 ## Zakres materiału
 * [Wyrażenia regularne - ciąg dalszy](https://github.com/slimakuj/perl/blob/master/class05/lecture.md#wyra%C5%BCenia-regularne---ci%C4%85g-dalszy)

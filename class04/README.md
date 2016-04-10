@@ -1,5 +1,4 @@
 # Warsztat 04
-Data: 15.05.2015
 
 ## Zakres materiału
 * [Wyrażenia regularne](https://github.com/slimakuj/perl/blob/master/class04/lecture.md)

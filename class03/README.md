@@ -1,5 +1,4 @@
 # Warsztat 03
-Data: 07.05.2015
 
 ## Zakres materiału
 * [Funkcje](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#funkcje)
