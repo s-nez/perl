@@ -6,4 +6,4 @@ Repozytorium na potrzeby warsztatów z Perla organizowanych przez [Koło Naukowe
 Wolnego Oprogramowania "Slimak"](http://slimak.matinf.uj.edu.pl/).
 
 ## Terminy zajęć
-* 14.04.2016, godz. 12:15, sala 1160
+* 21.04.2016, godz. 12:15, sala 1160
