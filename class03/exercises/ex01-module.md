@@ -11,14 +11,14 @@ będziemy operować, drugi to hasz parametrów definiujących tą operację.
 
 Tabela w bazie danych:
 ```
-+-------+------+---------+------+
-| userid|  name|  surname| score|
-+-------+------+---------+------+
-|      1|  John|   Wilson|    12|
-|      2|  Mike| Cleevers|  NULL|
-|      3|  Kate| Hamilton|    18|
-|      4|Mighty|      Hue|   543|
-+-------+------+---------+------+
++-------+-------+---------+------+
+| userid|   name|  surname| score|
++-------+-------+---------+------+
+|      1|   John|   Wilson|    12|
+|      2|   Mike| Cleevers|  NULL|
+|      3|   Kate| Hamilton|    18|
+|      4| Mighty|      Hue|   543|
++-------+-------+---------+------+
 ```
 
 Struktura danych w Perlu:
