@@ -12,6 +12,7 @@
         * [Modyfikacja argumentów](#modyfikacja-argumentów)
     * [Zwracanie wartości](#zwracanie-wartości)
 * [Moduły](#moduły)
+    * [Exporter](#exporter)
 * [Przydatne funkcje wbudowane](#przydatne-funkcje-wbudowane)
     * [sort](#sort)
     * [map](#map)
@@ -189,6 +190,30 @@ umożliwienia łatwego korzystania z nich w nowych programach.
 Najprostszy moduł Perla ma rozszerzenie .pm i następującą postać:
 ```perl
 package Modname;
+
+sub foo { ... }
+sub bar { ... }
+```
+
+Aby użyć modułu w programie, na początku należy dodać:
+```perl
+use Modname;
+```
+
+Funkcje zdefiniowane w module można wywoływać poprzedzając je nazwą modułu:
+```perl
+Modname::foo();
+Modname::bar();
+```
+
+### Exporter
+Funkcje zdefiniowane w modułach można eksportować do innych przestrzeni nazw,
+służy do tego wbudowany moduł Exporter. Jeśli używamy funkcji 'import'
+Exportera, możliwe jest zdefiniowanie listy funkcji, które mają
+być dostępne w miejscu, w którym używamy naszego modułu.
+
+```perl
+package Modname;
 use Exporter 'import';
 our @EXPORT = qw(foo bar);
 
@@ -197,13 +222,10 @@ sub bar { ... }
 sub helper { ... }
 ```
 
-Aby użyć modułu w programie, na początku należy dodać:
-```perl
-use Modname;
-```
+Teraz w programie używającym modułu **Modname** dostępne będą funkce **foo** i
+**bar**, ale nie **helper**, ponieważ nie ma jej w tablicy @EXPORT.
 
-Teraz w programie dostępne będą funkce **foo** i **bar**, ale nie **helper**,
-ponieważ nie ma jej w globalnej tablicy @EXPORT.
+Więcj informacji można znaleźć w dokumentacji Exportera (```perldoc Exporter```).
 
 ## Przydatne funkcje wbudowane
 ### sort
