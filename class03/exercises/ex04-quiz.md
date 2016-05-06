@@ -24,7 +24,7 @@ Argumenty programu:
 ```
 ./prog.pl ex04-quiz.input 3
 ```
-Wyjście programu z wejściem użytkownikowa:
+Wyjście programu z wejściem użytkownika:
 ```
 Ile to jest 2+2?
 
