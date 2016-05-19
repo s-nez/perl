@@ -6,7 +6,7 @@ wzorcami.
 
 ## $nostart\_comment
 Dopasuj napis, który zawiera jednoliniowy komentarz w stylu Perla (#) lub
-w stylu C (//), ale nie na początku napisu.
+w stylu C++ (//), ale nie na początku napisu.
 
 Przykładowe prawidłowe dopasowania:
 ```
