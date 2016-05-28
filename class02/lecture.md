@@ -50,7 +50,7 @@ Operator **=>** dodaje pojedynczy cudzysłów do lewego operandu, jeśli nie jes
 on zmienną ani wywołaniem funkcji.
 
 ### Dostęp do elementów
-Do uzyskania wartości odpowiadającej kluczowi używa się opertora **{}**.
+Do uzyskania wartości odpowiadającej kluczowi używa się operatora **{}**.
 ```perl
 my %hash = (one => 1, two => 2, three => 3);
 $hash{one};   # 1
