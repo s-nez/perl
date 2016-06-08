@@ -12,3 +12,4 @@ Wolnego Oprogramowania "Slimak"](http://slimak.matinf.uj.edu.pl/).
 * 12.05.2016, godz. 12:15, sala 1160
 * 19.05.2016, godz. 12:15, sala 1160
 * 02.06.2016, godz. 15:00, sala 1160
+* 09.06.2016, godz. 12:15, sala 1160
