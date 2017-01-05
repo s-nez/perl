@@ -298,7 +298,7 @@ w folderze.
 ```perl
 opendir my $DIR, '.' or die $!;
 say while readdir $DIR;
-close $DIR;
+closedir $DIR;
 ```
 Powyższy przykład wyświetla listę plików w aktualnym folderze.
 
