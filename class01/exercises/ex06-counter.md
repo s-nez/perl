@@ -4,7 +4,7 @@ EOF i policz wystąpienia każdego słowa, które pojawi sie na wejściu. Słowo
 definiujemy jako ciąg znaków oddzielony spacjami.
 
 ## Przykładowe wejście i wyjście
-Wejście (plik [sample.input](https://github.com/slimakuj/perl/blob/devel/class02/exercises/sample.input)):
+Wejście (plik [sample.input](https://github.com/slimakuj/perl/blob/master/class01/exercises/sample.input)):
 ```
 dowód tautologia aksjomat
 aksjomat
