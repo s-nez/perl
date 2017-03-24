@@ -2,311 +2,427 @@
 
 <!--TOC_START--->
 ## Spis treści
-* [Hasze](#hasze)
-    * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
-    * [Dostęp do elementów](#dostęp-do-elementów)
-        * [Dostęp do kilku elementów jednocześnie](#dostęp-do-kilku-elementów-jednocześnie)
-        * [Istnienie konkretnego klucza](#istnienie-konkretnego-klucza)
-    * [Iterowanie po haszu](#iterowanie-po-haszu)
-        * [Iterowanie po kluczach](#iterowanie-po-kluczach)
-        * [Iterowanie po wartościach](#iterowanie-po-wartościach)
-        * [Iterowanie po parach klucz-wartość](#iterowanie-po-parach-klucz-wartość)
-* [Operacje na plikach](#operacje-na-plikach)
-    * [Uchwyty](#uchwyty)
-    * [Odczytywanie plików](#odczytywanie-plików)
-    * [Zapisywanie plików](#zapisywanie-plików)
-        * [Dopisywanie danych do pliku](#dopisywanie-danych-do-pliku)
-        * [Domyślny uchwyt wyjściowy](#domyślny-uchwyt-wyjściowy)
-    * [Wczytywanie i zapisywanie tego samego pliku](#wczytywanie-i-zapisywanie-tego-samego-pliku)
-    * [Wymiana danych pomiędzy programami (pipes)](#wymiana-danych-pomiędzy-programami-pipes)
-        * [Wczytywanie danych z innego programu](#wczytywanie-danych-z-innego-programu)
-        * [Wysyłanie danych do innego programu](#wysyłanie-danych-do-innego-programu)
-    * [Właściwości plików](#właściwości-plików)
-    * [Zmiana nazwy i kopiowanie plików](#zmiana-nazwy-i-kopiowanie-plików)
-    * [Przeszukiwanie katalogów](#przeszukiwanie-katalogów)
-    * [Tworzenie i usuwanie katalogów](#tworzenie-i-usuwanie-katalogów)
+* [Wyrażania regularne](#wyrażania-regularne)
+    * [Operator dopasowania wzorca](#operator-dopasowania-wzorca)
+    * [Wzorce, a zmienne](#wzorce-a-zmienne)
+    * [Metaznaki](#metaznaki)
+        * [Klasy znaków](#klasy-znaków)
+        * [Miejsca w napisie](#miejsca-w-napisie)
+    * [Krotność](#krotność)
+        * [Zero lub jeden raz](#zero-lub-jeden-raz)
+        * [Raz lub więcej](#raz-lub-więcej)
+        * [Dowolna ilość](#dowolna-ilość)
+        * [Przedział liczbowy](#przedział-liczbowy)
+    * [Grupowanie i przechwytywanie](#grupowanie-i-przechwytywanie)
+        * [Grupy elementów](#grupy-elementów)
+        * [Przechwytywanie podnapisów](#przechwytywanie-podnapisów)
+        * [Listy podnapisów](#listy-podnapisów)
+        * [Grupowanie bez przechwytywania](#grupowanie-bez-przechwytywania)
 
 <!--TOC_END--->
 
-## Hasze
-Hasz jest strukturą danych, która przyporządkowuje wartości do kluczy.
-Tak jak tablica, przechowuje 0 lub więcej skalarów.
+## Wyrażania regularne
+Wyrażania regularne pozwalają na dopasowanie tekstu do pewnego wzorca.
+Najprostszym ich zastosowaniem jest sprawdzenie, czy napis zawiera
+jakiś konkretny podnapis (chociaż akurat do tego funkcja **index** może
+się lepiej nadawać). Ogólniej, wyrażenia regularne pozwalają w bardzo
+rozbudowany sposób uzyskiwać informacje o tekście i danych w nim zawartych.
 
-### Deklaracja z inicjalizacją
-Hasze oznaczone są znakiem **%**, Deklaracja bez inicjalizacji stworzy pusty
-hasz. Do inicjalizacji hasza można użyć listy par.
-```perl
-my %hash = ('one', 1, 'two', 2, 'three', 3);
-```
-Alternatywnie, dla zwiększenia czytelności, można użyć tzw. "grubego przecinka":
-```perl
-my %hash = (
-    one   => 1,
-    two   => 2,
-    three => 3
-);
-```
-Operator **=>** dodaje pojedynczy cudzysłów do lewego operandu, jeśli nie jest
-on zmienną ani wywołaniem funkcji.
+### Operator dopasowania wzorca
+Do operowania na wyrażeniach regularnych używa się dwóch operatorów:
+**=~** i **!~**, lewy operand jest napisem, a prawy wzorcem do dopasowania.
+Wzorce są ciągami znaków otoczonymi znakami ograniczajacymi
+(domyślnie **/**, ale można też użyć innego).
 
-### Dostęp do elementów
-Do uzyskania wartości odpowiadającej kluczowi używa się operatora **{}**.
+W kontekście logicznym operator **=~** zwraca prawdę, jeśli napis zawiera
+wzorzec. **!~** jest zwykłą negacją tego operatora.
 ```perl
-my %hash = (one => 1, two => 2, three => 3);
-$hash{one};   # 1
-$hash{two};   # 2
-$hash{three}; # 3
-```
-Używanie cudzysłowia nie jest konieczne wewnątrz klamr.
-
-Przypisanie do nieistniejącego klucza stworzy go w hashu, przypisanie do
-istniejącego powoduje nadpisanie wartości.
-```perl
-$hash{one} = 10;
-$hash{four} = 40;
-```
-**$hash** zawiera teraz 4 klucze - "one", "two", "three" i "four", a wartość
-"one" zmieniła się na 10.
-
-#### Dostęp do kilku elementów jednocześnie
-Użycie znaku **@** przy dostępie do hasza pozwala podać listę wewnątrz klamr
-i odczytać lub przypisać kilka wartości.
-```perl
-my %hash = (a => 1, b => 2, c => 3, d => 4, e => 5);
-@hash{'a', 'b', 'c'}; # (1, 2, 3)
-@hash{'a', 'b', 'c'} = ('A', 'B', 'C');
-%hash; # (a => 'A', b => 'B', c => 'C', d => 4, e => 5);
+if ('this is a test' =~ /this/) {} # True
+if ('this is a test' !~ /this/) {} # False
+if ('that is a test' =~ /this/) {} # False
 ```
 
-#### Istnienie konkretnego klucza
-Istnienie konkretnego klucza w haszu można sprawdzić za pomocą operatora
-**exists**.
+Operator dopasowania można pominąć przy operacjach na zmiennej **$_**.
+Poniższy kod wypisuje wszystkie elementy tablicy, które zawierają dwie
+litery 'e' następujące po sobie.
 ```perl
-my %hash = (key => 'value');
-exists $hash{key};   # true
-exists $hash{other}; # false
-```
-
-### Iterowanie po haszu
-#### Iterowanie po kluczach
-```perl
-my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
-foreach my $key (keys %hash) {
-    say "$key: $hash{$key}";
+my @array = qw(wheel balls creed bleed wrath mouse);
+foreach (@array) {
+    say if /ee/;
 }
 ```
 Wynik:
 ```
-number: 12
-word: hue
-sentence: to be or not to be
+wheel
+creed
+bleed
 ```
-**UWAGA:** Kolejność kluczy w haszu może się zmieniać, nawet jeśli dwa hasze
-mają taki sam zbiór kluczy, to ich kolejność może się różnić.
 
-#### Iterowanie po wartościach
+Aby użyć innego znaku ograniczającego, należy dodać oznaczenie trybu do 
+wyrażenia. Domyślny tryb (dopasowanie) oznacza się przez **m**.
+
+Te trzy linie są równoznaczne:
 ```perl
-my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
-say foreach (values %hash);
+say if /ee/;
+say if m+ee+;
+say if m{ee};
+```
+
+### Wzorce, a zmienne
+Wzorce można zapisywać w zmiennych za pomocą operatora **qr**.
+
+Wszystkie dopasowania poniżej są równoznaczne:
+```perl
+my $regex   = qr/abc/;
+my $same_rx = qr(abc);
+'abcdef' =~ /abc/;
+'abcdef' =~ $regex;
+'abcdef' =~ $same_rx;
+```
+
+W zakresie interpolacji, wzroce zachowują się jak podwójny cudzysłów,
+to znaczy, że można używać zmiennych jako części wzorca.
+
+Dopasowanie z interpolacją zmiennej:
+```perl
+my $text = 'abc';
+'abcdef' =~ /$text/;
+```
+
+Jako, że wzorce często są zbitkami dużej ilości tekstu, dla bezpieczeństwa,
+lepiej jest interpolować zmienne w następujący sposób:
+```perl
+my $text = 'abc';
+'abcdef' =~ /${text}/;
+```
+
+Pozwala to uniknąć błędów w odczycie nazw zmmiennych.
+```perl
+my $system = 'unix';
+'abcunixd' =~ /$systemd/;
+```
+W powyższym przykładzie parser próbuje interpolować zmienną **$systemd**,
+która nie istnieje. Z włączonym **strict** będzie to błąd kompilacji,
+bez **strict** będzie to dopasowanie pustego wzorca.
+
+Poprawne dopasowanie _"zawartości zmiennej **$system** i d"_:
+```perl
+my $system = 'unix';
+'abcunixd' =~ /${system}d/;
+```
+
+### Metaznaki
+Oprócz dosłownych znaków, wzorce mogą zawierać również metaznaki, które
+opisują jakiś podzbiór wszystkich znaków, miejsce w napisie lub pozwalają
+zdefiniować bardziej złożone wzorce.
+
+#### Klasy znaków
+Klasy znaków są podzbiorami zbioru znaków. Dopasowanie do klasy dopasowuje
+dowolny znak w niej zawarty. Klasy znaków definiuje się przez nawiasy
+kwadratowe. Wzorzec:
+```perl
+m/[abc]def/
+```
+będzie pasował do trzech napisów:
+```
+'adef'
+'bdef'
+'cdef'
+```
+
+Klasy mogą również zawierać zakresy znaków, wzorzec powyżej można zapisać
+również jako:
+```perl
+m/[a-c]def/
+```
+
+W jednej klasie może znajdować się kilka zakresów, np. żeby dopasować
+litery od 'd' do 'g' i cyfry od 1 do 7:
+```perl
+m/[d-g1-7]/
+```
+
+Jeśli pierwszym znakiem w klasie jest **^**, to jest to klasa zanegowana,
+dopasowuje wszystko, oprócz zawartych w niej znaków. Poniższy wzorzec
+dopasowuje wszystkie znaki oprócz cyfr:
+```perl
+m/[^0-9]/
+```
+
+##### Klasy wbudowane
+Kilka często używanych klas jest dostępnych jako znaki specjalne wewnątrz
+wzorców:
+* **\s** - znaki białe (spacje, taby, entery)
+* **\S** - negacja **\s**, wszystkie niebiałe znaki
+* **\d** - cyfry
+* **\D** - wszystko oprócz cyfr
+* **\w** - znaki _"słowne"_, wszystkie znaki alfanumeryczne i '_'
+* **\W** - negacja **\w**, znaki niealfanumeryczne
+* **.**  - dowolny znak oprócz _"\n"_
+
+#### Miejsca w napisie
+Kilka metaznaków dopasowuje miejsca w napisie zamiast zbioru liter, są to
+dopasowania o zerowej długości.
+
+##### Początek i koniec napisu
+Znak **\A** dopasowuje początek napisu.
+Poniższy wzorzec pasuje do wszystkich napisów zaczynających się od słowa
+"break":
+```perl
+m/\Abreak/
+```
+Będzie więc pasował do m. in. do następujących napisów:
+```perl
+"break"
+"breakthrough"
+"breaks"
+"break and something else"
+```
+ale już nie do:
+```perl
+"have a break"
+"no breaks"
+```
+
+W podobny sposób znak **\z** dopasowuje koniec napisu. Jako, że wczytywane dane
+często kończą się znakiem nowej linii, mamy również do dyspozycji znak **\Z**,
+który pasuje do końca napisu lub znaku nowej linii kończącego napis:
+```perl
+"more text" =~ /text\z/;   # True
+"more text" =~ /text\Z/;   # True
+"more text\n" =~ /text\z/; # False
+"more text\n" =~ /text\Z/; # True
+```
+
+Otoczenie całego wzorca znakami **\A** i **\Z** (lub **\z**) pozwala tworzyć
+dopasowania całego napisu.
+```perl
+"lorem ipsum" =~ /\Alorem ipsum\Z/;                # True
+"lorem ipsum dolor sit amet" =~ /\Alorem ipsum\Z/; # False
+"sit lorem ipsum" =~ /\Alorem ipsum\Z/;            # False
+```
+
+##### Brzeg słowa
+Znak **\b** dopasowuje brzeg słowa, tzn. miejsce między znakiem
+alfanumerycznym, a znakiem białym. Poniższy kod wypisuje wszystkie elementy
+tablicy, które zawierają słowo zaczynające się ciągiem znaków "abc":
+```perl
+my @array = ('abc', 'abcdef', 'mrabc', 'hue abcd de', 'moar hue rabc');
+foreach (@array) {
+    say if m/\babc/;
+}
+```
+Wynik:
+```
+abc
+abcdef
+hue abcd de
+```
+
+### Krotność
+Każdy element wzorca może mieć zdefiniowaną krotność. To znaczy, że do wzorca
+można dopasować dowolną ilość wystąpień danego elementu. Krotność elementu
+określa się przez dodanie do niego odpowiedniego kwantyfikatora.
+
+#### Zero lub jeden raz
+Kwantyfikator **?** oznacza 0 lub 1 wystąpienie. To znaczy, że poniższy
+wzorzec:
+```perl
+m/abcd?/
+```
+będzie pasował do napisów:
+```perl
+'abc'
+'abcd'
+```
+
+**UWAGA:** Kwantyfikatory mają wpływ tylko na element bezpośrednio
+je poprzedzający (znak, klasę znaków lub grupę). W powyższym przykładzie,
+kwantyfikator **?** dotyczy tylko i wyłącznie znaku 'd'.
+
+#### Raz lub więcej
+Kwantyfikator **+** pasuje do liczby wystąpień większej lub równej jeden.
+
+Wzorzec:
+```perl
+m/hu+e/
+```
+pasuje m. in. do napisów:
+```perl
+'hue'
+'huue'
+'huuue'
+'huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue'
+```
+Ale nie pasuje już do:
+```perl
+'he'
+```
+
+#### Dowolna ilość
+Kwantyfikator __*__ dopasowuje dowolną ilość wystąpień elementu. Może on nie
+występować w ogóle, występować raz, dwa, trzy, itd.
+
+Wzorzec:
+```perl
+m/hu*e/
+```
+będzie pasował m. in. do:
+```perl
+'he'
+'hue'
+'huue'
+'huuue'
+'huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuue'
+```
+
+#### Przedział liczbowy
+Dwuargumentowy kwantyfikator **{$a, $b}** pozwala zdefiniować przedział, w
+którym ma się znajdować liczba wystąpień elementu.
+
+Wzorzec:
+```perl
+m/a{1,5}/
+```
+oznacza "znak 'a' występujący co najmniej raz, ale nie więcej niż 5 razy".
+
+Pominięcie drugiego argumentu znosi górne ograniczenie, tzn. **{2,}**
+oznacza _"co najmniej dwa razy"_.
+
+Podanie jednego argumentu bez przecinka dopasowuje dokładną ilość wystąpień,
+**{2}** jest tym samym, co **{2,2}**.
+
+### Grupowanie i przechwytywanie
+#### Grupy elementów
+Wzięcie sekwencji elementów wzorca w okrągłe nawiasy stworzy z nich grupę,
+na zewnątrz nawiasów sekwencja ta będzie traktowana jako pojedynczy element.
+Pozwala to stosować kwantyfikatory do całych sekwencji.
+
+Np. jeśli chcemy dopasować dość długi śmiech:
+```perl
+m/(ha){3,}/
+```
+Taki wzorzec będzie pasował do:
+```perl
+'hahaha'
+'hahahaha'
+'hahahahahahaha'
+```
+
+#### Przechwytywanie podnapisów
+Nawiasy okrągłe oprócz grupowania elementów przypisują dopasowane podnapisy
+do specjalnych zmiennych, **$1**, **$2**, itd. Oznaczają one
+odpowiednio _"zawartość pierwszego nawiasu"_, _"zawartość drugiego nawiasu"_,
+itd.
+
+Jeśli w którymś z napisów pojawi się numer telefonu, to zostanie on wypisany
+na standardowe wyjście:
+```perl
+my @strings = (
+    'napis bez sensu',
+    'napis z sensem',
+    'zadzwoń pod 112-321-543',
+    'hue hue 123943, 2341',
+    'policja 997-112',
+    'pizzeria "Primo", 324-123-984, promocja 50% zniżki! na pizzę 2cm',
+    'no i tu nie ma numeru 999999'
+);
+
+foreach (@strings) {
+    say $1 if m/(\d{3}-\d{3}-\d{3})/;
+}
+```
+
+Wyjście:
+```
+112-321-543
+324-123-984
+```
+
+Do napisów przechwyconych w ten sposób można sie też odwołać bezpośrednio
+wewnątrz wyrażenia regularnego. Zmiennym **$1**, **$2**, **$3**, itd.
+odpowiadają znaki specjalne **\g1**, **\g2**, **\g3**, itd.
+
+Wyrażenie dopasowujące pustą parę tagów HTML:
+```perl
+m{<(\w+)></\g1>}
+```
+
+**UWAGA:** Zmiennych **$1**, **$2**, ... nie należy używać wewnątrz wzorca.
+
+#### Listy podnapisów
+Użycie wyrażenia regularnego w kontekście listowym zwróci listę wszystkich
+przechwyconych podnapisów. Jeśli we wzorcu nie ma ani jednej grupy
+przechwytującej, zwracana jest lista dopasowań całego wzorca.
+
+Wyciągnięcie wszystkich 3-cyfrowych liczb z napisu:
+```perl
+my @matches = 'nums123 fds5 fds341 fdsna102' =~ /\d\d\d/g;
+say foreach @matches;
+```
+Wyjście:
+```
+123
+341
+102
+```
+
+Wyciągnięcie wszystkich słów w pojedynczych cudzysłowach:
+```perl
+my $string = q(quotes 'hue', more 'tests', brrr 'cold' and 'all that');
+my @matches = $string =~ /'(\w+)'/g;
+say foreach @matches;
 ```
 Wynik:
 ```
 hue
-to be or not to be
-12
+tests
+cold
 ```
-Uwaga o kolejności kluczy stosuje się również do wartości.
 
-#### Iterowanie po parach klucz-wartość
-Operator **each** działa również dla haszy.
+Modyfikator **/g** na końcu wzorca powoduje przechwycenie wszystkich
+dopasowań grup. Użycie wyrażenia regularnego bez tego modyfikatora
+spowoduje przechwycenie tylko pierwszego dopasowania.
 ```perl
-my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
-while (my ($key, $value) = each %hash) {
-    say "$key: $value";
-}
+my $string = q(quotes 'hue', more 'tests', brrr 'cold' and 'all that');
+my @matches = $string =~ /'(\w+)'/;
+say foreach @matches;
 ```
 Wynik:
 ```
-number: 12
-word: hue
-sentence: to be or not to be
+hue
 ```
 
-## Operacje na plikach
-### Uchwyty
-Zanim zaczniemy pracę z plikiem, należy go otworzyć. Załóżmy, że chcemy
-odczytać plik o nazwie "plik.md":
+Warto pamiętać o listach składanych ze skalarów. Używając ich z wyrażeniami
+regularnymi, możemy w bardzo prosty sposób odfiltrować potrzebne informacje
+z tekstu o znanym formacie. 
 ```perl
-open my $FH, '<', 'plik.md';
+my $log = 'Jan 04 20:20:03 S3 systemd[11935]: Startup finished in 13ms.';
+my ($date, $host, $unit, $message) = $log =~ /\A(\w{3} \d\d \d\d:\d\d:\d\d) (\w+) (\w+)\[\d+\]: (.+)\Z/;
+print <<"END_LOG"
+Date: $date
+Hostname: $host
+Unit: $unit
+Message: $message
+END_LOG
 ```
-Funkcja **open** przyjmuje trzy argumenty:
-* zmienną, która będzie uchwytem do pliku
-* tryb operacji na pliku
-* nazwę pliku
 
-**UWAGA**: Otwarcie pliku może się nie powieść (plik nie istnieje, nie mamy do
-niego dostępu, itp.), **open** zwraca fałsz i ustawia specjalną zmienną **$!**,
-zawierającą ostatni błąd, jeśli otwarcie pliku się nie powiedzie. Pozwala to na
-wykrycie błędu otwierania pliku w następujący sposób:
+Wyjście:
+```
+Date: Jan 04 20:20:03
+Hostname: S3
+Unit: systemd
+Message: Startup finished in 13ms.
+```
+
+#### Grupowanie bez przechwytywania
+Jeśli nie chcemy zachowywać danej części tekstu, ale potrzebne jest grupowanie,
+można na początek zawartości nawiasu dodać **?:**, wtedy będzie to wyłącznie
+konstrukt grupujący, bez efektów ubocznych. Nie będzie się też liczył do
+numerów zmiennych **$1**, **$2**, itd.
+
+Dopasowanie wzorca _"a, od 2 do 5 sekwencji abc i trzy liczby"_,
+bez przechwytywania:
 ```perl
-open my $FH, '<', 'plik.md' or die $!;
+m/a(?:abc){2,5}\d{3}/
 ```
-Funkcja **die** przyjmuje komunikat o błędzie jako argument i kończy działanie
-programu informując użytkownika o błędzie.
-
-Po zakończeniu pracy z plikiem należy zamknąć uchwyt:
-```perl
-close $FH;
-```
-
-### Odczytywanie plików
-Czytanie plików odbywa się tak samo jak czytanie ze standardowego wejścia,
-**STDIN** wystarczy zastąpić uchwytem do pliku, z którego dane chcemy wczytać.
-```perl
-open my $FH, '<', 'plik.in' or die $!;
-while (<$FH>) {
-    print;
-}
-close $FH;
-```
-
-### Zapisywanie plików
-Otwarcie pliku w trybie **>** zeruje plik (usuwa całą jego zawartość) i
-pozwala na zapis danych. Analogicznie do odczytu, zapis nie różni się zbytnio
-od operacji wypisywania danych na standardowe wyjście.
-```perl
-open my $FH, '>', 'plik.out' or die $!;
-foreach my $data ('some data', 'some other data', 'more data') {
-    say $FH "OUT: $data";
-}
-close $FH;
-```
-Funkcje **print** i **say** mogą przyjąć uchwyt do pliku jako modyfikator przed
-listą argumentów. Ich zachowanie jest dokładnie takie samo jak w przypadku
-wypisywania na standardowe wyjście, jedyną różnicą jest fakt, że wyjście trafia
-do wybranego pliku.
-
-**UWAGA**: Modyfikator uchwytu do pliku dla **say** i **print** nie jest
-typowym argumentem funkcji, więc nie powinno po nim być przecinka.
-
-#### Dopisywanie danych do pliku
-Żeby dopisać dane do pliku, bez zerowania go, można użyć trybu **>>**.
-
-#### Domyślny uchwyt wyjściowy
-Jeśli nie podamy funkcji **print** lub **say** uchwytu do pliku jako
-modyfikatora, wypiszą dane do domyślnego uchwytu wyjściowego. Zazwyczaj jest to
-**STDOUT**, ale istnieje możliwość wyboru innego uchwytu za pomocą funkcji
-**select**.
-```perl
-open my $FH, '>', 'plik.out' or die $!;
-say 'Standard';
-say $FH 'Explicit file'
-select $FH;
-say 'File';
-say STDOUT 'Explicit standard';
-close $FH;
-```
-W wyniku działania tego programu na standardowe wyjście zostanie wypisane:
-```
-Standard
-Explicit standard
-```
-a do pliku _plik.out_:
-```
-Explicit file
-File
-```
-
-### Wczytywanie i zapisywanie tego samego pliku
-Dodanie znaku **+** do trybów wczytywania i zapisywania pliku (**<** i **>**)
-otworzy plik w trybie do zapisu i odczytu.
-```perl
-open my $FH, '+<', 'plik.io' or die $!;
-```
-Teraz na uchwycie **$FH** działa zarówno **print**, jak i **readline**.
-Tryb **+>** dodatkowo wyzeruje plik.
-
-
-### Wymiana danych pomiędzy programami (pipes)
-Na danych z innego programu możemy operować w identyczny sposób jak na plikach.
-
-#### Wczytywanie danych z innego programu
-Do wczytania danych z innego programu można użyć trybu **-|**. Zamiast nazwy
-pliku należy wtedy podać nazwę programu, z którego chcemy wczytać dane, oraz
-jego argumenty.
-```perl
-open my $LOGS, '-|', qw( journalctl -u tor.service -f ) or die $!;
-while (<$LOGS>) {
-    ...;
-}
-```
-Powyższy kod pozwala nam wczytywać na bieżąco logi usługi
-[TOR](https://www.torproject.org/).
-
-#### Wysyłanie danych do innego programu
-Analogicznie, używając trybu **|-**, możemy wysyłać dane do innego programu,
-wszystkie opracje działają dokładnie tak samo jak w przypadku zapisu pliku.
-
-### Właściwości plików
-Perl dostarcza wielu operatorów pozwalających sprawdzać właściwości plików.
-Wszystkie te operatory przyjmują nazwę pliku jako argument. Kilka z bardziej
-przydatnych:
-- **-e** czy plik istnieje
-- **-s** rozmiar pliku
-- **-M** czas od ostatniej modyfikacji pliku
-- **-A** czas od ostatniego dostępu do pliku
-- **-d** plik jest katalogiem
-Pełna lista:
-```
-perldoc -f -X
-```
-
-Następujący program będzie wczytywał wejście aż użytkownik nie poda nazwy
-istniejącego pliku:
-```perl
-my $filename;
-do {
-    $filename = <>;
-    chomp $filename;
-} until (-e $filename);
-```
-
-### Zmiana nazwy i kopiowanie plików
-Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący
-kod zmieni nazwę pliku _old\_name_ na _new\_name_.
-```perl
-rename 'old_name', 'new_name';
-```
-Jeśli chcemy przyszpanować stylem, możemy użyć **=>** zamiast przecinka:
-```perl
-rename 'old_name' => 'new_name';
-```
-
-Do kopiowania plików potrzebny jest moduł
-[File::Copy](https://metacpan.org/pod/File::Copy), jest to domyślny moduł
-Perla, więc nie trzeba niczego doinstalowywać. Dostarcza on m. in. funkcje
-**copy** i **move**. Pierwszej z nich możemy użyć do skopiowania pliku:
-```perl
-use File::Copy;
-copy 'some_file', 'copy_of_some_file';
-```
-
-### Przeszukiwanie katalogów
-Funkcja **opendir** pozwala otworzyć uchwyt do folderu. Wykonanie **readdir**
-na takim uchwycie pozwala wczytywać po kolei nazwy plików znajdujących się
-w folderze.
-```perl
-opendir my $DIR, '.' or die $!;
-say while readdir $DIR;
-closedir $DIR;
-```
-Powyższy przykład wyświetla listę plików w aktualnym folderze.
-
-### Tworzenie i usuwanie katalogów
-Perl dostarcza funkcję o znajomej nazwie **mkdir** do tworzenia katalogów.
-```perl
-mkdir 'new_directory';
-```
-Powyższy kod stworzy w aktualnym katalogu nowy o nazwie _new\_directory_.
-
-Analogicznie, funkcja **rmdir** pozwala usunąć puste katalogi.
