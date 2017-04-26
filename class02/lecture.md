@@ -156,7 +156,7 @@ wzorców:
 * **\S** - negacja **\s**, wszystkie niebiałe znaki
 * **\d** - cyfry
 * **\D** - wszystko oprócz cyfr
-* **\w** - znaki _"słowne"_, wszystkie znaki alfanumeryczne i '_'
+* **\w** - znaki _"słowne"_, wszystkie znaki alfanumeryczne i '\_'
 * **\W** - negacja **\w**, znaki niealfanumeryczne
 * **.**  - dowolny znak oprócz _"\n"_
 
