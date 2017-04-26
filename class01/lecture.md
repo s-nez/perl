@@ -23,12 +23,11 @@
         * [Podtablice](#podtablice)
         * [Kontekst](#kontekst)
         * [Domyślne zmienne tablicowe](#domyślne-zmienne-tablicowe)
-* [Hasze](#hasze)
-    * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
-    * [Dostęp do elementów](#dostęp-do-elementów)
+    * [Hasze](#hasze)
+        * [Deklaracja z inicjalizacją](#deklaracja-z-inicjalizacją)
+        * [Dostęp do elementów](#dostęp-do-elementów)
         * [Dostęp do kilku elementów jednocześnie](#dostęp-do-kilku-elementów-jednocześnie)
         * [Istnienie konkretnego klucza](#istnienie-konkretnego-klucza)
-    * [Iterowanie po haszu](#iterowanie-po-haszu)
         * [Iterowanie po kluczach](#iterowanie-po-kluczach)
         * [Iterowanie po wartościach](#iterowanie-po-wartościach)
         * [Iterowanie po parach klucz-wartość](#iterowanie-po-parach-klucz-wartość)
@@ -207,7 +206,7 @@ $num++; $num--;     # post-inkrementacja i post-dekrementacja
 #### Napisy
 Napisy nie mają określonej zawartości ani formatowania.  Mogą przechowywać 
 dowolne ilości tekstu lub binarnych danych (o ile pozwala na to pamięć).
-Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowia:
+Do tworzenia napisów wewnątrz programów najczęściej używa się cudzysłowu:
 ```perl
 my $string = 'bardzo ciekawy \tekst';
 my $text = "To jest $string.\n";
@@ -472,11 +471,11 @@ co będzie miało taki sam efekt, jak:
 my $first_arg = shift @ARGV;
 ```
 
-## Hasze
+### Hasze
 Hasz jest strukturą danych, która przyporządkowuje wartości do kluczy.
 Tak jak tablica, przechowuje 0 lub więcej skalarów.
 
-### Deklaracja z inicjalizacją
+#### Deklaracja z inicjalizacją
 Hasze oznaczone są znakiem **%**, Deklaracja bez inicjalizacji stworzy pusty
 hasz. Do inicjalizacji hasza można użyć listy par.
 ```perl
@@ -493,7 +492,7 @@ my %hash = (
 Operator **=>** dodaje pojedynczy cudzysłów do lewego operandu, jeśli nie jest
 on zmienną ani wywołaniem funkcji.
 
-### Dostęp do elementów
+#### Dostęp do elementów
 Do uzyskania wartości odpowiadającej kluczowi używa się operatora **{}**.
 ```perl
 my %hash = (one => 1, two => 2, three => 3);
@@ -501,7 +500,7 @@ $hash{one};   # 1
 $hash{two};   # 2
 $hash{three}; # 3
 ```
-Używanie cudzysłowia nie jest konieczne wewnątrz klamr.
+Używanie cudzysłowu nie jest konieczne wewnątrz klamr.
 
 Przypisanie do nieistniejącego klucza stworzy go w hashu, przypisanie do
 istniejącego powoduje nadpisanie wartości.
@@ -531,7 +530,6 @@ exists $hash{key};   # true
 exists $hash{other}; # false
 ```
 
-### Iterowanie po haszu
 #### Iterowanie po kluczach
 ```perl
 my %hash = (word => 'hue', sentence => 'to be or not to be', number => 12);
