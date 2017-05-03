@@ -4,14 +4,17 @@ use warnings;
 use v5.18;
 
 # Wyrażenia do uzupełnienia
-my $blank        = qr//;
-my $integer      = qr//;
-my $float        = qr//;
-my $phone_number = qr//;
-my $sentence     = qr//;
-my $five_l_word  = qr//;
-my $dialog_three = qr//;
-my $web_address  = qr//;
+my $blank           = qr//;
+my $integer         = qr//;
+my $float           = qr//;
+my $phone_number    = qr//;
+my $sentence        = qr//;
+my $five_l_word     = qr//;
+my $dialog_three    = qr//;
+my $web_address     = qr//;
+my $nostart_comment = qr//;
+my $not_evil_nums   = qr//;
+my $read_frame      = qr//;
 
 ###########################################
 # Tests - do not touch, there be monsters #
@@ -106,6 +109,54 @@ my @tasks = (
             '@%&*#$.pl',     '.hue.hue',
             'singleword',    'http',
             'www.http://test.org'
+        ]
+    },
+    {
+        name       => 'No-start comment',
+        regex      => $nostart_comment,
+        tests_true => [
+            ' # comment',
+            ' #',
+            'code much code # and comment',
+            'this #not this',
+            "comment #\n",
+            '#bad comment #good comment',
+            '# //',
+            'other // style',
+            'why # not // both',
+            '#//', "   \n# cmnt"
+        ],
+        tests_false => [
+            '', '#', '#comment', "#\n", '#', "//comment", 'no comment',
+            '/class?', '/|/ was ist das?!'
+        ]
+    },
+    {
+        name       => 'Not-evil numbers',
+        regex      => $not_evil_nums,
+        tests_true => [
+            '123123',                '666123',
+            "666665",                "98412375439",
+            "1236663218402347832\n", "0000000000"
+        ],
+        tests_false => [
+            '', 'rewrw', "\n", '123666', "9543678347534899666", '15', '9866',
+            '0', 'onetwothree123'
+        ]
+    },
+    {
+        name       => 'Read frame',
+        regex      => $read_frame,
+        tests_true => [
+            'AUGACGAUGAUUUAA',                'AUGGCCUCUAGUUGA',
+            "AUGAUGAUGAUGUAG\n",              'AUGUAG',
+            'AUGCCGUACUCUAGUACUUCUCUUUUAUAA', 'AUGGGUAGUUAG'
+        ],
+        tests_false => [
+            '', 'UGACGAUGAUUUAA', 'AUG', 'AUGGCCUAAUCUAGUUGA',
+            'GCC', 'UAA', 'UAG', 'UGA', 'AUGGUGA', '12423', 'auguaa',
+            'UAGAUG', 'AUGBNGHGDG', 'GBUFDBGFO', 'AUGUUUUUUUUUUUUAA',
+            '  AUGUAG', 'balls of steel AUGCCGUACUCUAGUACUUCUCUUUUAUAA'
         ]
     },
 );
