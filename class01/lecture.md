@@ -1,4 +1,4 @@
-# Warsztat 01
+# Wprowadzenie
 
 <!--TOC_START--->
 ## Spis treści

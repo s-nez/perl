@@ -3,11 +3,6 @@ use strict;
 use warnings;
 use v5.18;
 
-# Wyrażenia do uzupełnienia
-my $nostart_comment = qr//;
-my $not_evil_nums   = qr//;
-my $read_frame      = qr//;
-
 ###########################################
 # Tests - do not touch, there be monsters #
 ###########################################

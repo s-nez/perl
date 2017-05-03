@@ -52,7 +52,6 @@ www.test.ru
 uj.edu.pl
 http://fsf.org
 ```
-```
 
 ## $nostart\_comment
 Dopasuj napis, który zawiera jednoliniowy komentarz w stylu Perla (#) lub
