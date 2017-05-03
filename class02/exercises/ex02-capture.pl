@@ -10,6 +10,6 @@ while (<>) {
     ++$count{$ip};
 }
 
-foreach my $ip (sort { $count{$b} <=> $count{$a} } keys %count) {
+foreach my $ip (keys %count) {
     say "$ip: $count{$ip}";
 }
