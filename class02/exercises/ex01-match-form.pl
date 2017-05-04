@@ -28,17 +28,6 @@ my @tasks = (
         tests_false => [ '.', 'rewrw', '    sd', ' sdf ', "\nd", ' . ' ]
     },
     {
-        name        => 'Phone number',
-        regex       => $phone_number,
-        tests_true  => [ '123-456-789', "111-111-111\n" ],
-        tests_false => [
-            '',                       '-123-123',
-            'bduibgeruge123-123-123', 'avd-fds-vdf',
-            '123 123 123',            '566\-666\-543',
-            '12-431-432',
-        ]
-    },
-    {
         name        => 'Integer',
         regex       => $integer,
         tests_true  => [ '1', '0', '123689', "111111\n" ],
@@ -52,6 +41,17 @@ my @tasks = (
         tests_true => [ '1', '0', '123.432', '123689', "111111\n" ],
         tests_false =>
           [ '', "123\n143", 'word', '.34', '12,34', '123.', 'fds123', '14dsf' ]
+    },
+    {
+        name        => 'Phone number',
+        regex       => $phone_number,
+        tests_true  => [ '123-456-789', "111-111-111\n" ],
+        tests_false => [
+            '',                       '-123-123',
+            'bduibgeruge123-123-123', 'avd-fds-vdf',
+            '123 123 123',            '566\-666\-543',
+            '12-431-432',
+        ]
     },
     {
         name       => 'Sentence',
