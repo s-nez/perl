@@ -94,7 +94,7 @@ my $same_rx = qr(abc);
 'abcdef' =~ $same_rx;
 ```
 
-W zakresie interpolacji, wzroce zachowują się jak podwójny cudzysłów,
+W zakresie interpolacji, wzorce zachowują się jak podwójny cudzysłów,
 to znaczy, że można używać zmiennych jako części wzorca.
 
 Dopasowanie z interpolacją zmiennej:

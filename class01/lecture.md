@@ -242,12 +242,12 @@ Dokument heredoc rozpoczyna << i nazwa ogranicznika. Ogranicznik powinien
 być wzięty w pojedynczy lub podwójny cudzysłów, jego rodzaj określa
 zachowanie interpolacji wewnątrz dokumentu.
 
-**UWAGA:** Niezależnie od indentacji początku dokumentu, zakończenie musi
-zaczynać się od początku linii.
+**UWAGA:** Niezależnie od indentacji początku dokumentu, ogranicznik musi
+znajdować się na początku linii.
 ```perl
 unless (defined $text) {
     $text = <<'END_HERE';
-    Dokuement, lorem ipsum
+    Dokument, lorem ipsum
     i coś tam dalej.
 END_HERE
 }
@@ -312,7 +312,7 @@ będzie zmieniać swój rozmiar w miarę potrzeby.
 
 #### Deklaracja z inicjalizacją 
 Tablice oznaczone są znakiem **@**. Deklaracja bez inicjalizacji stworzy pustą
-(0-elementową) tablicę, do inicjalizcji można użyć listy.
+(0-elementową) tablicę, do inicjalizacji można użyć listy.
 ```perl
 my @array;                   # pusta tablica
 my @array = ('one', 2, 3.0); # tablica zawierająca trzy wartości
@@ -714,7 +714,7 @@ for my $number (1..5) {
 }
 ```
 ### Pętla w stylu C
-Perl obsługuje pętlę for w stylu C, z trzema pod-instrukcjami:
+Perl obsługuje pętlę for w stylu C, z trzema podinstrukcjami:
 ```perl
 for (my $i = 0; $i < 5; ++$i) {
     say $i;
