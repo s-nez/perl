@@ -553,7 +553,7 @@ specjalne. Do dosłownej interpretacji napisów wewnątrz wyrażeń służy funk
 **quotemeta** i para metaznaków **\Q**, **\E**.
 
 **quotemeta** przyjmuje napis jako argument i poprzedza wszystkie wystąpienia 
-znaków niealfanumerycznych znakiem **\**.
+znaków niealfanumerycznych znakiem **\\**.
 ```perl
 my $string = 'abc;-*_*a()[]';
 say quotemeta $string;
