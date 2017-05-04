@@ -217,7 +217,7 @@ interpolację znaków specjalnych (np. \t, \n) i innych zmiennych.
 W efekcie $string zawiera dokładnie _'bardzo ciekawy \tekst'_, a $text
 _'To jest bardzo ciekawy \tekst'_ i znak nowej linii. Znaki cudzysłowów w
 odpowiednich reprezentacjach napisów można zawrzeć poprzedzając je znakiem
-**\**.
+**\\**.
 
 Alternatywnie można też użyć funkcji **q** i **qq**, które działają
 jak, odpowiednio, pojedynczy i podwójny cudzysłów, ale pozwalają wybrać

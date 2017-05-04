@@ -1,7 +1,8 @@
 #!/usr/bin/env perl 
 use strict;
 use warnings;
-use v5.18;
+use feature qw[ say ];
+use Term::ANSIColor qw[ colored ];
 
 # Wyrażenia do uzupełnienia
 my $blank           = qr//;
@@ -161,44 +162,30 @@ my @tasks = (
     },
 );
 
-sub colorize {
-    my ($color, $text) = @_;
-    my ($HICOLOR, $RESET) = ("\033[1m", "\033[0m");
-    my %colors = (
-        WHITE  => '',
-        RED    => "\033[31m",
-        GREEN  => "\033[32m",
-        YELLOW => "\033[33m"
-    );
-    return $HICOLOR . $colors{$color} . $text . $RESET;
+sub run_tests {
+    my ($type, $tests_ref, $rc_test) = @_;
+    while (my ($number, $case) = each @$tests_ref) {
+        print "$type test #$number: ";
+        if ($rc_test->($case)) {
+            say colored ['bold green'], 'OK';
+        } else {
+            say colored(['bold red'], 'FAIL'), ': "',
+              $case =~ s{\n}{colored ['bold yellow'], '\n'}ger, '"';
+        }
+    }
+    print "\n";
 }
 
 foreach my $task (@tasks) {
-    say colorize('WHITE', $task->{name} . "\n" . '=' x length $task->{name});
+    say $task->{name}, "\n", '=' x length $task->{name};
     if ($task->{regex} eq qr//) {
         say 'Not implemented';
         next;
     }
 
-    while (my ($number, $test) = each @{ $task->{tests_true} }) {
-        print "Match test #$number: ";
-        if ($test =~ $task->{regex}) {
-            say colorize('GREEN', 'OK');
-        } else {
-            say colorize('RED', 'FAIL'), ': "',
-              $test =~ s{\n}{colorize('YELLOW', '\n')}ger, '"';
-        }
-    }
-    print "\n";
-
-    while (my ($number, $test) = each @{ $task->{tests_false} }) {
-        print "No match test #$number: ";
-        if ($test !~ $task->{regex}) {
-            say colorize('GREEN', 'OK');
-        } else {
-            say colorize('RED', 'FAIL'), ': "',
-              $test =~ s{\n}{colorize('YELLOW', '\n')}ger, '"';
-        }
-    }
+    run_tests('Match', $task->{tests_true}, sub { $_[0] =~ $task->{regex} });
+    run_tests('No match', $task->{tests_false}, sub { $_[0] !~ $task->{regex} });
+}
+continue {
     print "\n";
 }
