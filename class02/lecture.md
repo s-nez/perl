@@ -51,9 +51,9 @@ Wzorce są ciągami znaków otoczonymi znakami ograniczajacymi
 W kontekście logicznym operator **=~** zwraca prawdę, jeśli napis zawiera
 wzorzec. **!~** jest zwykłą negacją tego operatora.
 ```perl
-if ('this is a test' =~ /this/) {} # True
-if ('this is a test' !~ /this/) {} # False
-if ('that is a test' =~ /this/) {} # False
+if ('this is a test' =~ /test/) {} # True
+if ('this is a test' !~ /test/) {} # False
+if ('this is Sparta' =~ /test/) {} # False
 ```
 
 Operator dopasowania można pominąć przy operacjach na zmiennej **$_**.
