@@ -69,7 +69,7 @@ Przykładowe  błędne dopasowanie:
 ```
 
 ## $not\_evil\_nums
-Dopasuj napis, który jest liczbą całkowitą, która ma conajmniej 6 cyfr, ale
+Dopasuj napis, który jest liczbą całkowitą, która ma co najmniej 6 cyfr, ale
 nie kończy się sekwencją 666.
 
 ## $read\_frame
