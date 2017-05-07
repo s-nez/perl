@@ -3,7 +3,7 @@
 ## Zakres materiału
 * [Funkcje](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#funkcje)
 * [Moduły](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#moduły)
-* [CPAN](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#CPAN)
+* [CPAN](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#cpan)
 * [Operacje na plikach](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#operacje-na-plikach)
 
 ## Zadania
