@@ -249,13 +249,18 @@ Perla. Aby zainstalować nowy moduł, należy podać go jako argument **cpan**:
 $ cpan Image::ExifTool
 ```
 
+Większość modułów z CPAN dostarcza dokumentację. Po zainstalowaniu modułu
+powinna być dostępna strona **perldoc** odpowiadająca jego nazwie:
+```
+$ perldoc Image::ExifTool
+```
 
 ## Operacje na plikach
 ### Uchwyty
 Zanim zaczniemy pracę z plikiem, należy go otworzyć. Załóżmy, że chcemy
 odczytać plik o nazwie "plik.md":
 ```perl
-open my $FH, '<', 'plik.md';
+open my $fh, '<', 'plik.md';
 ```
 Funkcja **open** przyjmuje trzy argumenty:
 * zmienną, która będzie uchwytem do pliku
@@ -267,25 +272,25 @@ niego dostępu, itp.), **open** zwraca fałsz i ustawia specjalną zmienną **$!
 zawierającą ostatni błąd, jeśli otwarcie pliku się nie powiedzie. Pozwala to na
 wykrycie błędu otwierania pliku w następujący sposób:
 ```perl
-open my $FH, '<', 'plik.md' or die $!;
+open my $fh, '<', 'plik.md' or die $!;
 ```
 Funkcja **die** przyjmuje komunikat o błędzie jako argument i kończy działanie
 programu informując użytkownika o błędzie.
 
 Po zakończeniu pracy z plikiem należy zamknąć uchwyt:
 ```perl
-close $FH;
+close $fh;
 ```
 
 ### Odczytywanie plików
 Czytanie plików odbywa się tak samo jak czytanie ze standardowego wejścia,
 **STDIN** wystarczy zastąpić uchwytem do pliku, z którego dane chcemy wczytać.
 ```perl
-open my $FH, '<', 'plik.in' or die $!;
-while (<$FH>) {
+open my $fh, '<', 'plik.in' or die $!;
+while (<$fh>) {
     print;
 }
-close $FH;
+close $fh;
 ```
 
 ### Zapisywanie plików
@@ -293,10 +298,10 @@ Otwarcie pliku w trybie **>** zeruje plik (usuwa całą jego zawartość) i
 pozwala na zapis danych. Analogicznie do odczytu, zapis nie różni się zbytnio
 od operacji wypisywania danych na standardowe wyjście.
 ```perl
-open my $FH, '>', 'plik.out' or die $!;
+open my $fh, '>', 'plik.out' or die $!;
 foreach my $data ('some data', 'some other data', 'more data') {
-    say $FH "OUT: $data"; }
-close $FH;
+    say $fh "OUT: $data"; }
+close $fh;
 ```
 Funkcje **print** i **say** mogą przyjąć uchwyt do pliku jako modyfikator przed
 listą argumentów. Ich zachowanie jest dokładnie takie samo jak w przypadku
@@ -315,13 +320,13 @@ modyfikatora, wypiszą dane do domyślnego uchwytu wyjściowego. Zazwyczaj jest 
 **STDOUT**, ale istnieje możliwość wyboru innego uchwytu za pomocą funkcji
 **select**.
 ```perl
-open my $FH, '>', 'plik.out' or die $!;
+open my $fh, '>', 'plik.out' or die $!;
 say 'Standard';
-say $FH 'Explicit file'
-select $FH;
+say $fh 'Explicit file'
+select $fh;
 say 'File';
 say STDOUT 'Explicit standard';
-close $FH;
+close $fh;
 ```
 W wyniku działania tego programu na standardowe wyjście zostanie wypisane:
 ```
@@ -338,9 +343,9 @@ File
 Dodanie znaku **+** do trybów wczytywania i zapisywania pliku (**<** i **>**)
 otworzy plik w trybie do zapisu i odczytu.
 ```perl
-open my $FH, '+<', 'plik.io' or die $!;
+open my $fh, '+<', 'plik.io' or die $!;
 ```
-Teraz na uchwycie **$FH** działa zarówno **print**, jak i **readline**.
+Teraz na uchwycie **$fh** działa zarówno **print**, jak i **readline**.
 Tryb **+>** dodatkowo wyzeruje plik.
 
 
@@ -373,6 +378,7 @@ przydatnych:
 - **-M** czas od ostatniej modyfikacji pliku
 - **-A** czas od ostatniego dostępu do pliku
 - **-d** plik jest katalogiem
+
 Pełna lista:
 ```
 perldoc -f -X
@@ -390,11 +396,11 @@ do {
 
 ### Zmiana nazwy i kopiowanie plików
 Funkcja **rename** pozwala na zmienę nazwy lub przeniesienie pliku. Następujący
-kod zmieni nazwę pliku _old\_name_ na _new\_name_.
+kod zmieni nazwę pliku *old\_name* na *new\_name*.
 ```perl
 rename 'old_name', 'new_name';
 ```
-Jeśli chcemy przyszpanować stylem, możemy użyć **=>** zamiast przecinka:
+Możemy też użyć **=>** zamiast przecinka:
 ```perl
 rename 'old_name' => 'new_name';
 ```
@@ -424,6 +430,15 @@ Perl dostarcza funkcję o znajomej nazwie **mkdir** do tworzenia katalogów.
 ```perl
 mkdir 'new_directory';
 ```
-Powyższy kod stworzy w aktualnym katalogu nowy o nazwie _new\_directory_.
+Powyższy kod stworzy w aktualnym katalogu nowy o nazwie *new_directory*.
 
 Analogicznie, funkcja **rmdir** pozwala usunąć puste katalogi.
+
+**UWAGA**: **mkdir** jest w stanie stworzyć tylko pojedynczy katalog.
+Jeśli potrzebujemy utworzyć całą ścieżkę, np. "one/two/three", należy
+użyć funkcji **make\_path** z wbudowanego modułu
+[File::Path](https://metacpan.org/pod/File::Path):
+```perl
+use File::Path qw[ make_path ];
+make_path("one/two/three");
+```
