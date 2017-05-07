@@ -2,18 +2,10 @@
 
 ## Zakres materiału
 * [Funkcje](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#funkcje)
-* [Przydatne funkcje wbudowane](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#przydatne-funkcje-wbudowane)
-* [Zagnieżdżone struktury danych](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#zagnieżdżone-struktury-danych)
-* [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#transformata-schwartza)
+* [Moduły](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#moduły)
+* [CPAN](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#CPAN)
+* [Operacje na plikach](https://github.com/slimakuj/perl/blob/master/class03/lecture.md#operacje-na-plikach)
 
 ## Zadania
-* 01 \- [Moduł](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex01-module.md)
-* 02 \- [Transformata Schwartza](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-schwartz.md)
-* 03 \- [Książka telefoniczna](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex03-phonebook.md)
-* 04 \- [Quiz](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-quiz.md)
-
-
-## Dodatkowe informacje
-* [Przydatne konstrukcje językowe](https://github.com/slimakuj/perl/blob/master/class03/useful-constructs.md)
-
-<!--* [Pytania i odpowiedzi](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md)-->
+* 01 \- [Sortowanie zdjęć](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex01-photo_sort.md)
+* 02 \- [Spis treści](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-toc.md)
