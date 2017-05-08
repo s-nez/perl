@@ -5,7 +5,7 @@ końcach linii. Jedynym argumentem skryptu powinna być ścieżka do pliku. Jeś
 plik zawiera następujące po sobie puste linie (składające się tylko z białych
 znaków), należy złączyć je w jedną pustą linię.
 
-Przykładowy plik [ex02-clear\_blanks.input](https://github.com/slimakuj/perl/blob/master/class03/ex02-clear_blanks.input)
+Przykładowy plik [ex02-clear\_blanks.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-clear_blanks.input)
 (cudzysłów dodany dla widoczności biały znaków):
 ```
 $ perl -nle 'print qq["$_"]' ex02-clear_blanks.input

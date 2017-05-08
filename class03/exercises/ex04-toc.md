@@ -24,4 +24,4 @@ Dla powyższych nagłówków powinien zostać wygenerowany następujący spis tr
 Spis treści powinien otrzymać własny nagłówek i zostać dopisany na końcu pliku.
 
 Przykładowy plik wejściowy:
-[ex02-toc.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex02-toc.input)
+[ex02-toc.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-toc.input)
