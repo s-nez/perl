@@ -21,7 +21,7 @@ według ilości wpisów, malejąco, w przypadku równej ilości wpisów,
 decyduje kolejność alfabetyczna.
 
 ## Przykładowe wejście i wyjście
-Dla przykładowego pliku [ex03-phonebook.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex03-phonebook.input):
+Dla przykładowego pliku [ex01-phonebook.input](https://github.com/slimakuj/perl/blob/master/class04/exercises/ex01-phonebook.input):
 ```
 Krzysztof Chuciński, 123456789, Warszawa
 Marcin Matajski, 543123903, Poznań
