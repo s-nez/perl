@@ -2,44 +2,194 @@
 
 <!--TOC_START--->
 ## Spis treści
-* [Funkcje ze stanem](#funkcje-ze-stanem)
-* [Anonimowe funkcje](#anonimowe-funkcje)
-* [Dispatch table](#dispatch-table)
+* [Parametry interpretera](#parametry-interpretera)
+    * [Podawanie kodu na linii poleceń](#podawanie-kodu-na-linii-poleceń)
+    * [Wczytywanie wejścia](#wczytywanie-wejścia)
+    * [Autosplit](#autosplit)
+    * [Edycja w miejscu](#edycja-w-miejscu)
+    * [Więcej opcji](#więcej-opcji)
+* [Bloki BEGIN i END](#bloki-begin-i-end)
+* [Referencje do funkcji](#referencje-do-funkcji)
+    * [Anonimowe funkcje](#anonimowe-funkcje)
+    * [Referencje do nazwanych funkcji](#referencje-do-nazwanych-funkcji)
 
 <!--TOC_END--->
 
-## Funkcje ze stanem
-Zmienne stanowe wewnątrz funkcji zachowują się jak zmienne lokalne (są widoczne
-tylko wewnątrz funkcji), ale inicjalizowane są tylko raz i zachowują swoją
-wartość pomiędzy wywołaniami funkcji. Do deklaracji zmiennych stanowych używa
-się słowa kluczowego **state**.
+## Parametry interpretera
+Interpreter Perla można wywoływać z dodatkowymi parametrami, które
+pozwalają podawać kod bezpośrednio z linii poleceń i dodawać
+często używane przydatne konstrukcje.
+
+Pozwala to w łatwy sposób pisać krótkie, jednolinijkowe programy.
+
+### Podawanie kodu na linii poleceń
+Opcje **-e** i **-E** przyjmują kod programu jako argument napisowy.
+
+Program "Hello World" przy wykorzystaniu parametrów interpretera:
+```
+$ perl -e 'print "Hello World\n"';
+```
+
+Opcja **-E** działa dokładnie tak samo, ale włącza dodatkowo wszystkie
+opcjonalne funkcjonalności języka (np. **say**).
+
+Powyższy "Hello World" można więc zapisać tak:
 ```perl
-sub counter {
-    state $count = 0;
-    return $count++;
+$ perl -E 'say "Hello World"';
+```
+
+**UWAGA:** Wiele powłok używa **$** do oznaczania zmiennych, tak samo jak
+Perl. Dlatego, żeby uninkąć usunięcia wszystkich użytych zmiennych z
+programu, argumenty **-e** należy brać w pojedynczy cudzysłów.
+
+### Wczytywanie wejścia
+Opcja **-n** otoczy program pętlą wczytujacą wejście:
+```perl
+while (<>) {
+    # tutaj program
 }
-say counter() for 1..3;
+```
+Wywołanie:
+```
+$ perl -ne 'print if length > 3';
+```
+
+Jest równoznaczne z wykonaniem następującego programu:
+```perl
+while (<>) {
+    print if length > 3;
+}
+```
+
+Dodatkowo można też wypisać zawartość domyślnej zmiennej **$_** używająć
+zamiast **-n** opcji **-p**. Jest to rozszerzona wersja **-n**, która
+otacza kod następującą konstrukcją:
+```perl
+while (<>) {
+    # tutaj program
+} continue {
+    print or die "-p destination: $!\n";
+}
+```
+Blok **continue** wykonuje się po każdej iteracji **while**, nawet jeśli
+została zakończona przez **next**. Jak można zauważyć w kodzie, błąd
+wypisywania kończy program.
+
+Korzystając z własności zmiennej domyślnej możemy pisać bardzo zwięzłe
+programy na linii poleceń. Na przykład, program, który zamienia wszystkie
+wystąpienia hasła 'hunter2' na ciąg '\*\*\*\*\*\*\*':
+```
+$ perl -pe 's/hunter2/*******/g'
+```
+Dzięki właściwości operatora **<>**, takiego programu możemy użyć bezpośrednio
+na standardowym wejściu lub na plikach. Argumenty programu podaje się po
+kodzie:
+```
+$ perl -E 'say for @ARGV' arg1 arg2 arg3
 ```
 Wynik:
 ```
-0
-1
-2
+arg1
+arg2
+arg3
 ```
-**state** deklaruje zmienną, więc nie należy dodawać do deklaracji słowa
-kluczowego **my**.
 
-**UWAGA:** Żeby użyć zmiennych stanowych do programu trzeba dodać:
+### Autosplit
+Dodanie opcji **-a** do **-n** lub **-p** właczy automatyczny **split** na
+wejściu.  Wynik funkcji **split** zostaje umieszczony w tablicy **@F**.
+
+Wywołanie:
+```
+$ perl -ane '...'
+```
+Jest odpowiednikiem:
 ```perl
-use feature 'state';
+while (<>) {
+    @F = split;
+    ...
+}
 ```
-lub
-```
-use v5.10;
-```
-ewentualnie wyższą wersję.
 
-## Anonimowe funkcje
+Domyślnie **split** używa białych znaków jako separatora. Separator można
+zmienić za pomocą opcji **-F**.
+
+Wypisanie nazw zwykłych użytkowników z /etc/passwd:
+```
+perl -F: -ane 'print $F[0] if 1000 <= $F[2] and $F[2] <= 60000' /etc/passwd
+```
+
+### Edycja w miejscu
+
+Parametr **-i** włącza tryb edycji w miejcu. Pozwala to modyfikować pliki
+będące argumentami programu.
+
+Przykład:
+```
+$ perl -i -ple 's/foo/bar/g' file.txt
+```
+Powyższe wywołanie zamieni wszystkie wystąpienia słowa **foo** na **bar**
+w pliku file.txt (plik zostanie zmodyfikowany).
+
+Jeśli użyjemy **-i** bez argumentów, oryginalna zawartość pliku zostanie
+utracona. Można ją zachować, dodając rozszerzenie jako argument **-i**:
+```
+$ perl -i.orig -ple 's/foo/bar/g' file.txt
+```
+Teraz plik file.txt zostanie zmodyfikowany, ale jego aryginalna zawartość
+zostanie zachowana w pliku "file.txt.orig". Jest to dobre zabezpieczenie
+na wypadek pomyłki.
+
+### Więcej opcji
+Wszystkie parametry interpretera są opisane w:
+```
+perldoc perlrun
+```
+
+## Bloki BEGIN i END
+Bloki **BEGIN** i **END** są wykonywane tylko raz, na początku lub na końcu
+programu, niezależnie do tego, w którym miejscu programu sie znajdują.
+```perl
+END { say 'Finish'; }
+print foreach 1 .. 10;
+print "\n";
+BEGIN { say 'Start'; }
+```
+Wynik:
+```
+Start
+12345678910
+Finish
+```
+
+**UWGA:** Jeśli blok **END** zawiera odwołania do zmiennych, to muszą one być
+w zakresie bloku i istnieć w momencie zakończenia programu.
+
+Bloki **BEGIN** i **END** są przydatne przy pisaniu jednolinijkowych programów
+z dodanymi pętlami (**-p** i **-n**). Mimo, że program zawiera się
+w pętli, dzięki blokom **BEGIN** i **END** możemy wykonać jakieś operacje
+jednorazowo na początku lub końcu programu.
+
+Program, który zainicjalizuje licznik na 100 i odejmie od niego wszystkie
+liczby całkowite znalezione na wejściu, a na koniec wypisze stan licznika:
+```
+perl -nE 'BEGIN { $c = 100 } $c -= $_ for (/(\d+)/g); END { say $c, " left" }'
+```
+Przykładowe wejście:
+```
+test
+nic
+40
+10 oraz 15
+koniec
+```
+Wynik dla podanego wejścia:
+```
+35 left
+```
+
+## Referencje do funkcji
+
+### Anonimowe funkcje
 Anonimowa funkcja jest funkcją bez nazwy, do której można się odwołać przez
 referencję. Zasada tworzenia i odwołania jest taka sama jak przy anonimowych
 zmiennych. Aby stworzyć anonimową funkcję, używamy bloku **sub** bez nazwy:
@@ -57,176 +207,16 @@ Wynik:
 5
 ```
 
-## Dispatch table
-Dispatch table jest idiomem Perla, który wykorzystując hasz anonimowych
-funkcji przyporządkowuje wejście do zachowania. Idiom ten ma wiele
-zastosowań, jednym z bardziej popularnych jest przetwarzanie wejścia
-o rozbudowanym formacie.
-
-Ogólna struktura dispatch table do przetwarzania wejścia:
+### Referencje do nazwanych funkcji
+Referencję do nazwanej funkcji, tak jak w przypadku zmeinnych, można uzyskać
+operatorem \\. Do nazwy funkcji trzeba dodać znak **&**, jest to oznaczenie
+funkcji, tak samo jak **$** oznacza skalar, a **@** tablicę.
 ```perl
-my $state = 'start';
-my %parser = (
-    start => sub { ... },
-    state0 => sub { ... },
-    state1 => sub { ... },
-);
-```
-Klucze hasza **%parser** odpowiadają stanom przetwarzania. Na przykład,
-jeśli chcemy wyszukać jakąś wartość na wejściu, a po znalezieniu jej
-wykonywać na pozostałej części jakąś inną czynność, stanami mogły
-by być _'start'_, _'not\_found'_ i _'found'_.
+sub do_something { ... }
 
-Główna pętla przetwarzająca wejście z wykorzystaniem takiego parsera:
-```perl
-until (eof) {
-    my $line = <>;
-    $parser{$state}->($line);
-}
+my $coderef = \&do_something;
+$coderef->(); # == do_something()
 ```
 
-Załóżmy, że chcemy przetworzyć plik w następującym formacie:
-```
-<a>
-123-123
-456-789
-</a>
-
-<b>
-234-765
-103-567
-123-098
-333-111
-</b>
-<a>
-111-222
-333-444
-</a>
-```
-W pliku pojawiają się dwa rodzaje sekcji: **a** i **b**, w każdej z nich
-znajdują się linie wejścia w identycznym formacie. W zależności od tego,
-w której sekcji znajdują się dane, chcemy umieścić dane w tablicy **@A**
-lub w tablicy **@B**.
-
-Tworzenie parsera rozpoczynamy od zdefiniowania potrzebnych stanów. W tym
-przykładzie będą nam potrzebne 3 stany:
-* poza znacznikami (start)
-* wewnątrz znacznika **a** (in\_a)
-* wewnątrz znacznika **b** (in\_b)
-
-Stan start będzie się zajmował tylko i wyłącznie szukaniem znaczników
-startowych.
-```perl
-start => sub {
-    my $line = shift;
-    if ($line eq '<a>') {
-        $state = 'in_a';
-    } elsif ($line eq '<b>') {
-        $state = 'in_b';
-    }
-}
-```
-
-Stany 'in\_a' i 'in\_b' działają pod założeniem, że znajdujemy się wewnątrz
-odpowiedniego znacznika. Powinny więc zajmować się swoją sekcją wejścia i
-sprawdzać, czy nie trafiliśmy na znacznik końcowy.
-```perl
-in_a => sub {
-    my $line = shift;
-    if ($line eq '</a>') { # trafiliśmy na znacznik końca
-        $state = 'start';  # przechodzimy z powrotem do stanu 'start'
-    } else {
-        push @A, $line;
-    }
-}
-```
-Stan 'in\_b' będzie wyglądał analogicznie.
-
-Podczas pisania parserów na podstawie dispatch table warto dodać do głównej
-pętli następującą linijkę:
-```perl
-print "$state: $line";
-```
-Dzięki temu łatwo będzie określić, czy przejścia między stanami zostały
-wykonane poprawnie i który stan przetwarzał którą linijkę.
-
-Pełny program:
-```perl
-my (@A, @B);
-my $state = 'start';
-my %parser = (
-    start => sub {
-        my $line = shift;
-        if ($line eq '<a>') {
-            $state = 'in_a';
-        } elsif ($line eq '<b>') {
-            $state = 'in_b';
-        }
-    },
-    in_a => sub {
-        my $line = shift;
-        if ($line eq '</a>') {    # trafiliśmy na znacznik końca
-            $state = 'start';     # przechodzimy z powrotem do stanu 'start'
-        } else {
-            push @A, $line;
-        }
-    },
-    in_b => sub {
-        my $line = shift;
-        if ($line eq '</b>') {    # trafiliśmy na znacznik końca
-            $state = 'start';     # przechodzimy z powrotem do stanu 'start'
-        } else {
-            push @B, $line;
-        }
-    }
-);
-
-until (eof) {
-    my $line = <>;
-    print "$state: $line";
-    chomp $line;
-    $parser{$state}->($line);
-}
-
-print "\n";
-say '@A:';
-say foreach @A;
-
-print "\n";
-say '@B:';
-say foreach @B;
-```
-
-Dostając na wejście przykładowe dane podane wyżej, program wypisze:
-```
-start: <a>
-in_a: 123-123
-in_a: 456-789
-in_a: </a>
-start: 
-start: <b>
-in_b: 234-765
-in_b: 103-567
-in_b: 123-098
-in_b: 333-111
-in_b: </b>
-start: <a>
-in_a: 111-222
-in_a: 333-444
-in_a: </a>
-
-@A:
-123-123
-456-789
-111-222
-333-444
-
-@B:
-234-765
-103-567
-123-098
-333-111
-```
-
-Przetwarzanie wejścia w ten sposób pozwala nam podzielić problem na mniejsze
-podproblemy i znacznie upraszcza cały proces.
+Z tak uzyskaną referencją można pracować dokładnie tak samo jak z referencją
+do anonimowej funkcji.
