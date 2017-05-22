@@ -1,5 +1,0 @@
-perl -nE 'END { say $. }'
-perl -nlE '$l = length if length > $l; END { say $l }'
-perl -pe 'print "$.  "'
-perl -pe 's/\A.{37}\K.+\Z/.../ if length > 40'
-perl -nle 'rename $_ => s/\A(.+?)(\d+)\Z/$2-$1/gr if /\d+\Z/'
