@@ -1,33 +1,3 @@
-# Znajdowanie regionów bogatych w GC/AT
-
-W podanej sekwencji DNA znajdź regiony bogate w nukleotydy GC lub AT
-(zawierające odpowiedni procent nukleotydów GC lub AT). Program powinien
-przyjmować następujące argumenty:
-
-* --mode - "at" lub "gc", określa zbiór nukleotydów do sprawdzenia
-* --size - rozmiar regionów do znalezienia (liczba nukleotydów)
-* --from - dolna granica procentowa zawartości nukleotydów
-* --to   - górna granica procentowa zawartości nukleotydów
-* --help - jeśli ten argument zostanie podany, należy tylko wyświetlić pomoc
-
-## Przykładowy region
-
-Region o rozmiarze 10, zawierający 60% nukleotydów GC:
-```
-AGATCGTCCG
-```
-
-Wywołanie programu, które powinno znaleźć taki region (zakładając, że
-some\_sequence.txt go zawiera):
-```
-perl regions.pl --mode gc --from 60 --to 60 --size 10 some_sequence.txt
-```
-
-## Przykładowe wejście i wyjście
-
-Dla przykładowego pliku [ex01-seq\_regions.input](https://github.com/slimakuj/perl/blob/master/class05/exercises/ex01-seq_regions.input):
-```
-$ perl regions.pl --mode gc --from 75 --to 80 --size 100 ex01-regions.input
 AGAAGGGGCAGAGCCGAGCACCGCGCACCGCGTCATGGGGGCCGCCTCGGGCCGCCGGGGGCCGGGGCTGCTGCTGCCGCTGCCGCTGCTGTTGCTGCTG
 GAAGGGGCAGAGCCGAGCACCGCGCACCGCGTCATGGGGGCCGCCTCGGGCCGCCGGGGGCCGGGGCTGCTGCTGCCGCTGCCGCTGCTGTTGCTGCTGC
 AAGGGGCAGAGCCGAGCACCGCGCACCGCGTCATGGGGGCCGCCTCGGGCCGCCGGGGGCCGGGGCTGCTGCTGCCGCTGCCGCTGCTGTTGCTGCTGCC
@@ -49,17 +19,3 @@ GCTGCCGCTGCCGCTGCTGTTGCTGCTGCCGCCGCAGCCCGCCCTGGCGTTGGACCCCGGGCTGCAGCCCGGCAACTTTT
 CTGCCGCTGCCGCTGCTGTTGCTGCTGCCGCCGCAGCCCGCCCTGGCGTTGGACCCCGGGCTGCAGCCCGGCAACTTTTCTGCTGACGAGGCCGGGGCGC
 GCCGCTGCCGCTGCTGTTGCTGCTGCCGCCGCAGCCCGCCCTGGCGTTGGACCCCGGGCTGCAGCCCGGCAACTTTTCTGCTGACGAGGCCGGGGCGCAG
 CCGCTGCCGCTGCTGTTGCTGCTGCCGCCGCAGCCCGCCCTGGCGTTGGACCCCGGGCTGCAGCCCGGCAACTTTTCTGCTGACGAGGCCGGGGCGCAGC
-```
-
-Przykładowe wyjście można znaleźć w pliku
-[ex01-seq\_regions.output](https://github.com/slimakuj/perl/blob/master/class05/exercises/ex01-seq_regions.output),
-dla łatwiejszego porównania.
-
-## Pomoc
-
-Do wyświetlenia pomocy należy użyć wbudowanego modułu [Pod::Usage](https://metacpan.org/pod/Pod::Usage).
-Pomoc powinna zawierać przynajmniej przykładowe wywołanie programu i krótki
-opis każdego z argumentów.
-
-Oprócz argumentu --help, każdy błednie podany argument powinien powodować
-wyświetlenie pomocy i zakończenie programu.
