@@ -19,17 +19,17 @@ my (%arg, $filename);
         from=i
         to=i
         size=i
-    /) or die 'Invalid arguments';
+    /) or die "Invalid arguments\n";
 
     foreach my $required (qw[ mode from to size ]) {
-        die "Missing --$required" unless defined $arg{$required};
+        die "Missing --$required\n" unless defined $arg{$required};
     }
     foreach my $positive (qw[ from to size ]) {
-        die "Invalid --$positive: $arg{$positive}" unless $arg{$positive} > 0;
+        die "Invalid --$positive: $arg{$positive}\n" unless $arg{$positive} > 0;
     }
-    die "Invalid mode: $arg{mode}" unless exists $modes{ $arg{mode} };
+    die "Invalid mode: $arg{mode}\n" unless exists $modes{ $arg{mode} };
 
-    $filename = shift or die 'No filename specified';
+    $filename = shift or die "No filename specified\n";
 }
 
 open my $fh, '<', $filename;
