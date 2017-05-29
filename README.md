@@ -10,4 +10,4 @@ Wolnego Oprogramowania "Slimak"](http://slimak.matinf.uj.edu.pl/).
 * 04.05.2017, godz. 15:00, sala 1160
 * 08.05.2017, godz. 18:00, sala 1160
 * 15.05.2017, godz. 18:00, sala 1160
-* 22.05.2017, godz. 18:00, sala 1160
+* 22.05.2017, godz. 18:00, sala 1160 (ostatnie zajęcia)
