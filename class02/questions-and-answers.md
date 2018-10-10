@@ -2,7 +2,7 @@
 <!--TOC_START--->
 * [Q: Co się stanie, jeśli zinkrementuję nieistniejący klucz w haszu?](#q-co-się-stanie-jeśli-zinkrementuję-nieistniejący-klucz-w-haszu)
 * [Q: Co robi funkcja qw()?](#q-co-robi-funkcja-qw)
-* [Q: Dlaczego w moim rozwiązaniu zadania 2 numeracja zaczyna się od 2?](https://github.com/slimakuj/perl/blob/master/class02/questions-and-answers.md#q-dlaczego-w-moim-rozwi%C4%85zaniu-zadania-2-numeracja-zaczyna-si%C4%99-od-2)
+* [Q: Dlaczego w moim rozwiązaniu zadania 2 numeracja zaczyna się od 2?](https://github.com/slimakuj/perl/blob/legacy_2016/class02/questions-and-answers.md#q-dlaczego-w-moim-rozwi%C4%85zaniu-zadania-2-numeracja-zaczyna-si%C4%99-od-2)
 * [Q: Próbuję wczytać po jednej linijce z każdego z dwóch plików, a dostaję dwie linijki z tego samego pliku. Dlaczego?](#q-próbuję-wczytać-po-jednej-linijce-z-każdego-z-dwóch-plików-a-dostaję-dwie-linijki-z-tego-samego-pliku-dlaczego)
 * [Q: Czy mogę skorzystać z domyślnego zachowania **<>**, jeśli któryś z argumentów programu nie jest nazwą pliku?](#q-czy-mogę-skorzystać-z-domyślnego-zachowania--jeśli-któryś-z-argumentów-programu-nie-jest-nazwą-pliku)
 * [Q: Nie chce mi się pisać "or die" przy każdym **open**, co począć?](#q-nie-chce-mi-się-pisać-or-die-przy-każdym-open-co-począć)
@@ -30,7 +30,7 @@ my @list = ('one', 'two', 'three');
 ````
 Jest to wygodna funkcja, która pozwala nam mniej pisać.
 
-## Q: Dlaczego w moim rozwiązaniu [zadania 2](https://github.com/slimakuj/perl/blob/master/class02/exercises/ex02-rename.md) numeracja zaczyna się od 2?
+## Q: Dlaczego w moim rozwiązaniu [zadania 2](https://github.com/slimakuj/perl/blob/legacy_2016/class02/exercises/ex02-rename.md) numeracja zaczyna się od 2?
 **A:** Prawdopodobnie nie sprawdzasz, czy dany plik jest folderem przed
 zmianą nazwy. W każdym folderze znajdują się dwa specjalne pliki - '.' i
 '..', które oznaczają "aktualny folder" i "folder powyżej", ich nazw nie

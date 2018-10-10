@@ -1,6 +1,6 @@
 # Informacje i szablon
 Wczytaj plik
-[ex04-users-template.input](https://github.com/slimakuj/perl/blob/master/class05/exercises/ex04-users-template.input)
+[ex04-users-template.input](https://github.com/slimakuj/perl/blob/legacy_2016/class05/exercises/ex04-users-template.input)
 w dziwnym, hybrydowym formacie INI-XML.
 W pliku są 3 rodzaje sekcji:
 
@@ -47,7 +47,7 @@ Szablony powinny być oddzielone znakiem nowej linii.
 
 ## Przykładowe wyjście
 Wyjście dla pliku
-[ex04-users-template.input](https://github.com/slimakuj/perl/blob/master/class05/exercises/ex04-users-template.input):
+[ex04-users-template.input](https://github.com/slimakuj/perl/blob/legacy_2016/class05/exercises/ex04-users-template.input):
 ```
 Our level 100 viking is Torlak Torlaksson.
 You can contact him via email: torlak@scandinavia.se.

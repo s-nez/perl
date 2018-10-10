@@ -1,6 +1,6 @@
 # Quiz
 Napisz prosty quiz. Wczytaj pytania i odpowiedzi z pliku
-[ex04-quiz.input](https://github.com/slimakuj/perl/blob/master/class03/exercises/ex04-quiz.input).
+[ex04-quiz.input](https://github.com/slimakuj/perl/blob/legacy_2016/class03/exercises/ex04-quiz.input).
 Program może zakładać pełną poprawność danych wejściowych.
 
 Program powinien przyjąć jeden lub dwa argumenty:

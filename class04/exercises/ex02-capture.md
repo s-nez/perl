@@ -1,11 +1,11 @@
 # Przechwytywanie
 Wczytaj wiadomości o nieprawidłowym loginie z pliku
-[ex02-capture.input](https://github.com/slimakuj/perl/blob/master/class04/exercises/ex02-capture.input).
+[ex02-capture.input](https://github.com/slimakuj/perl/blob/legacy_2016/class04/exercises/ex02-capture.input).
 Policz wystąpienie każdego adresu IP i wyświetl ich listę wraz z wystąpieniami,
 posortowaną malejąco.
 
 Wyjście dla pliku 
-[ex02-capture.input](https://github.com/slimakuj/perl/blob/master/class04/exercises/ex02-capture.input):
+[ex02-capture.input](https://github.com/slimakuj/perl/blob/legacy_2016/class04/exercises/ex02-capture.input):
 ```
 207.54.140.124: 838
 218.189.194.200: 375

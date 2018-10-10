@@ -1,6 +1,6 @@
 # Dopasowanie
 Pobierz plik
-[ex03-match-form.pl](https://github.com/SlimakUJ/perl/blob/master/class05/exercises/ex03-match-form.pl).
+[ex03-match-form.pl](https://github.com/SlimakUJ/perl/blob/legacy_2016/class05/exercises/ex03-match-form.pl).
 Uzupełnij deklaracje zmiennych w początkowej sekcji pliku odpowiednimi
 wzorcami.
 
